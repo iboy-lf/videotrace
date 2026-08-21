@@ -1,0 +1,108 @@
+{
+  "schema_version": "videotrace-qwen35-dpo-reference-logprobs-v1",
+  "created_at_utc": "2026-08-20T06:53:28.413976+00:00",
+  "model_path": "/lavender/models/Qwen3.5-9B",
+  "initial_adapter_path": "/lavender/VideoTrace/outputs/models/qwen35_sft_adapter",
+  "initial_adapter_sha256": "d224b1ea1066f67906deca440f9aa3c2e2099fec4589ec4d30d0c485fa703f98",
+  "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
+  "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1",
+  "max_length": 768,
+  "records": {
+    "safedroid-overview:wrong-timestamp": {
+      "split": "train",
+      "negative_type": "wrong_timestamp",
+      "chosen_logp": -117.77914428710938,
+      "rejected_logp": -108.35551452636719,
+      "chosen_tokens": 178,
+      "rejected_tokens": 66
+    },
+    "safedroid-app-drawer:missing-timestamp": {
+      "split": "train",
+      "negative_type": "missing_timestamp",
+      "chosen_logp": -107.26799774169922,
+      "rejected_logp": -47.751182556152344,
+      "chosen_tokens": 75,
+      "rejected_tokens": 35
+    },
+    "safedroid-chrome-settings:wrong-timestamp": {
+      "split": "train",
+      "negative_type": "wrong_timestamp",
+      "chosen_logp": -106.30838775634766,
+      "rejected_logp": -70.50071716308594,
+      "chosen_tokens": 74,
+      "rejected_tokens": 48
+    },
+    "safedroid-sensitive-permission:hallucinated-action": {
+      "split": "train",
+      "negative_type": "hallucinated_detail",
+      "chosen_logp": -113.75279998779297,
+      "rejected_logp": -129.82479858398438,
+      "chosen_tokens": 92,
+      "rejected_tokens": 76
+    },
+    "safedroid-negative-terminal:unsupported-overclaim": {
+      "split": "train",
+      "negative_type": "unsupported_overclaim",
+      "chosen_logp": -51.19587326049805,
+      "rejected_logp": -104.80467224121094,
+      "chosen_tokens": 31,
+      "rejected_tokens": 52
+    },
+    "safedroid-negative-outdoor:unsupported-overclaim": {
+      "split": "train",
+      "negative_type": "unsupported_overclaim",
+      "chosen_logp": -39.031620025634766,
+      "rejected_logp": -110.14801025390625,
+      "chosen_tokens": 30,
+      "rejected_tokens": 49
+    },
+    "safedroid-negative-drink:unsupported-overclaim": {
+      "split": "train",
+      "negative_type": "unsupported_overclaim",
+      "chosen_logp": -56.31037139892578,
+      "rejected_logp": -117.37294006347656,
+      "chosen_tokens": 29,
+      "rejected_tokens": 52
+    },
+    "yoga-overview:wrong-timestamp": {
+      "split": "dev",
+      "negative_type": "wrong_timestamp",
+      "chosen_logp": -110.51644134521484,
+      "rejected_logp": -106.8843002319336,
+      "chosen_tokens": 75,
+      "rejected_tokens": 52
+    },
+    "yoga-pose-transition:hallucinated-action": {
+      "split": "dev",
+      "negative_type": "hallucinated_detail",
+      "chosen_logp": -105.5125732421875,
+      "rejected_logp": -124.31222534179688,
+      "chosen_tokens": 94,
+      "rejected_tokens": 73
+    },
+    "yoga-negative-screen:unsupported-overclaim": {
+      "split": "dev",
+      "negative_type": "unsupported_overclaim",
+      "chosen_logp": -40.78184509277344,
+      "rejected_logp": -93.16983795166016,
+      "chosen_tokens": 37,
+      "rejected_tokens": 51
+    },
+    "yoga-negative-beverage:unsupported-overclaim": {
+      "split": "dev",
+      "negative_type": "unsupported_overclaim",
+      "chosen_logp": -43.42155075073242,
+      "rejected_logp": -113.44452667236328,
+      "chosen_tokens": 38,
+      "rejected_tokens": 53
+    },
+    "cola-review-frozen-overview:wrong-timestamp": {
+      "split": "test",
+      "negative_type": "wrong_timestamp",
+      "chosen_logp": -119.91349792480469,
+      "rejected_logp": -131.9910430908203,
+      "chosen_tokens": 273,
+      "rejected_tokens": 111
+    }
+  }
+}

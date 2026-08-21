@@ -1,0 +1,68 @@
+name: ci
+
+# CI runs only the checks that are genuinely reproducible without the GPU host:
+# the Python/JS test suites and the documentation-vs-metrics consistency gate.
+#
+# It deliberately does NOT run validate_delivery_package.py or
+# validate_interview_package.py: those hash model weights (.pt/.safetensors)
+# and the source video, which are not redistributed in this repository. Running
+# them here would either fail or require faking the artifacts, and a green badge
+# that does not correspond to a real check is worse than no badge.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install
+        run: python -m pip install --upgrade pip && python -m pip install -e .
+
+      - name: Byte-compile source, scripts and tests
+        run: python -m compileall -q src scripts tests
+
+      - name: Python test suite
+        run: python -m pytest -q
+        env:
+          PYTHONPATH: src
+
+      - name: JavaScript syntax check
+        run: |
+          for f in app.js playback.js technical.js job_status.js; do
+            node --check "src/videomemo/web/static/$f"
+          done
+
+      - name: JavaScript behaviour tests
+        run: |
+          node tests/js/playback.test.cjs
+          node tests/js/technical.test.cjs
+          node tests/js/job_status.test.cjs
+
+      - name: DPO length-bias diagnostic is re-derivable from tracked artifacts
+        run: python scripts/analyze_dpo_length_bias.py
+        env:
+          PYTHONPATH: src
+
+      - name: Documentation / metrics consistency
+        run: python scripts/validate_documentation_consistency.py
+        env:
+          PYTHONPATH: src
+
+      - name: Documented paths exist
+        run: python scripts/validate_documentation_links.py
+        env:
+          PYTHONPATH: src

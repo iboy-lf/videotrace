@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "model_name": "VideoTrace query-segment neural reranker",
+  "model_type": "feature_mlp_binary_relevance",
+  "architecture": {
+    "input_dim": 12,
+    "hidden_dims": [
+      16,
+      8
+    ],
+    "output_dim": 1,
+    "feature_names": [
+      "query_coverage",
+      "retrieval_score",
+      "scorer_score",
+      "vlm_score",
+      "retrieval_rank_score",
+      "scorer_rank_score",
+      "vlm_rank_score",
+      "base_fusion_score",
+      "understanding_confidence",
+      "temporal_position",
+      "duration_ratio",
+      "text_length_log"
+    ],
+    "feature_contract_valid": true
+  },
+  "artifacts": {
+    "checkpoint_path": "outputs/models/neural_reranker.pt",
+    "checkpoint_bytes": 5360,
+    "checkpoint_sha256": "5b3422a734672e6950654e484a524fbae571b3c0756a811571b9f965e14624db",
+    "dataset_path": "outputs_train/reranker_dev_5s.jsonl",
+    "dataset_sha256": "c3deddd1be2eb377593d34275b1ed8f32fb49a34e91d5423a090af81323ce7ac",
+    "metrics_path": "outputs/models/neural_reranker_metrics.json",
+    "metrics_sha256": "0696cda8c545675a7e072a5318f9ac64bbb17d4035abc3ae15ec97d3bcf97bf1"
+  },
+  "data_contract": {
+    "splits": [
+      "dev"
+    ],
+    "video_ids": [
+      "safedroid-demo",
+      "yoga-action"
+    ],
+    "num_rows": 71,
+    "num_groups": 11,
+    "num_positive": 25,
+    "train_groups": [
+      "safedroid-negative-drink",
+      "safedroid-negative-outdoor",
+      "safedroid-negative-terminal",
+      "safedroid-overview",
+      "safedroid-sensitive-permission",
+      "yoga-negative-beverage",
+      "yoga-negative-screen",
+      "yoga-overview",
+      "yoga-pose-transition"
+    ],
+    "eval_groups": [
+      "safedroid-app-drawer",
+      "safedroid-chrome-settings"
+    ],
+    "pairwise_eval_groups": [
+      "safedroid-app-drawer",
+      "safedroid-chrome-settings"
+    ],
+    "eval_fraction": 0.2,
+    "seed": 42,
+    "contains_test_rows": false
+  },
+  "evaluation": {
+    "neural_pairwise_accuracy": 0.775,
+    "base_fusion_pairwise_accuracy": 0.725,
+    "recommended_blend_weight": 0.45,
+    "blended_pairwise_accuracy": 0.775,
+    "pairwise_eval_pairs": 40,
+    "pairwise_baselines": {
+      "base_fusion_score": 0.725,
+      "query_coverage": 0.575,
+      "retrieval_rank_score": 0.825,
+      "scorer_rank_score": 0.625,
+      "vlm_rank_score": 0.7
+    },
+    "lift_over_base_fusion": 0.050000000000000044,
+    "train_loss": 0.40449059009552,
+    "eval_loss": 0.7622092962265015,
+    "best_epoch": 31
+  },
+  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+  "intended_use": "Blend query-segment relevance with sparse, scorer, and SigLIP signals before temporal evidence selection.",
+  "limitations": [
+    "Dev supervision is small and spans two videos, so metrics are contract evidence rather than a broad quality claim.",
+    "The foundation vision-language models remain frozen.",
+    "The frozen cola test video is excluded from fitting."
+  ]
+}

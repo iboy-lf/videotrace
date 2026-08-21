@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0",
+  "name": "VideoTrace Reranker Supervision",
+  "description": "Manually checked development supervision for the trainable query-segment reranker.",
+  "annotation_policy": {
+    "split_unit": "video",
+    "usage": "development supervision only",
+    "final_demo_excluded": true,
+    "gold_span_semantics": "An acceptable evidence window rather than a frame-exact action boundary."
+  },
+  "sources": [
+    {
+      "video_id": "safedroid-demo",
+      "file": "safedroid_demo.mp4",
+      "split": "dev",
+      "domain": "mobile-security",
+      "duration_sec": 45.0,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "91890d8578b0edc4058374f4084fd4dbbe7232bd6e784a21d72ef418bcc7daf1",
+      "provenance": "Local workspace evaluation asset."
+    },
+    {
+      "video_id": "yoga-action",
+      "file": "yoga.mp4",
+      "split": "dev",
+      "domain": "human-action",
+      "duration_sec": 10.0,
+      "width": 568,
+      "height": 320,
+      "sha256": "74b65d9bec7f83e487b7f923076c01d476dd2ef7ed83928a696ab6f88c7751b7",
+      "provenance": "Bundled local research example; verify redistribution terms before public release."
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "safedroid-overview",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "这个演示如何从手机应用界面进入Chrome设置，并最终显示敏感权限提示？",
+      "case_type": "hard",
+      "expected_behavior": "answer",
+      "question_modality": "temporal",
+      "difficulty": "hard",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "overview",
+        "multi-span"
+      ],
+      "expected_focus": "应用列表、Chrome设置、敏感权限弹窗",
+      "gold_spans": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 20.0
+        },
+        {
+          "start_sec": 20.0,
+          "end_sec": 40.0
+        },
+        {
+          "start_sec": 40.0,
+          "end_sec": 45.0
+        }
+      ],
+      "gold_keywords": [
+        "Chrome",
+        "权限",
+        "提示"
+      ]
+    },
+    {
+      "case_id": "safedroid-app-drawer",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "哪里显示了安卓应用列表，同时右侧配有机器人循环示意图？",
+      "case_type": "hard",
+      "expected_behavior": "answer",
+      "question_modality": "visual",
+      "difficulty": "easy",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "android",
+        "diagram"
+      ],
+      "expected_focus": "应用抽屉和机器人循环图",
+      "gold_spans": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 20.0
+        }
+      ],
+      "gold_keywords": [
+        "应用",
+        "机器人"
+      ]
+    },
+    {
+      "case_id": "safedroid-chrome-settings",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "Chrome应用设置页面和权限选项出现在哪一段？",
+      "case_type": "hard",
+      "expected_behavior": "answer",
+      "question_modality": "visual-ocr",
+      "difficulty": "medium",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "chrome",
+        "settings"
+      ],
+      "expected_focus": "Chrome设置和权限入口",
+      "gold_spans": [
+        {
+          "start_sec": 18.0,
+          "end_sec": 31.0
+        }
+      ],
+      "gold_keywords": [
+        "Chrome",
+        "权限"
+      ]
+    },
+    {
+      "case_id": "safedroid-sensitive-permission",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "哪里出现“Sensitive permission granted”提示以及“Allow only while using the app”权限按钮？",
+      "case_type": "hard",
+      "expected_behavior": "answer",
+      "question_modality": "ocr",
+      "difficulty": "hard",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "permission",
+        "ocr"
+      ],
+      "expected_focus": "敏感权限警告和仅使用时允许选项",
+      "gold_spans": [
+        {
+          "start_sec": 27.0,
+          "end_sec": 45.0
+        }
+      ],
+      "gold_keywords": [
+        "Sensitive permission",
+        "Allow only while using the app"
+      ]
+    },
+    {
+      "case_id": "safedroid-negative-terminal",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "哪里展示了Linux终端命令和服务器日志？",
+      "case_type": "negative",
+      "expected_behavior": "abstain",
+      "question_modality": "negative",
+      "difficulty": "easy",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "negative",
+        "cross-domain"
+      ],
+      "expected_focus": "拒绝不存在的终端内容",
+      "forbidden_keywords": [
+        "Linux终端",
+        "服务器日志"
+      ],
+      "gold_keywords": [
+        "证据不足",
+        "无法确认"
+      ]
+    },
+    {
+      "case_id": "safedroid-negative-outdoor",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "视频中有没有户外跑步或瑜伽动作？",
+      "case_type": "negative",
+      "expected_behavior": "abstain",
+      "question_modality": "negative",
+      "difficulty": "easy",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "negative",
+        "cross-domain"
+      ],
+      "expected_focus": "拒绝不存在的户外运动",
+      "forbidden_keywords": [
+        "户外跑步",
+        "瑜伽动作"
+      ],
+      "gold_keywords": [
+        "证据不足",
+        "无法确认"
+      ]
+    },
+    {
+      "case_id": "safedroid-negative-drink",
+      "video_id": "safedroid-demo",
+      "video_path": "../raw/safedroid_demo.mp4",
+      "split": "dev",
+      "query": "哪里有人拿着饮料进行口味评测？",
+      "case_type": "negative",
+      "expected_behavior": "abstain",
+      "question_modality": "negative",
+      "difficulty": "easy",
+      "annotation_status": "verified",
+      "tags": [
+        "mobile-security",
+        "negative",
+        "cross-domain"
+      ],
+      "expected_focus": "拒绝不存在的饮料评测",
+      "forbidden_keywords": [
+        "饮料",
+        "口味评测"
+      ],
+      "gold_keywords": [
+        "证据不足",
+        "无法确认"
+      ]
+    },
+    {
+      "case_id": "yoga-overview",
+      "video_id": "yoga-action",
+      "video_path": "../raw/yoga.mp4",
+      "split": "dev",
+      "query": "这段户外视频中的女性完成了怎样的一组连续瑜伽动作？",
+      "case_type": "hard",
+      "expected_behavior": "answer",
+      "question_modality": "visual",
+      "difficulty": "medium",
+      "annotation_status": "verified",
+      "tags": [
+        "human-action",
+        "yoga",
+        "overview"
+      ],
+      "expected_focus": "户外连续瑜伽体式转换",
+      "gold_spans": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 10.0
+        }
+      ],
+      "gold_keywords": [
+        "女性",
+        "瑜伽",
+        "户外"
+      ]
+    },
+    {
+      "case_id": "yoga-pose-transition",
+      "video_id": "yoga-action",
+      "video_path": "../raw/yoga.mp4",
+      "split": "dev",
+      "query": "哪里可以看到她从俯身支撑或下犬式过渡到侧向伸展、双臂展开的站立体式？",
+      "case_type": "hard",
+      "expected_behavior": "answer",
+      "question_modality": "temporal",
+      "difficulty": "hard",
+      "annotation_status": "verified",
+      "tags": [
+        "human-action",
+        "yoga",
+        "transition"
+      ],
+      "expected_focus": "从地面支撑到站立侧向体式的转换",
+      "gold_spans": [
+        {
+          "start_sec": 3.0,
+          "end_sec": 10.0
+        }
+      ],
+      "gold_keywords": [
+        "下犬式",
+        "侧向",
+        "双臂"
+      ]
+    },
+    {
+      "case_id": "yoga-negative-screen",
+      "video_id": "yoga-action",
+      "video_path": "../raw/yoga.mp4",
+      "split": "dev",
+      "query": "视频中哪里展示了电脑屏幕、代码编辑器和网页仪表盘？",
+      "case_type": "negative",
+      "expected_behavior": "abstain",
+      "question_modality": "negative",
+      "difficulty": "easy",
+      "annotation_status": "verified",
+      "tags": [
+        "human-action",
+        "negative",
+        "cross-domain"
+      ],
+      "expected_focus": "拒绝不存在的电脑界面",
+      "forbidden_keywords": [
+        "电脑屏幕",
+        "代码编辑器",
+        "网页仪表盘"
+      ],
+      "gold_keywords": [
+        "证据不足",
+        "无法确认"
+      ]
+    },
+    {
+      "case_id": "yoga-negative-beverage",
+      "video_id": "yoga-action",
+      "video_path": "../raw/yoga.mp4",
+      "split": "dev",
+      "query": "哪里出现了可乐瓶、饮料罐和试喝评价？",
+      "case_type": "negative",
+      "expected_behavior": "abstain",
+      "question_modality": "negative",
+      "difficulty": "easy",
+      "annotation_status": "verified",
+      "tags": [
+        "human-action",
+        "negative",
+        "cross-domain"
+      ],
+      "expected_focus": "拒绝不存在的饮料内容",
+      "forbidden_keywords": [
+        "可乐瓶",
+        "饮料罐",
+        "试喝评价"
+      ],
+      "gold_keywords": [
+        "证据不足",
+        "无法确认"
+      ]
+    }
+  ]
+}

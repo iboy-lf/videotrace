@@ -1,0 +1,1082 @@
+{
+  "valid": false,
+  "checks_passed": 34,
+  "checks_total": 40,
+  "failures": [
+    "core::source_fingerprint_matches",
+    "core::model_card_matches_source_snapshot",
+    "canonical_uses_hash_bound_admitted_adapter",
+    "adapter_evaluation_and_product_admission_are_bound",
+    "source_bound_runtime_artifacts_match_final_snapshot",
+    "browser_e2e_and_durable_job_observability_pass"
+  ],
+  "checks": [
+    {
+      "name": "required_delivery_artifacts_exist",
+      "passed": true,
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "name": "artifact_manifest_is_complete_and_current",
+      "passed": true,
+      "evidence": {
+        "manifest_source": "1499315d87ddf4105127a04a318edf5141bf98c126aab3f9be002a6c29c6a003",
+        "current_source": "1499315d87ddf4105127a04a318edf5141bf98c126aab3f9be002a6c29c6a003",
+        "missing": [],
+        "hash_mismatches": []
+      }
+    },
+    {
+      "name": "core::required_artifacts_exist",
+      "passed": true,
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "name": "core::input_video_exists",
+      "passed": true,
+      "evidence": "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4"
+    },
+    {
+      "name": "core::source_fingerprint_matches",
+      "passed": false,
+      "evidence": {
+        "artifact": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+        "current": "1499315d87ddf4105127a04a318edf5141bf98c126aab3f9be002a6c29c6a003"
+      }
+    },
+    {
+      "name": "core::video_fingerprint_matches",
+      "passed": true,
+      "evidence": {
+        "artifact": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+        "current": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781"
+      }
+    },
+    {
+      "name": "core::interview_stack_is_active",
+      "passed": true,
+      "evidence": {
+        "segment_understanding": "qwen35_local",
+        "vlm": "frozen_siglip",
+        "reranker": "neural",
+        "llm": "qwen35_local"
+      }
+    },
+    {
+      "name": "core::runtime_environment_is_recorded",
+      "passed": true,
+      "evidence": {
+        "python": "3.10.20",
+        "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+        "packages": {
+          "numpy": "2.2.6",
+          "opencv-python": "4.13.0.92",
+          "opencv-python-headless": "5.0.0.93",
+          "scikit-learn": "1.7.2",
+          "torch": "2.5.1+cu121",
+          "transformers": "5.15.0.dev0"
+        },
+        "cuda": {
+          "available": true,
+          "device_count": 2,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 3090",
+              "total_memory_mib": 24124.2,
+              "capability": [
+                8,
+                6
+              ]
+            },
+            {
+              "index": 1,
+              "name": "NVIDIA GeForce RTX 3090",
+              "total_memory_mib": 24124.2,
+              "capability": [
+                8,
+                6
+              ]
+            }
+          ]
+        },
+        "cuda_visible_devices": "0,1",
+        "physical_gpu_ids": "0,1"
+      }
+    },
+    {
+      "name": "core::agent_answer_is_grounded",
+      "passed": true,
+      "evidence": {
+        "verified": true,
+        "coverage": 1.0,
+        "tool_calls": 6
+      }
+    },
+    {
+      "name": "core::answer_timestamps_are_bound",
+      "passed": true,
+      "evidence": {
+        "timestamp_refs": [
+          "0.0-20.0",
+          "200.0-220.0",
+          "300.0-320.0",
+          "400.0-416.2"
+        ],
+        "unbound": []
+      }
+    },
+    {
+      "name": "core::overview_temporal_coverage_is_complete",
+      "passed": true,
+      "evidence": {
+        "selected": [
+          [
+            0.0,
+            20.0,
+            "temporal_coverage:opening"
+          ],
+          [
+            200.0,
+            220.0,
+            "temporal_coverage:middle"
+          ],
+          [
+            300.0,
+            320.0,
+            "relevance_plus_temporal_novelty"
+          ],
+          [
+            400.0,
+            416.22,
+            "temporal_coverage:ending"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "core::dense_index_is_persisted",
+      "passed": true,
+      "evidence": {
+        "enabled": true,
+        "backend": "frozen_siglip",
+        "storage_backend": "numpy_flat_cosine",
+        "vector_path": "outputs/indexes/cola_review-d8231ab2d3.npy",
+        "metadata_path": "outputs/indexes/cola_review-d8231ab2d3.json",
+        "num_vectors": 21,
+        "dim": 1024
+      }
+    },
+    {
+      "name": "core::replayable_media_exists",
+      "passed": true,
+      "evidence": {
+        "demo": "D:\\Agent\\VideoTrace\\outputs\\iboy_qwen35\\cola_review\\demo.html",
+        "clips": [
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4"
+        ],
+        "playback_mode": "source_video_window"
+      }
+    },
+    {
+      "name": "core::training_split_has_no_test_leakage",
+      "passed": true,
+      "evidence": {
+        "splits": [
+          "dev"
+        ],
+        "training_video_ids": [
+          "safedroiddemo",
+          "yogaaction"
+        ],
+        "final_video_id": "colareview"
+      }
+    },
+    {
+      "name": "core::reranker_feature_contract_matches",
+      "passed": true,
+      "evidence": {
+        "feature_names": [
+          "query_coverage",
+          "retrieval_score",
+          "scorer_score",
+          "vlm_score",
+          "retrieval_rank_score",
+          "scorer_rank_score",
+          "vlm_rank_score",
+          "base_fusion_score",
+          "understanding_confidence",
+          "temporal_position",
+          "duration_ratio",
+          "text_length_log"
+        ],
+        "metrics_hidden_dim": 16,
+        "model_card_hidden_dims": [
+          16,
+          8
+        ]
+      }
+    },
+    {
+      "name": "core::training_counts_are_consistent",
+      "passed": true,
+      "evidence": {
+        "rows": 71,
+        "groups": 11,
+        "positive": 25
+      }
+    },
+    {
+      "name": "core::reranker_has_held_out_pairwise_signal",
+      "passed": true,
+      "evidence": {
+        "neural_pairwise_accuracy": 0.775,
+        "blended_pairwise_accuracy": 0.775,
+        "base_fusion_pairwise_accuracy": 0.725,
+        "recommended_blend_weight": 0.45,
+        "pairwise_eval_groups": 2
+      }
+    },
+    {
+      "name": "core::training_artifact_hashes_match",
+      "passed": true,
+      "evidence": {
+        "checkpoint_sha256": "5b3422a734672e6950654e484a524fbae571b3c0756a811571b9f965e14624db",
+        "dataset_sha256": "c3deddd1be2eb377593d34275b1ed8f32fb49a34e91d5423a090af81323ce7ac",
+        "metrics_sha256": "0696cda8c545675a7e072a5318f9ac64bbb17d4035abc3ae15ec97d3bcf97bf1"
+      }
+    },
+    {
+      "name": "core::model_card_matches_source_snapshot",
+      "passed": false,
+      "evidence": {
+        "model_card": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+        "current": "1499315d87ddf4105127a04a318edf5141bf98c126aab3f9be002a6c29c6a003"
+      }
+    },
+    {
+      "name": "canonical_uses_hash_bound_admitted_adapter",
+      "passed": false,
+      "evidence": {
+        "pack_adapter": {
+          "enabled": true,
+          "validated_for_web": true,
+          "candidate_id": "qwen35_dpo",
+          "method": "dpo",
+          "path": "/lavender/VideoTrace/outputs/models/qwen35_dpo_adapter",
+          "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
+          "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+          "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+          "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+          "registry_path": "/lavender/VideoTrace/outputs/models/best_adapter.json",
+          "registry_sha256": "b36614bdf314866a94f57f4fd887b3277f9143e24cfc66a8d026aae04483a641"
+        },
+        "current_adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
+        "registry_sha256": "b36614bdf314866a94f57f4fd887b3277f9143e24cfc66a8d026aae04483a641",
+        "selected_candidate_id": "qwen35_dpo",
+        "resolved_adapter": "",
+        "admission_metadata": {
+          "enabled": false,
+          "path": "",
+          "validated_for_web": false
+        }
+      }
+    },
+    {
+      "name": "canonical_load_admission_is_immutable",
+      "passed": true,
+      "evidence": {
+        "pack_evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+        "preserved_evaluation_hashes": [
+          "3a2ea1d5fd2d193d63f10aa606e90c0264071507a70ea2807d1ef630a1835352",
+          "7873400eb2dfa4edacf80de6717ad5e528ba6789feabff9cb5ab5fb4a8fc486e",
+          "7cb3ac6fc97664840812d2a833523a0393f54eef38a04d3716488787e55cbb23",
+          "8b11c1a7a0ec3dff30c6da8006c75381e3596eb24c74cee306a669a66dcda784",
+          "91ea00b20348fc9a14c407f2132c41ed7bc1d8ef0ad7f2eadce1e23913b3757f",
+          "9b91e531d627425ecc496bfa497138f4253ebd3548197bde39beee427084b57a",
+          "a97b5e13c67b1a67734e6d1015f779136c387a682add1e18529274d8822f8283",
+          "bc72129e2160de487fb2266ba9d6d1f3cfad5759f454bdc796cb7430b2bf34e8",
+          "bf974f87fdb2f4ef400aeeb93ce3dd68e4fea6de1e2ec2941762df4eed2ab74c",
+          "c4c5d773e7285ebc00c4489d1e9e81437dbb9929d012bafedb96d730415f05ff",
+          "cb5fccb3a1bbb76ca2228d229ad8b798f60cadb66e0a6ae082580a7f1c2d0324",
+          "cd8e522dbba6592a73b128cd318e69d057a4c4be30a6c56454365a44ebf26673",
+          "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+          "fc5b394a58d8245c3dd30b0bc017e21eb9c412d47c403e72e254bc027727e34f"
+        ]
+      }
+    },
+    {
+      "name": "sft_split_isolation_and_frozen_cola_policy",
+      "passed": true,
+      "evidence": {
+        "counts": {
+          "train": 7,
+          "dev": 4,
+          "test": 1
+        },
+        "validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [],
+          "num_records": 12,
+          "counts": {
+            "train": 7,
+            "dev": 4,
+            "test": 1
+          },
+          "video_groups": {
+            "cola-review-frozen-test": [
+              "test"
+            ],
+            "safedroid-demo": [
+              "train"
+            ],
+            "yoga-action": [
+              "dev"
+            ]
+          }
+        },
+        "cola_train_dev": [],
+        "frozen_outside_test": []
+      }
+    },
+    {
+      "name": "sft_dataset_and_optimizer_payload_hashes_match",
+      "passed": true,
+      "evidence": {
+        "dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+        "optimizer_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e",
+        "metrics_dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+        "summary_dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+        "metrics_gradient_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e",
+        "summary_gradient_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e"
+      }
+    },
+    {
+      "name": "real_lora_training_run_is_recorded",
+      "passed": true,
+      "evidence": {
+        "status": "completed",
+        "steps": 1,
+        "train_loss_last": 1.4157356023788452,
+        "dev_loss": 1.213108,
+        "tokens_per_second": 51.271,
+        "peak_cuda_memory_mib": 19130.73,
+        "physical_gpu_ids": "0",
+        "resume_supported": true
+      }
+    },
+    {
+      "name": "sft_checkpoint_is_hash_committed_and_resume_safe",
+      "passed": true,
+      "evidence": {
+        "valid": true,
+        "method": "sft",
+        "global_step": 1,
+        "contract_sha256": "4f842bca53c4d6124b9cc8bf683720a61161c5558c63b919bceba0f5f9445692",
+        "manifest_sha256": "9cb1bccf85d50565b1dc8140d0ed6d37b579b70ddc1e83b7ee69a68fe843f373",
+        "required_files": [
+          "adapter_config.json",
+          "adapter_model.safetensors",
+          "optimizer.pt",
+          "rng_state.pt",
+          "trainer_state.json"
+        ],
+        "recorded_files": [
+          "README.md",
+          "adapter_config.json",
+          "adapter_model.safetensors",
+          "chat_template.jinja",
+          "optimizer.pt",
+          "rng_state.pt",
+          "tokenizer.json",
+          "tokenizer_config.json",
+          "trainer_state.json"
+        ],
+        "hash_mismatches": []
+      }
+    },
+    {
+      "name": "sft_checkpoint_was_actually_resumed_for_an_optimizer_step",
+      "passed": true,
+      "evidence": {
+        "valid": true,
+        "method": "sft",
+        "canonical_step": 1,
+        "resumed_from_step": 1,
+        "steps_this_run": 1,
+        "final_step": 2,
+        "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+        "expected_training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+        "physical_gpu_ids": "0",
+        "resume_checkpoint": "/lavender/VideoTrace/outputs/models/qwen35_sft_adapter",
+        "output_checkpoint": "/lavender/VideoTrace/outputs/runs/latest/sft_resume_validation",
+        "manifest_sha256": "7f079a8a2a3f4153bdd1bd747cdd1284748b3a67a08d2edc988741cbe251b8da",
+        "required_files": [
+          "adapter_config.json",
+          "adapter_model.safetensors",
+          "optimizer.pt",
+          "rng_state.pt",
+          "trainer_state.json"
+        ],
+        "hash_mismatches": [],
+        "same_reference_chain": true
+      }
+    },
+    {
+      "name": "preference_data_is_explicit_group_isolated_and_frozen",
+      "passed": true,
+      "evidence": {
+        "counts": {
+          "train": 7,
+          "dev": 4,
+          "test": 1
+        },
+        "negative_type_counts": {
+          "wrong_timestamp": 4,
+          "missing_timestamp": 1,
+          "hallucinated_detail": 2,
+          "unsupported_overclaim": 5
+        },
+        "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
+        "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1",
+        "validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [],
+          "num_records": 12,
+          "counts": {
+            "train": 7,
+            "dev": 4,
+            "test": 1
+          },
+          "negative_type_counts": {
+            "wrong_timestamp": 4,
+            "missing_timestamp": 1,
+            "hallucinated_detail": 2,
+            "unsupported_overclaim": 5
+          },
+          "video_groups": {
+            "cola-review-frozen-test": [
+              "test"
+            ],
+            "safedroid-demo": [
+              "train"
+            ],
+            "yoga-action": [
+              "dev"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "real_dpo_run_is_hash_bound_recoverable_and_improves_preferences",
+      "passed": true,
+      "evidence": {
+        "steps": 1,
+        "train_loss_last": 0.69314718,
+        "tokens_per_second": 45.501,
+        "peak_cuda_memory_mib": 9715.34,
+        "physical_gpu_ids": "0,1",
+        "dev": {
+          "num_pairs": 4,
+          "mean_loss": 0.62569643,
+          "mean_reward_margin": 0.14014463,
+          "reward_preference_accuracy": 1.0,
+          "policy_preference_accuracy": 0.75,
+          "pairs": [
+            {
+              "pair_id": "yoga-overview:wrong-timestamp",
+              "negative_type": "wrong_timestamp",
+              "loss": 0.61174291,
+              "reward_margin": 0.17002716,
+              "policy_preference_correct": false
+            },
+            {
+              "pair_id": "yoga-pose-transition:hallucinated-action",
+              "negative_type": "hallucinated_detail",
+              "loss": 0.60983679,
+              "reward_margin": 0.17419739,
+              "policy_preference_correct": true
+            },
+            {
+              "pair_id": "yoga-negative-screen:unsupported-overclaim",
+              "negative_type": "unsupported_overclaim",
+              "loss": 0.65275372,
+              "reward_margin": 0.08248749,
+              "policy_preference_correct": true
+            },
+            {
+              "pair_id": "yoga-negative-beverage:unsupported-overclaim",
+              "negative_type": "unsupported_overclaim",
+              "loss": 0.62845229,
+              "reward_margin": 0.1338665,
+              "policy_preference_correct": true
+            }
+          ]
+        },
+        "frozen_test": {
+          "num_pairs": 1,
+          "mean_loss": 0.64566127,
+          "mean_reward_margin": 0.09733963,
+          "reward_preference_accuracy": 1.0,
+          "policy_preference_accuracy": 1.0,
+          "pairs": [
+            {
+              "pair_id": "cola-review-frozen-overview:wrong-timestamp",
+              "negative_type": "wrong_timestamp",
+              "loss": 0.64566127,
+              "reward_margin": 0.09733963,
+              "policy_preference_correct": true
+            }
+          ]
+        },
+        "reference_sha256": "e47d60edb32cfc9a244ebe4109f8886aec292685945c957a201d3b7bc8b1129c"
+      }
+    },
+    {
+      "name": "dpo_checkpoint_is_hash_committed_and_resume_safe",
+      "passed": true,
+      "evidence": {
+        "valid": true,
+        "method": "dpo",
+        "global_step": 1,
+        "contract_sha256": "318c56bf173e35fb21e7ef7e9f9b73ba97e5e386a04982feb8f0390f5115dae9",
+        "manifest_sha256": "1b585269cf73b65711e53441963189bed3abf8f5c0e359b4faa1d3e0fac2c214",
+        "required_files": [
+          "adapter_config.json",
+          "adapter_model.safetensors",
+          "optimizer.pt",
+          "rng_state.pt",
+          "trainer_state.json"
+        ],
+        "recorded_files": [
+          "README.md",
+          "adapter_config.json",
+          "adapter_model.safetensors",
+          "chat_template.jinja",
+          "optimizer.pt",
+          "rng_state.pt",
+          "tokenizer.json",
+          "tokenizer_config.json",
+          "trainer_state.json"
+        ],
+        "hash_mismatches": []
+      }
+    },
+    {
+      "name": "dpo_checkpoint_was_actually_resumed_for_an_optimizer_step",
+      "passed": true,
+      "evidence": {
+        "valid": true,
+        "method": "dpo",
+        "canonical_step": 1,
+        "resumed_from_step": 1,
+        "steps_this_run": 1,
+        "final_step": 2,
+        "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+        "expected_training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+        "physical_gpu_ids": "0,1",
+        "resume_checkpoint": "/lavender/VideoTrace/outputs/models/qwen35_dpo_adapter",
+        "output_checkpoint": "/lavender/VideoTrace/outputs/runs/latest/dpo_resume_validation",
+        "manifest_sha256": "a36924b26c94854e1680fc23716c6165b3a6c0641352fb86236187454b0d4e34",
+        "required_files": [
+          "adapter_config.json",
+          "adapter_model.safetensors",
+          "optimizer.pt",
+          "rng_state.pt",
+          "trainer_state.json"
+        ],
+        "hash_mismatches": [],
+        "same_reference_chain": true
+      }
+    },
+    {
+      "name": "adapter_evaluation_and_product_admission_are_bound",
+      "passed": false,
+      "evidence": {
+        "comparison": {
+          "baseline_verified": true,
+          "adapter_verified": true,
+          "baseline_coverage": 1.0,
+          "adapter_coverage": 1.0,
+          "coverage_delta": 0.0,
+          "adapter_timestamp_binding_ok": true,
+          "adapter_claim_support_ok": true,
+          "coverage_non_regression": true,
+          "answer_changed": true,
+          "validated_for_web": true,
+          "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
+        },
+        "same_pack": true,
+        "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+        "pack_file_sha256": "ea86abd823d535308c6885d8dfeefe9088888e9f9f9a630edb677b4f7423723a",
+        "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+        "admission": {
+          "candidate_id": "qwen35_dpo",
+          "method": "dpo",
+          "validated_for_web": true,
+          "product_gate": {
+            "passed": true,
+            "source_match": true,
+            "same_pack": true,
+            "same_video": true,
+            "candidate_identity": true,
+            "comparison": {
+              "baseline_verified": true,
+              "adapter_verified": true,
+              "baseline_coverage": 1.0,
+              "adapter_coverage": 1.0,
+              "coverage_delta": 0.0,
+              "adapter_timestamp_binding_ok": true,
+              "adapter_claim_support_ok": true,
+              "coverage_non_regression": true,
+              "answer_changed": true,
+              "validated_for_web": true,
+              "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
+            }
+          },
+          "preference_gate": {
+            "passed": true,
+            "kind": "DPO reference-relative preference and provenance gate",
+            "steps": 1,
+            "initial_sft_hash_matches": true,
+            "dev_mean_reward_margin": 0.14014463,
+            "dev_reward_preference_accuracy": 1.0,
+            "frozen_mean_reward_margin": 0.09733963,
+            "frozen_reward_preference_accuracy": 1.0,
+            "peak_cuda_memory_mib": 9715.34
+          },
+          "adapter_path": "outputs/models/qwen35_dpo_adapter",
+          "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
+          "adapter_config_sha256": "1223ac3fc92b24c3f62110b23e52e8d2b94f16ee310a93b88553115d7c2f0efd",
+          "metrics_sha256": "db79b9ac0d09762caf4eed903c9b94466e93877c26bfe109764970bf3b3d8462",
+          "model_card_sha256": "b592ab63dde50812ab097ca79e6950611ce81606c4e151c6892976977fdc142d",
+          "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_dpo_eval_d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed.json",
+          "evaluation_latest_report": "/lavender/VideoTrace/outputs/reports/qwen35_dpo_eval.json",
+          "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+          "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+          "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+          "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+          "admission_source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
+          "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1"
+        }
+      }
+    },
+    {
+      "name": "source_bound_runtime_artifacts_match_final_snapshot",
+      "passed": false,
+      "evidence": {
+        "current": "1499315d87ddf4105127a04a318edf5141bf98c126aab3f9be002a6c29c6a003",
+        "artifacts": {
+          "canonical_pack": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "adapter_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "adapter_eval_adapter": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "error_analysis": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "performance_report": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "sft_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "sft_eval_candidate": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "dpo_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "dpo_eval_candidate": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+        }
+      }
+    },
+    {
+      "name": "frozen_task_regression_passes_all_error_classes",
+      "passed": true,
+      "evidence": {
+        "num_cases": 5,
+        "num_passed": 5,
+        "error_category_counts": {
+          "none": 5
+        }
+      }
+    },
+    {
+      "name": "runtime_profile_has_speed_memory_cache_and_correctness_evidence",
+      "passed": true,
+      "evidence": {
+        "model_residency": {
+          "cold_pipeline_construction_and_run_seconds": 27.559,
+          "warm_cache_hit_run_seconds": 14.901,
+          "speedup": 1.849,
+          "same_pipeline_instance": true,
+          "gpu_requests": "serial queue / one resident pipeline per config"
+        },
+        "correctness": {
+          "cold_verified": true,
+          "warm_verified": true,
+          "answer_timestamp_binding_preserved": true
+        },
+        "warm_cache": {
+          "segment_understanding": {
+            "generated": 0,
+            "hits": 21,
+            "fallbacks": 0
+          },
+          "vlm": {
+            "hits": 21,
+            "misses": 0,
+            "unknown": 0
+          }
+        },
+        "peak_cuda_memory_mib": 19487.36,
+        "precision": {
+          "bf16": "used by the remote Qwen3.5/SigLIP product path",
+          "int8_or_int4": "not enabled; remote bitsandbytes is CPU-only and failed the explicit 4bit preflight",
+          "correctness_check": {
+            "cold_verified": true,
+            "warm_verified": true,
+            "answer_timestamp_binding_preserved": true
+          }
+        }
+      }
+    },
+    {
+      "name": "agent_failure_recovery_is_bounded_and_non_hallucinatory",
+      "passed": true,
+      "evidence": {
+        "attempts": 4,
+        "outcomes": [
+          "retry_exhausted",
+          "retry_exhausted",
+          "controlled_fallback"
+        ],
+        "trace_error_codes": [
+          "execution_error",
+          "execution_error",
+          "circuit_open"
+        ],
+        "final_action": "return a user-visible evidence-insufficient state; do not fabricate an answer"
+      }
+    },
+    {
+      "name": "gpu_selection_has_three_non_interfering_stable_probes",
+      "passed": true,
+      "evidence": {
+        "selected": [
+          0,
+          1
+        ],
+        "required_stable_checks": 3,
+        "stable_probe_count": 3,
+        "gpu_safe": true,
+        "pack_physical_gpu_ids": "0,1",
+        "sft_training_physical_gpu_ids": "0",
+        "note": "canonical inference and historical SFT training are independently audited runs"
+      }
+    },
+    {
+      "name": "dpo_gpu_was_stably_selected_without_interrupting_existing_processes",
+      "passed": true,
+      "evidence": {
+        "selected_pair": [
+          0,
+          1
+        ],
+        "stable_probe_count": 3,
+        "gpu_safe": true,
+        "training_physical_gpu_ids": "0,1",
+        "cuda_visible_devices": "0,1",
+        "model_parallel": {
+          "requested": true,
+          "active": true,
+          "trainable_parameter_devices": [
+            "cuda:0",
+            "cuda:1"
+          ],
+          "max_memory_gib_per_visible_gpu": 22
+        },
+        "binding": {
+          "valid": true,
+          "mode": "model_parallel",
+          "selected_physical_gpu_ids": [
+            0,
+            1
+          ],
+          "recorded_physical_gpu_ids": [
+            0,
+            1
+          ],
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "trainable_parameter_devices": [
+            "cuda:0",
+            "cuda:1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "calibrated_answer_verifier_is_split_isolated_and_product_validated",
+      "passed": true,
+      "evidence": {
+        "validation": {
+          "valid": true,
+          "errors": [],
+          "num_rows": 24,
+          "num_pairs": 12,
+          "counts": {
+            "train": 14,
+            "dev": 8,
+            "test": 2
+          },
+          "frozen_test_rows": 2
+        },
+        "counts": {
+          "train": 14,
+          "dev": 8,
+          "test": 2
+        },
+        "checkpoint_sha256": "2bf74b976b366fb939368cb82c8077aeae32b703ee2ccf69da7bda394f2e7db1",
+        "dev": {
+          "rows": 8,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "safe_recall": 1.0,
+          "unsafe_recall": 1.0,
+          "pairwise_accuracy": 1.0
+        },
+        "frozen_test": {
+          "rows": 2,
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "safe_recall": 1.0,
+          "unsafe_recall": 1.0,
+          "pairwise_accuracy": 1.0
+        },
+        "policy": "Conservative post-generation safety veto for timestamp-grounded answers."
+      }
+    },
+    {
+      "name": "canonical_uses_portable_calibrated_answer_verifier",
+      "passed": true,
+      "evidence": {
+        "pack": {
+          "backend": "calibrated",
+          "loaded": true,
+          "checkpoint_path": "/lavender/VideoTrace/outputs/models/answer_verifier.pkl",
+          "checkpoint_sha256": "2bf74b976b366fb939368cb82c8077aeae32b703ee2ccf69da7bda394f2e7db1",
+          "threshold": 0.2,
+          "feature_contract": "answer-verifier-features-v1",
+          "model_format": "portable-numpy-logistic-v1",
+          "training": {
+            "source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+            "dataset_sha256": "07ef05ea891c8823ab774ded9fb15b5c43c6f57728db7ada7d5434770a246e38",
+            "gradient_payload_sha256": "1b529e1253ee277275523757569e2a6ab8e13ebd7b6be5c2dd971960145d403b",
+            "train_example_ids": [
+              "safedroid-overview:wrong-timestamp:chosen",
+              "safedroid-overview:wrong-timestamp:rejected",
+              "safedroid-app-drawer:missing-timestamp:chosen",
+              "safedroid-app-drawer:missing-timestamp:rejected",
+              "safedroid-chrome-settings:wrong-timestamp:chosen",
+              "safedroid-chrome-settings:wrong-timestamp:rejected",
+              "safedroid-sensitive-permission:hallucinated-action:chosen",
+              "safedroid-sensitive-permission:hallucinated-action:rejected",
+              "safedroid-negative-terminal:unsupported-overclaim:chosen",
+              "safedroid-negative-terminal:unsupported-overclaim:rejected",
+              "safedroid-negative-outdoor:unsupported-overclaim:chosen",
+              "safedroid-negative-outdoor:unsupported-overclaim:rejected",
+              "safedroid-negative-drink:unsupported-overclaim:chosen",
+              "safedroid-negative-drink:unsupported-overclaim:rejected"
+            ],
+            "dev_example_ids": [
+              "yoga-overview:wrong-timestamp:chosen",
+              "yoga-overview:wrong-timestamp:rejected",
+              "yoga-pose-transition:hallucinated-action:chosen",
+              "yoga-pose-transition:hallucinated-action:rejected",
+              "yoga-negative-screen:unsupported-overclaim:chosen",
+              "yoga-negative-screen:unsupported-overclaim:rejected",
+              "yoga-negative-beverage:unsupported-overclaim:chosen",
+              "yoga-negative-beverage:unsupported-overclaim:rejected"
+            ],
+            "frozen_test_example_ids": [
+              "cola-review-frozen-overview:wrong-timestamp:chosen",
+              "cola-review-frozen-overview:wrong-timestamp:rejected"
+            ],
+            "threshold_selection": {
+              "source": "dev_safe_recall_then_unsafe_recall",
+              "threshold": 0.2,
+              "safe_recall": 1.0,
+              "unsafe_recall": 1.0
+            },
+            "train": {
+              "rows": 14,
+              "accuracy": 0.9285714285714286,
+              "balanced_accuracy": 0.9285714285714286,
+              "f1": 0.9333333333333333,
+              "roc_auc": 1.0,
+              "safe_recall": 1.0,
+              "unsafe_recall": 0.8571428571428571,
+              "pairwise_accuracy": 1.0
+            },
+            "dev": {
+              "rows": 8,
+              "accuracy": 1.0,
+              "balanced_accuracy": 1.0,
+              "f1": 1.0,
+              "roc_auc": 1.0,
+              "safe_recall": 1.0,
+              "unsafe_recall": 1.0,
+              "pairwise_accuracy": 1.0
+            },
+            "frozen_test": {
+              "rows": 2,
+              "accuracy": 1.0,
+              "balanced_accuracy": 1.0,
+              "f1": 1.0,
+              "roc_auc": 1.0,
+              "safe_recall": 1.0,
+              "unsafe_recall": 1.0,
+              "pairwise_accuracy": 1.0
+            },
+            "policy": "hard deterministic failures remain failures; model only vetoes a deterministic pass or certifies a safe abstention"
+          },
+          "policy": "deterministic hard rules first; calibrated model may veto but never override an invalid claim"
+        },
+        "agent_run": {
+          "enabled": true,
+          "passed": true,
+          "safe_probability": 0.92716,
+          "threshold": 0.2,
+          "feature_contract": "answer-verifier-features-v1",
+          "features": {
+            "has_refusal": 0.0,
+            "grounding_sufficient": 1.0,
+            "evidence_count_scaled": 0.8,
+            "answer_length_log": 0.776325,
+            "timestamp_count_scaled": 0.8,
+            "matched_timestamp_ratio": 1.0,
+            "unmatched_timestamp_ratio": 0.0,
+            "claim_support_coverage": 1.0,
+            "unsupported_claim_ratio": 0.0,
+            "answer_evidence_coverage": 0.689655,
+            "query_answer_coverage": 1.0,
+            "decision_alignment": 1.0,
+            "unsupported_overclaim": 0.0,
+            "deterministic_ok": 1.0
+          },
+          "checkpoint_path": "/lavender/VideoTrace/outputs/models/answer_verifier.pkl",
+          "checkpoint_sha256": "2bf74b976b366fb939368cb82c8077aeae32b703ee2ccf69da7bda394f2e7db1"
+        },
+        "artifact_checkpoint_sha256": "2bf74b976b366fb939368cb82c8077aeae32b703ee2ccf69da7bda394f2e7db1"
+      }
+    },
+    {
+      "name": "browser_e2e_and_durable_job_observability_pass",
+      "passed": false,
+      "evidence": {
+        "valid": true,
+        "checks": {
+          "core_controls_visible": true,
+          "failure_retry_control_present": true,
+          "refusal_demo_preset_visible": true,
+          "requested_mode_available": true,
+          "desktop_no_horizontal_overflow": true,
+          "immediate_blob_preview": true,
+          "upload_switched_to_remote_media": true,
+          "job_identity_and_elapsed_visible": true,
+          "completed_elapsed_is_frozen": true,
+          "completed_elapsed_matches_execution_window": true,
+          "answer_evidence_timeline_rendered": true,
+          "inline_answer_citation_rendered": true,
+          "agent_trace_and_verifier_visible": true,
+          "evidence_auto_pause_releases_window": true,
+          "continue_from_current_plays": true,
+          "timeline_continues_without_window": true,
+          "http_range_206": true,
+          "mobile_no_horizontal_overflow": true,
+          "console_clean": true
+        },
+        "job_id": "bba9b6fa535e45d596d2d31c7b9aadb4",
+        "job_persistence": {
+          "durable": true,
+          "restored": false
+        },
+        "event_phases": [
+          "queued",
+          "checking_resources",
+          "loading_models",
+          "analyzing",
+          "exporting",
+          "completed"
+        ],
+        "range": {
+          "status": 206,
+          "content_range": "bytes 0-1023/29935671",
+          "content_length": "1024"
+        }
+      }
+    }
+  ],
+  "artifacts": {
+    "input_video": "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+    "canonical_pack": "D:\\Agent\\VideoTrace\\outputs\\iboy_qwen35\\cola_review\\knowledge_pack.json",
+    "canonical_export_manifest": "D:\\Agent\\VideoTrace\\outputs\\iboy_qwen35\\cola_review\\manifest.json",
+    "reranker_checkpoint": "D:\\Agent\\VideoTrace\\outputs\\models\\neural_reranker.pt",
+    "reranker_metrics": "D:\\Agent\\VideoTrace\\outputs\\models\\neural_reranker_metrics.json",
+    "reranker_model_card": "D:\\Agent\\VideoTrace\\outputs\\models\\neural_reranker_model_card.json",
+    "reranker_dataset": "D:\\Agent\\VideoTrace\\outputs_train\\reranker_dev_5s.jsonl",
+    "reranker_dataset_summary": "D:\\Agent\\VideoTrace\\outputs_train\\reranker_dev_5s.summary.json",
+    "answer_verifier_dataset": "D:\\Agent\\VideoTrace\\data\\verifier\\answer_verifier.jsonl",
+    "answer_verifier_dataset_summary": "D:\\Agent\\VideoTrace\\data\\verifier\\answer_verifier.summary.json",
+    "answer_verifier_checkpoint": "D:\\Agent\\VideoTrace\\outputs\\models\\answer_verifier.pkl",
+    "answer_verifier_metrics": "D:\\Agent\\VideoTrace\\outputs\\models\\answer_verifier_metrics.json",
+    "answer_verifier_model_card": "D:\\Agent\\VideoTrace\\outputs\\models\\answer_verifier_model_card.json",
+    "sft_dataset": "D:\\Agent\\VideoTrace\\data\\sft\\grounded_qa.jsonl",
+    "sft_dataset_summary": "D:\\Agent\\VideoTrace\\data\\sft\\grounded_qa.summary.json",
+    "sft_adapter_weights": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_adapter\\adapter_model.safetensors",
+    "sft_adapter_config": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_adapter\\adapter_config.json",
+    "sft_optimizer_state": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_adapter\\optimizer.pt",
+    "sft_rng_state": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_adapter\\rng_state.pt",
+    "sft_trainer_state": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_adapter\\trainer_state.json",
+    "sft_checkpoint_manifest": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_adapter\\checkpoint_manifest.json",
+    "sft_metrics": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_metrics.json",
+    "sft_model_card": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_sft_model_card.json",
+    "sft_resume_validation": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_sft_resume_validation.json",
+    "sft_resume_checkpoint_manifest": "D:\\Agent\\VideoTrace\\outputs\\runs\\latest\\sft_resume_validation\\checkpoint_manifest.json",
+    "preference_annotations": "D:\\Agent\\VideoTrace\\data\\preference\\preference_annotations.json",
+    "preference_dataset": "D:\\Agent\\VideoTrace\\data\\preference\\grounded_dpo.jsonl",
+    "preference_dataset_summary": "D:\\Agent\\VideoTrace\\data\\preference\\grounded_dpo.summary.json",
+    "dpo_adapter_weights": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter\\adapter_model.safetensors",
+    "dpo_adapter_config": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter\\adapter_config.json",
+    "dpo_optimizer_state": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter\\optimizer.pt",
+    "dpo_rng_state": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter\\rng_state.pt",
+    "dpo_trainer_state": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter\\trainer_state.json",
+    "dpo_checkpoint_manifest": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter\\checkpoint_manifest.json",
+    "dpo_metrics": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_metrics.json",
+    "dpo_model_card": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_model_card.json",
+    "dpo_reference_logprobs": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_reference_logprobs.json",
+    "dpo_resume_validation": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_dpo_resume_validation.json",
+    "dpo_resume_checkpoint_manifest": "D:\\Agent\\VideoTrace\\outputs\\runs\\latest\\dpo_resume_validation\\checkpoint_manifest.json",
+    "best_adapter_registry": "D:\\Agent\\VideoTrace\\outputs\\models\\best_adapter.json",
+    "sft_adapter_evaluation": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_sft_eval.json",
+    "dpo_adapter_evaluation": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_dpo_eval.json",
+    "adapter_evaluation": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_adapter_eval.json",
+    "adapter_evaluation_baseline": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_adapter_eval_baseline.json",
+    "adapter_evaluation_adapter": "D:\\Agent\\VideoTrace\\outputs\\reports\\qwen35_adapter_eval_adapter.json",
+    "error_analysis": "D:\\Agent\\VideoTrace\\outputs\\reports\\error_analysis.json",
+    "performance_report": "D:\\Agent\\VideoTrace\\outputs\\reports\\performance_report.json",
+    "agent_failure_recovery": "D:\\Agent\\VideoTrace\\outputs\\reports\\agent_failure_recovery.json",
+    "gpu_selection_canonical": "D:\\Agent\\VideoTrace\\outputs\\reports\\gpu_selection_canonical.json",
+    "gpu_selection_dpo": "D:\\Agent\\VideoTrace\\outputs\\reports\\gpu_selection_dpo.json",
+    "browser_e2e": "D:\\Agent\\VideoTrace\\outputs\\reports\\browser_e2e.json",
+    "artifact_manifest": "D:\\Agent\\VideoTrace\\outputs\\reports\\artifact_manifest.json"
+  }
+}

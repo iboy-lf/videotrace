@@ -1,0 +1,21 @@
+# This project binds its evidence to SHA-256 digests of file *bytes*: the source
+# fingerprint, the artifact manifest and the delivery validator all hash files
+# directly. Platform-dependent line endings would therefore make a Windows clone
+# and a Linux clone disagree about hashes that are supposed to be identical.
+#
+# So line endings are forced, not negotiated: LF everywhere, with the two
+# Windows launchers pinned to CRLF. Both are deterministic on every platform.
+* text=auto eol=lf
+
+*.sh   text eol=lf
+*.ps1  text eol=crlf
+*.bat  text eol=crlf
+
+*.mp4         binary
+*.png         binary
+*.jpg         binary
+*.pt          binary
+*.npy         binary
+*.pkl         binary
+*.bin         binary
+*.safetensors binary

@@ -1,0 +1,122 @@
+{
+  "schema_version": "videotrace-best-adapter-registry-v1",
+  "created_at_utc": "2026-08-20T14:50:26.994154+00:00",
+  "validated_for_web": true,
+  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+  "selected_candidate_id": "qwen35_dpo",
+  "fallback_order": [
+    "qwen35_sft"
+  ],
+  "decision": "DPO selected: frozen product regression passed and the real preference run improved reference-relative margins on dev and frozen cola; SFT remains the hash-validated fallback.",
+  "selection_policy": {
+    "browser_adapter_selection": false,
+    "candidate_paths": "fixed server whitelist",
+    "product_gate": "grounding, timestamp binding and baseline coverage non-regression on the frozen cola pack",
+    "dpo_gate": "completed real LoRA step plus positive dev/frozen reference-relative reward margins",
+    "tie_break": "prefer DPO only when both product and preference gates pass; otherwise keep SFT"
+  },
+  "candidates": {
+    "qwen35_sft": {
+      "candidate_id": "qwen35_sft",
+      "method": "sft",
+      "validated_for_web": true,
+      "product_gate": {
+        "passed": true,
+        "source_match": true,
+        "same_pack": true,
+        "same_video": true,
+        "candidate_identity": true,
+        "comparison": {
+          "baseline_verified": true,
+          "adapter_verified": true,
+          "baseline_coverage": 1.0,
+          "adapter_coverage": 1.0,
+          "coverage_delta": 0.0,
+          "adapter_timestamp_binding_ok": true,
+          "adapter_claim_support_ok": true,
+          "coverage_non_regression": true,
+          "answer_changed": false,
+          "validated_for_web": true,
+          "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
+        }
+      },
+      "preference_gate": {
+        "passed": true,
+        "kind": "SFT training provenance",
+        "steps": 1,
+        "peak_cuda_memory_mib": 19130.73
+      },
+      "adapter_path": "outputs/models/qwen35_sft_adapter",
+      "adapter_sha256": "d224b1ea1066f67906deca440f9aa3c2e2099fec4589ec4d30d0c485fa703f98",
+      "adapter_config_sha256": "9f535240ff3e2a83ae6f70a611fbae694e2420041bc98325f24909a9c12a17ea",
+      "metrics_sha256": "b7b5337f2bf59480d522312fa6570abf006f5b024a12d073e6eb3348cbab075f",
+      "model_card_sha256": "68b44d01bc3db873ffed60a1702581b73c8b9f29bae4e6dc4cfc8f905c77263b",
+      "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_sft_eval_9b91e531d627425ecc496bfa497138f4253ebd3548197bde39beee427084b57a.json",
+      "evaluation_latest_report": "/lavender/VideoTrace/outputs/reports/qwen35_sft_eval.json",
+      "evaluation_sha256": "9b91e531d627425ecc496bfa497138f4253ebd3548197bde39beee427084b57a",
+      "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+      "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+      "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+      "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+      "admission_source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+      "dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+      "gradient_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e"
+    },
+    "qwen35_dpo": {
+      "candidate_id": "qwen35_dpo",
+      "method": "dpo",
+      "validated_for_web": true,
+      "product_gate": {
+        "passed": true,
+        "source_match": true,
+        "same_pack": true,
+        "same_video": true,
+        "candidate_identity": true,
+        "comparison": {
+          "baseline_verified": true,
+          "adapter_verified": true,
+          "baseline_coverage": 1.0,
+          "adapter_coverage": 1.0,
+          "coverage_delta": 0.0,
+          "adapter_timestamp_binding_ok": true,
+          "adapter_claim_support_ok": true,
+          "coverage_non_regression": true,
+          "answer_changed": true,
+          "validated_for_web": true,
+          "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
+        }
+      },
+      "preference_gate": {
+        "passed": true,
+        "kind": "DPO reference-relative preference and provenance gate",
+        "steps": 1,
+        "initial_sft_hash_matches": true,
+        "dev_mean_reward_margin": 0.14014463,
+        "dev_reward_preference_accuracy": 1.0,
+        "frozen_mean_reward_margin": 0.09733963,
+        "frozen_reward_preference_accuracy": 1.0,
+        "peak_cuda_memory_mib": 9715.34
+      },
+      "adapter_path": "outputs/models/qwen35_dpo_adapter",
+      "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
+      "adapter_config_sha256": "1223ac3fc92b24c3f62110b23e52e8d2b94f16ee310a93b88553115d7c2f0efd",
+      "metrics_sha256": "db79b9ac0d09762caf4eed903c9b94466e93877c26bfe109764970bf3b3d8462",
+      "model_card_sha256": "b592ab63dde50812ab097ca79e6950611ce81606c4e151c6892976977fdc142d",
+      "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_dpo_eval_d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed.json",
+      "evaluation_latest_report": "/lavender/VideoTrace/outputs/reports/qwen35_dpo_eval.json",
+      "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+      "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+      "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+      "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+      "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+      "admission_source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+      "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
+      "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1"
+    }
+  },
+  "selected_compatibility_reports": {
+    "comparison": "/lavender/VideoTrace/outputs/reports/qwen35_adapter_eval.json",
+    "baseline": "/lavender/VideoTrace/outputs/reports/qwen35_adapter_eval_baseline.json",
+    "candidate": "/lavender/VideoTrace/outputs/reports/qwen35_adapter_eval_adapter.json"
+  }
+}

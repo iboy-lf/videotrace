@@ -1,0 +1,79 @@
+segment_seconds: 20
+top_k: 4
+clip_margin_sec: 2
+output_dir: outputs/iboy_qwen35
+scorer_model_path: outputs/models/scorer_model.pkl
+export_clips: true
+export_html: true
+use_ocr: false
+use_scene_cut: false
+max_context_chars: 3200
+per_segment_context_chars: 700
+max_agent_steps: 6
+tool_retry_max_attempts: 2
+tool_retry_backoff_sec: 0.2
+tool_circuit_failure_threshold: 3
+tool_circuit_recovery_sec: 60
+
+# Optional aligned speech channel. The existing remote environment does not
+# require faster-whisper; matching .srt/.vtt/.json sidecars are consumed when present.
+asr_backend: sidecar
+asr_model: ""
+asr_device: cpu
+asr_compute_type: float32
+asr_language: zh
+asr_cache_dir: outputs_cache/asr
+asr_fail_open: true
+
+persist_dense_index: true
+dense_index_dir: outputs/indexes
+reranker_backend: neural
+reranker_model_path: outputs/models/neural_reranker.pt
+reranker_device: cpu
+reranker_weight: -1.0
+temporal_coverage_enabled: true
+overview_min_segments: 3
+
+segment_understanding_backend: qwen35_local
+segment_understanding_base_url: ""
+segment_understanding_model: /lavender/models/Qwen3.5-9B
+segment_understanding_api_key: EMPTY
+segment_understanding_cache_dir: outputs_cache/segment_understanding_qwen35
+segment_understanding_frames: 4
+segment_understanding_timeout_sec: 240
+segment_understanding_fail_open: false
+segment_understanding_device: cuda:0
+segment_understanding_dtype: bfloat16
+segment_understanding_max_new_tokens: 700
+
+vlm_backend: siglip
+vlm_model_name: /lavender/models/siglip2-large-patch16-256
+vlm_cache_dir: outputs_cache/siglip2
+vlm_num_frames: 4
+vlm_device: cuda:1
+retrieval_weight: 0.42
+scorer_weight: 0.18
+vlm_weight: 0.40
+
+llm_backend: qwen35_local
+llm_base_url: ""
+llm_model: /lavender/models/Qwen3.5-9B
+llm_api_key: EMPTY
+llm_device: cuda:0
+llm_dtype: bfloat16
+llm_max_new_tokens: 900
+llm_num_frames_per_segment: 2
+
+persistent_memory_enabled: true
+persistent_memory_path: outputs_memory/iboy_memories.jsonl
+abstain_enabled: true
+abstain_min_query_coverage: 0.18
+abstain_min_vlm_score: 0.16
+
+# The deterministic timestamp/claim checks remain the hard gate. This small
+# calibrated model may only veto a deterministic pass; it cannot repair or
+# override unsupported claims.
+answer_verifier_backend: calibrated
+answer_verifier_model_path: outputs/models/answer_verifier.pkl
+answer_verifier_threshold: -1.0
+answer_verifier_fail_open: true

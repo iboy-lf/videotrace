@@ -1,0 +1,57 @@
+{
+  "schema_version": "videotrace-grounded-preference-v1",
+  "dataset_path": "D:\\Agent\\VideoTrace\\data\\preference\\grounded_dpo.jsonl",
+  "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
+  "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1",
+  "counts": {
+    "train": 7,
+    "dev": 4,
+    "test": 1
+  },
+  "negative_type_counts": {
+    "wrong_timestamp": 4,
+    "missing_timestamp": 1,
+    "hallucinated_detail": 2,
+    "unsupported_overclaim": 5
+  },
+  "video_groups": [
+    "cola-review-frozen-test",
+    "safedroid-demo",
+    "yoga-action"
+  ],
+  "frozen_test_pair_ids": [
+    "cola-review-frozen-overview:wrong-timestamp"
+  ],
+  "cola_video_in_train_or_dev": false,
+  "source_dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+  "annotations_sha256": "1399712e26bdaa4f608825b7034e36fe2d9f69a12e7e8daa5f7f2e1473c9dda2",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "num_records": 12,
+    "counts": {
+      "train": 7,
+      "dev": 4,
+      "test": 1
+    },
+    "negative_type_counts": {
+      "wrong_timestamp": 4,
+      "missing_timestamp": 1,
+      "hallucinated_detail": 2,
+      "unsupported_overclaim": 5
+    },
+    "video_groups": {
+      "cola-review-frozen-test": [
+        "test"
+      ],
+      "safedroid-demo": [
+        "train"
+      ],
+      "yoga-action": [
+        "dev"
+      ]
+    }
+  },
+  "provenance": "Chosen answers are copied from the verified grounded SFT dataset; rejected answers are explicitly authored and categorized in data/preference/preference_annotations.json."
+}

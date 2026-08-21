@@ -1,0 +1,171 @@
+{
+  "schema_version": "videotrace-agent-failure-recovery-v1",
+  "created_at_utc": "2026-08-20T14:54:19.963776+00:00",
+  "scenario": "retrieval timeout -> bounded retry -> circuit open -> controlled fallback",
+  "simulated_failure_isolated": true,
+  "attempts": 4,
+  "events": [
+    {
+      "call": 1,
+      "outcome": "retry_exhausted",
+      "error": "TimeoutError: SigLIP index timeout (simulated)"
+    },
+    {
+      "call": 2,
+      "outcome": "retry_exhausted",
+      "error": "TimeoutError: SigLIP index timeout (simulated)"
+    },
+    {
+      "call": 3,
+      "outcome": "controlled_fallback",
+      "error": "Tool circuit is open: retrieve_segments"
+    }
+  ],
+  "tool_trace": [
+    {
+      "name": "retrieve_segments",
+      "inputs": {
+        "query": "最后盲测在哪里？"
+      },
+      "output": null,
+      "latency_ms": 0.057969242334365845,
+      "ok": false,
+      "error": "TimeoutError: SigLIP index timeout (simulated)",
+      "status": "error",
+      "error_code": "execution_error",
+      "attempts": 2,
+      "response": {
+        "status": "error",
+        "data": null,
+        "message": "TimeoutError: SigLIP index timeout (simulated)",
+        "error_code": "execution_error",
+        "metadata": {
+          "attempts": 2
+        }
+      },
+      "circuit_state": "closed",
+      "call_id": "0b611bd9ed134caaafb6e969f84fb677",
+      "started_at_utc": "2026-08-20T14:54:19.963655+00:00",
+      "finished_at_utc": "2026-08-20T14:54:19.963702+00:00",
+      "attempt_trace": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "ok": false,
+          "error_code": "execution_error",
+          "error": "TimeoutError: SigLIP index timeout (simulated)",
+          "latency_ms": 0.00640377402305603,
+          "will_retry": true,
+          "backoff_sec": 0.0
+        },
+        {
+          "attempt": 2,
+          "status": "error",
+          "ok": false,
+          "error_code": "execution_error",
+          "error": "TimeoutError: SigLIP index timeout (simulated)",
+          "latency_ms": 0.0020712614059448242,
+          "will_retry": false,
+          "backoff_sec": 0.0
+        }
+      ]
+    },
+    {
+      "name": "retrieve_segments",
+      "inputs": {
+        "query": "最后盲测在哪里？"
+      },
+      "output": null,
+      "latency_ms": 0.02473592758178711,
+      "ok": false,
+      "error": "TimeoutError: SigLIP index timeout (simulated)",
+      "status": "error",
+      "error_code": "execution_error",
+      "attempts": 2,
+      "response": {
+        "status": "error",
+        "data": null,
+        "message": "TimeoutError: SigLIP index timeout (simulated)",
+        "error_code": "execution_error",
+        "metadata": {
+          "attempts": 2
+        }
+      },
+      "circuit_state": "open",
+      "call_id": "2a528b72739543e78e63f1dbfb4ff472",
+      "started_at_utc": "2026-08-20T14:54:19.963718+00:00",
+      "finished_at_utc": "2026-08-20T14:54:19.963748+00:00",
+      "attempt_trace": [
+        {
+          "attempt": 1,
+          "status": "error",
+          "ok": false,
+          "error_code": "execution_error",
+          "error": "TimeoutError: SigLIP index timeout (simulated)",
+          "latency_ms": 0.0020228326320648193,
+          "will_retry": true,
+          "backoff_sec": 0.0
+        },
+        {
+          "attempt": 2,
+          "status": "error",
+          "ok": false,
+          "error_code": "execution_error",
+          "error": "TimeoutError: SigLIP index timeout (simulated)",
+          "latency_ms": 0.0037439167499542236,
+          "will_retry": false,
+          "backoff_sec": 0.0
+        }
+      ]
+    },
+    {
+      "name": "retrieve_segments",
+      "inputs": {
+        "query": "最后盲测在哪里？"
+      },
+      "output": null,
+      "latency_ms": 0.011496245861053467,
+      "ok": false,
+      "error": "Tool circuit is open: retrieve_segments",
+      "status": "error",
+      "error_code": "circuit_open",
+      "attempts": 0,
+      "response": {
+        "status": "error",
+        "data": null,
+        "message": "Tool circuit is open: retrieve_segments",
+        "error_code": "circuit_open",
+        "metadata": {}
+      },
+      "circuit_state": "open",
+      "call_id": "09750cf04f784af0b5f71afb8abb64f8",
+      "started_at_utc": "2026-08-20T14:54:19.963759+00:00",
+      "finished_at_utc": "2026-08-20T14:54:19.963770+00:00",
+      "attempt_trace": [
+        {
+          "attempt": 0,
+          "status": "blocked",
+          "ok": false,
+          "error_code": "circuit_open",
+          "error": "Tool circuit is open: retrieve_segments",
+          "latency_ms": 0.0,
+          "will_retry": false,
+          "backoff_sec": 0.0
+        }
+      ]
+    }
+  ],
+  "safeguards": {
+    "default_max_attempts": 2,
+    "default_retry_backoff_sec": 0.0,
+    "circuit_breakers": {
+      "retrieve_segments": {
+        "state": "open",
+        "failure_count": 2,
+        "recover_in_sec": 3600.0
+      }
+    }
+  },
+  "final_action": "return a user-visible evidence-insufficient state; do not fabricate an answer",
+  "passed": true
+}

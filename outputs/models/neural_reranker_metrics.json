@@ -1,0 +1,38 @@
+{
+  "checkpoint_path": "outputs/models/neural_reranker.pt",
+  "num_rows": 71,
+  "num_groups": 11,
+  "num_positive": 25,
+  "num_train_groups": 9,
+  "num_eval_groups": 2,
+  "num_pairwise_eval_groups": 2,
+  "num_pairwise_eval_pairs": 40,
+  "best_epoch": 31,
+  "train_loss": 0.40449059009552,
+  "eval_loss": 0.7622092962265015,
+  "pairwise_accuracy": 0.775,
+  "base_pairwise_accuracy": 0.725,
+  "recommended_blend_weight": 0.45,
+  "blended_pairwise_accuracy": 0.775,
+  "device": "cpu",
+  "hidden_dim": 16,
+  "learning_rate": 0.005,
+  "selection_policy": "maximize blended held-out pairwise accuracy, then neural pairwise accuracy, then minimize eval loss and model size",
+  "search_space": {
+    "hidden_dims": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "learning_rates": [
+      0.0005,
+      0.001,
+      0.002,
+      0.005
+    ],
+    "epochs": 160,
+    "eval_fraction": 0.2,
+    "seed": 42
+  }
+}

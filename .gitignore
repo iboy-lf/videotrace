@@ -1,0 +1,83 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.idea/
+.vscode/
+.sync/
+
+# Local recovery archives and generated runtime state are intentionally kept
+# outside the reviewable source tree or ignored when recreated.
+_legacy_outputs*/
+*.log
+outputs_memory/
+outputs_cache/
+outputs_test/
+outputs_benchmark/
+outputs_benchmark_*/
+outputs_runtime/
+outputs_eval*/
+outputs_train/
+data/uploads/
+
+# Source media is licensed third-party content and is never redistributed here.
+# `data/raw/cola_review.mp4` is the canonical demo video; see docs/USAGE.md for
+# how to supply it locally. Its SHA-256 is pinned in the artifact manifest, so a
+# substituted file fails validation instead of silently producing a fake demo.
+*.mp4
+
+# Model weights and other large binaries stay out of the repository. Their
+# SHA-256 digests live in outputs/reports/artifact_manifest.json, which IS
+# tracked, so the committed metrics remain independently auditable.
+*.pkl
+*.pt
+*.npy
+*.safetensors
+*.bin
+
+# Generated run trees are ignored by default...
+outputs/*
+outputs/*/clips/
+outputs/*/demo_preview*.png
+outputs/*/web_app_preview.png
+
+# ...except the curated evidence set that the README and interview documents
+# cite. These are small JSON/Markdown artifacts; keeping them tracked is what
+# lets a reviewer verify the reported numbers without access to the GPU host.
+!outputs/reports/
+outputs/reports/*
+!outputs/reports/*.json
+!outputs/reports/adapter_admissions/
+outputs/reports/adapter_admissions/*
+!outputs/reports/adapter_admissions/*.json
+
+!outputs/models/
+outputs/models/*
+!outputs/models/*_metrics.json
+!outputs/models/*_model_card.json
+!outputs/models/best_adapter.json
+!outputs/models/*_tuning.json
+# The frozen-reference log-probability cache is one of the two inputs to
+# scripts/analyze_dpo_length_bias.py. Tracking it is what makes the
+# length-bias diagnostic re-derivable by a reader without GPU access.
+!outputs/models/qwen35_dpo_reference_logprobs.json
+
+!outputs/iboy_qwen35/
+!outputs/iboy_qwen35/**/
+outputs/iboy_qwen35/**/clips/
+!outputs/iboy_qwen35/**/*.json
+!outputs/iboy_qwen35/**/*.md
+!outputs/iboy_qwen35/**/demo.html
+
+!outputs/interview_readiness.json
+
+# Serialized agent job traces are the evidence behind docs/AGENT_TRACE_AUDIT_*.md
+# and docs/FINAL_ACCEPTANCE_*.md. The surrounding run tree (frames, embeddings,
+# checkpoints) stays ignored; only the traces themselves are tracked.
+!outputs/runs/
+outputs/runs/*
+!outputs/runs/latest/
+outputs/runs/latest/*
+!outputs/runs/latest/jobs/
+outputs/runs/latest/jobs/*
+!outputs/runs/latest/jobs/*.json

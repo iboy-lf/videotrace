@@ -1,0 +1,427 @@
+{
+  "schema_version": "videotrace-qwen35-adapter-eval-v1",
+  "created_at_utc": "2026-08-20T14:50:26.640285+00:00",
+  "status": "completed",
+  "candidate_id": "qwen35_dpo",
+  "baseline": {
+    "schema_version": "videotrace-qwen35-adapter-eval-v1",
+    "created_at_utc": "2026-08-20T14:50:00.900820+00:00",
+    "variant": "baseline",
+    "candidate_id": "base_model",
+    "pack_path": "/lavender/VideoTrace/outputs/iboy_qwen35/cola_review/knowledge_pack.json",
+    "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+    "pack_hash_scope": "canonical_json_without_metadata.llm_adapter",
+    "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
+    "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+    "query": "这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。",
+    "candidate_segment_ids": [
+      "seg-0000",
+      "seg-0010",
+      "seg-0015",
+      "seg-0020"
+    ],
+    "evidence_tags": [
+      "timestamp=0.0-20.0",
+      "timestamp=200.0-220.0",
+      "timestamp=300.0-320.0",
+      "timestamp=400.0-416.2"
+    ],
+    "model_path": "/lavender/models/Qwen3.5-9B",
+    "adapter_path": "",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "elapsed_seconds": 21.692,
+    "answer": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：视频开场展示多罐可口可乐并引出主题，随后分国家试喝阶段展示不同国家可乐的配料与口感，最后进入盲测阶段，男子戴眼罩品尝并猜测饮料来源。\n- 0.0-20.0：一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 (timestamp=0.0-20.0)\n- 200.0-220.0：一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 (timestamp=200.0-220.0)\n- 300.0-320.0：视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 (timestamp=300.0-320.0)\n- 400.0-416.2：一名戴着眼罩的男子坐在桌前，桌上摆放着多种带有吸管的饮料，他正在品尝并尝试猜测饮料的种类，画面中出现了“马来西亚”、“哈萨克斯坦”、“加拿大”等文字标签。 (timestamp=400.0-416.2)",
+    "answer_sha256": "a666d7df17bdb9e85dc94727d601be5b1bc52ce81df1fc4df2d8ba98c5d8d32a",
+    "verification": {
+      "ok": true,
+      "reason": "evidence attached; coverage=1.00; claim_support=1.00",
+      "matched_evidence": [
+        "timestamp=0.0-20.0",
+        "timestamp=200.0-220.0",
+        "timestamp=300.0-320.0",
+        "timestamp=400.0-416.2"
+      ],
+      "missing_evidence": [],
+      "coverage": 1.0,
+      "timestamp_refs": [
+        "0.0-20.0",
+        "200.0-220.0",
+        "300.0-320.0",
+        "400.0-416.2"
+      ],
+      "matched_timestamp_refs": [
+        "0.0-20.0",
+        "200.0-220.0",
+        "300.0-320.0",
+        "400.0-416.2"
+      ],
+      "unmatched_timestamp_refs": [],
+      "claim_support_checked": true,
+      "claim_support_ok": true,
+      "claim_support_coverage": 1.0,
+      "claim_checks": [
+        {
+          "timestamp": "0.0-20.0",
+          "claim": "一名身穿橙色T恤的男子在室内对着镜头说话",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 场景：室内 人物与物体：男子、可口可乐罐、娃哈哈非常可乐、玻璃杯 动作与变化：说话、展示可乐罐、举起瓶子 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "一名身穿橙色t恤的男子在室内对着镜头说话"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "0.0-20.0",
+          "claim": "画面展示了桌上的多罐可口可乐",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 场景：室内 人物与物体：男子、可口可乐罐、娃哈哈非常可乐、玻璃杯 动作与变化：说话、展示可乐罐、举起瓶子 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "画面展示了桌上的多罐可口可乐"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "0.0-20.0",
+          "claim": "随后该男子举起一瓶娃哈哈非常可乐进行展示",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 场景：室内 人物与物体：男子、可口可乐罐、娃哈哈非常可乐、玻璃杯 动作与变化：说话、展示可乐罐、举起瓶子 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "随后该男子举起一瓶娃哈哈非常可乐进行展示"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "一名身穿橙色T恤的男子在室内环境中",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "一名身穿橙色t恤的男子在室内环境中"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "手持一瓶深色饮料",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "手持一瓶深色饮料"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "将其倒入杯中饮用",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "将其倒入杯中饮用"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "并对着镜头进行评价",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "并对着镜头进行评价"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "视频展示了可口可乐饮料的配料表特写",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "视频展示了可口可乐饮料的配料表特写"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "随后切换到一名身穿橙色上衣的男子",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "随后切换到一名身穿橙色上衣的男子"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "他先是低头",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "他先是低头"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "随后举起一瓶百事可乐展示",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "随后举起一瓶百事可乐展示"
+          ],
+          "supported": true
+        }
+      ],
+      "unsupported_claims": []
+    },
+    "timestamp_binding_ok": true,
+    "claim_support_ok": true,
+    "runtime": {
+      "python": "3.10.20",
+      "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+      "packages": {
+        "numpy": "2.2.6",
+        "opencv-python": "4.13.0.92",
+        "opencv-python-headless": "5.0.0.93",
+        "scikit-learn": "1.7.2",
+        "torch": "2.5.1+cu121",
+        "transformers": "5.15.0.dev0"
+      },
+      "cuda": {
+        "available": true,
+        "device_count": 1,
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA GeForce RTX 3090",
+            "total_memory_mib": 24124.2,
+            "capability": [
+              8,
+              6
+            ]
+          }
+        ]
+      },
+      "cuda_visible_devices": "0",
+      "physical_gpu_ids": "0"
+    },
+    "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+  },
+  "adapter": {
+    "schema_version": "videotrace-qwen35-adapter-eval-v1",
+    "created_at_utc": "2026-08-20T14:50:25.463712+00:00",
+    "variant": "adapter",
+    "candidate_id": "qwen35_dpo",
+    "pack_path": "/lavender/VideoTrace/outputs/iboy_qwen35/cola_review/knowledge_pack.json",
+    "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+    "pack_hash_scope": "canonical_json_without_metadata.llm_adapter",
+    "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
+    "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+    "query": "这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。",
+    "candidate_segment_ids": [
+      "seg-0000",
+      "seg-0010",
+      "seg-0015",
+      "seg-0020"
+    ],
+    "evidence_tags": [
+      "timestamp=0.0-20.0",
+      "timestamp=200.0-220.0",
+      "timestamp=300.0-320.0",
+      "timestamp=400.0-416.2"
+    ],
+    "model_path": "/lavender/models/Qwen3.5-9B",
+    "adapter_path": "outputs/models/qwen35_dpo_adapter",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "elapsed_seconds": 23.39,
+    "answer": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：视频整体流程分为开场介绍、分国家试喝和最后盲测三个阶段。开场阶段展示多罐可口可乐并介绍主题；分国家试喝阶段展示不同国家可乐的配料和口感；最后盲测阶段男子戴眼罩品尝并猜测饮料种类。\n- 0.0-20.0：一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 (timestamp=0.0-20.0)\n- 200.0-220.0：一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 (timestamp=200.0-220.0)\n- 300.0-320.0：视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 (timestamp=300.0-320.0)\n- 400.0-416.2：一名戴着眼罩的男子坐在桌前，桌上摆放着多种带有吸管的饮料，他正在品尝并尝试猜测饮料的种类，画面中出现了“马来西亚”、“哈萨克斯坦”、“加拿大”等文字标签。 (timestamp=400.0-416.2)",
+    "answer_sha256": "0b4174d61f7fece9271dea62974251c23144822a88eae91646f969052f487a85",
+    "verification": {
+      "ok": true,
+      "reason": "evidence attached; coverage=1.00; claim_support=1.00",
+      "matched_evidence": [
+        "timestamp=0.0-20.0",
+        "timestamp=200.0-220.0",
+        "timestamp=300.0-320.0",
+        "timestamp=400.0-416.2"
+      ],
+      "missing_evidence": [],
+      "coverage": 1.0,
+      "timestamp_refs": [
+        "0.0-20.0",
+        "200.0-220.0",
+        "300.0-320.0",
+        "400.0-416.2"
+      ],
+      "matched_timestamp_refs": [
+        "0.0-20.0",
+        "200.0-220.0",
+        "300.0-320.0",
+        "400.0-416.2"
+      ],
+      "unmatched_timestamp_refs": [],
+      "claim_support_checked": true,
+      "claim_support_ok": true,
+      "claim_support_coverage": 1.0,
+      "claim_checks": [
+        {
+          "timestamp": "0.0-20.0",
+          "claim": "一名身穿橙色T恤的男子在室内对着镜头说话",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 场景：室内 人物与物体：男子、可口可乐罐、娃哈哈非常可乐、玻璃杯 动作与变化：说话、展示可乐罐、举起瓶子 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "一名身穿橙色t恤的男子在室内对着镜头说话"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "0.0-20.0",
+          "claim": "画面展示了桌上的多罐可口可乐",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 场景：室内 人物与物体：男子、可口可乐罐、娃哈哈非常可乐、玻璃杯 动作与变化：说话、展示可乐罐、举起瓶子 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "画面展示了桌上的多罐可口可乐"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "0.0-20.0",
+          "claim": "随后该男子举起一瓶娃哈哈非常可乐进行展示",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 场景：室内 人物与物体：男子、可口可乐罐、娃哈哈非常可乐、玻璃杯 动作与变化：说话、展示可乐罐、举起瓶子 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "随后该男子举起一瓶娃哈哈非常可乐进行展示"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "一名身穿橙色T恤的男子在室内环境中",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "一名身穿橙色t恤的男子在室内环境中"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "手持一瓶深色饮料",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "手持一瓶深色饮料"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "将其倒入杯中饮用",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "将其倒入杯中饮用"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "200.0-220.0",
+          "claim": "并对着镜头进行评价",
+          "evidence_excerpt": "一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 场景：室内 人物与物体：男子、饮料瓶、酒杯、桌子、柜子 动作与变化：手持饮料瓶、倒饮料、饮用、评价、说话 记录生活的蛋黄派 bilibili",
+          "support_score": 1.0,
+          "overlap_units": [
+            "并对着镜头进行评价"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "视频展示了可口可乐饮料的配料表特写",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "视频展示了可口可乐饮料的配料表特写"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "随后切换到一名身穿橙色上衣的男子",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "随后切换到一名身穿橙色上衣的男子"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "他先是低头",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "他先是低头"
+          ],
+          "supported": true
+        },
+        {
+          "timestamp": "300.0-320.0",
+          "claim": "随后举起一瓶百事可乐展示",
+          "evidence_excerpt": "视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 场景：室内 人物与物体：可口可乐饮料、男子、百事可乐、酒杯 动作与变化：展示配料表、低头、举起瓶子展示 品名：可口可乐碳酸饮料，产品类型：可乐型碳酸饮料，配料：水，麦芽糖浆，白砂糖，结晶果糖，二氧化碳，焦糖色(亚硫酸铵法)，磷酸，食用香精香料，咖啡因，经销商：青岛羽雅供应链管理有限公司，地址：山东省青岛市城阳区惜福镇街道演礼社区西12号，生产日期：2026年，保质期至",
+          "support_score": 1.0,
+          "overlap_units": [
+            "随后举起一瓶百事可乐展示"
+          ],
+          "supported": true
+        }
+      ],
+      "unsupported_claims": []
+    },
+    "timestamp_binding_ok": true,
+    "claim_support_ok": true,
+    "runtime": {
+      "python": "3.10.20",
+      "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+      "packages": {
+        "numpy": "2.2.6",
+        "opencv-python": "4.13.0.92",
+        "opencv-python-headless": "5.0.0.93",
+        "scikit-learn": "1.7.2",
+        "torch": "2.5.1+cu121",
+        "transformers": "5.15.0.dev0"
+      },
+      "cuda": {
+        "available": true,
+        "device_count": 1,
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA GeForce RTX 3090",
+            "total_memory_mib": 24124.2,
+            "capability": [
+              8,
+              6
+            ]
+          }
+        ]
+      },
+      "cuda_visible_devices": "0",
+      "physical_gpu_ids": "0"
+    },
+    "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+  },
+  "comparison": {
+    "baseline_verified": true,
+    "adapter_verified": true,
+    "baseline_coverage": 1.0,
+    "adapter_coverage": 1.0,
+    "coverage_delta": 0.0,
+    "adapter_timestamp_binding_ok": true,
+    "adapter_claim_support_ok": true,
+    "coverage_non_regression": true,
+    "answer_changed": true,
+    "validated_for_web": true,
+    "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
+  }
+}

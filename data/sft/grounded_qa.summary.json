@@ -1,0 +1,44 @@
+{
+  "schema_version": "videotrace-grounded-sft-v1",
+  "dataset_path": "/lavender/VideoTrace/data/sft/grounded_qa.jsonl",
+  "dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+  "gradient_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e",
+  "counts": {
+    "train": 7,
+    "dev": 4,
+    "test": 1
+  },
+  "behavior_counts": {
+    "answer": 7,
+    "abstain": 5
+  },
+  "video_groups": [
+    "cola-review-frozen-test",
+    "safedroid-demo",
+    "yoga-action"
+  ],
+  "cola_video_in_train_or_dev": false,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "num_records": 12,
+    "counts": {
+      "train": 7,
+      "dev": 4,
+      "test": 1
+    },
+    "video_groups": {
+      "cola-review-frozen-test": [
+        "test"
+      ],
+      "safedroid-demo": [
+        "train"
+      ],
+      "yoga-action": [
+        "dev"
+      ]
+    }
+  },
+  "provenance": "Manually verified evidence annotations plus frozen canonical cola knowledge pack for test-only regression."
+}

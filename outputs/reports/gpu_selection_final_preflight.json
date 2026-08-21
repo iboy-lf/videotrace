@@ -1,0 +1,177 @@
+{
+  "schema_version": "videotrace-gpu-selection-audit-v1",
+  "completed_at_utc": "2026-08-20T13:47:25.240441+00:00",
+  "status": "selected",
+  "selected_physical_gpu_ids": [
+    2,
+    3
+  ],
+  "selected_states": [
+    {
+      "index": 2,
+      "uuid": "GPU-90740980-0777-d2b9-f464-aa86c37693c2",
+      "total_mib": 24576,
+      "used_mib": 1,
+      "free_mib": 24124,
+      "utilization_pct": 0,
+      "compute_pids": []
+    },
+    {
+      "index": 3,
+      "uuid": "GPU-a5ff4ff9-02b7-cf60-154d-bffd5d736394",
+      "total_mib": 24576,
+      "used_mib": 1,
+      "free_mib": 24124,
+      "utilization_pct": 0,
+      "compute_pids": []
+    }
+  ],
+  "required_stable_checks": 3,
+  "thresholds": {
+    "qwen_min_free_mib": 20500,
+    "siglip_min_free_mib": 6000,
+    "max_used_mib": 512,
+    "max_utilization_pct": 5
+  },
+  "non_interference_policy": "selection only; selected GPUs must have zero compute PIDs for every stable probe; the selector never terminates or signals existing processes",
+  "probes": [
+    {
+      "observed_at_utc": "2026-08-20T13:47:14.875043+00:00",
+      "selected_pair": [
+        2,
+        3
+      ],
+      "stable_count": 1,
+      "states": [
+        {
+          "index": 0,
+          "uuid": "GPU-a1887c34-2200-2ffc-426d-777e2837b3a1",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-2870de76-8bbb-784d-daa3-06819042a317",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-90740980-0777-d2b9-f464-aa86c37693c2",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-a5ff4ff9-02b7-cf60-154d-bffd5d736394",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        }
+      ]
+    },
+    {
+      "observed_at_utc": "2026-08-20T13:47:20.051447+00:00",
+      "selected_pair": [
+        2,
+        3
+      ],
+      "stable_count": 2,
+      "states": [
+        {
+          "index": 0,
+          "uuid": "GPU-a1887c34-2200-2ffc-426d-777e2837b3a1",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-2870de76-8bbb-784d-daa3-06819042a317",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-90740980-0777-d2b9-f464-aa86c37693c2",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-a5ff4ff9-02b7-cf60-154d-bffd5d736394",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        }
+      ]
+    },
+    {
+      "observed_at_utc": "2026-08-20T13:47:25.240296+00:00",
+      "selected_pair": [
+        2,
+        3
+      ],
+      "stable_count": 3,
+      "states": [
+        {
+          "index": 0,
+          "uuid": "GPU-a1887c34-2200-2ffc-426d-777e2837b3a1",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-2870de76-8bbb-784d-daa3-06819042a317",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-90740980-0777-d2b9-f464-aa86c37693c2",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-a5ff4ff9-02b7-cf60-154d-bffd5d736394",
+          "total_mib": 24576,
+          "used_mib": 1,
+          "free_mib": 24124,
+          "utilization_pct": 0,
+          "compute_pids": []
+        }
+      ]
+    }
+  ]
+}

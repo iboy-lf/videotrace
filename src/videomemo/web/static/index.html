@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VideoTrace</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="appHeader">
+    <div class="brand">
+      <div class="brandMark">VT</div>
+      <div>
+        <h1>VideoTrace</h1>
+        <p>长视频证据问答</p>
+      </div>
+    </div>
+    <div class="headerStatus">
+      <span id="serviceMode" class="modeBadge">载入中</span>
+      <span id="verifiedBadge" class="verifiedBadge">等待结果</span>
+    </div>
+  </header>
+
+  <main class="appMain">
+    <section id="analysisControls" class="analysisBar">
+      <label class="fileButton" for="videoUpload">
+        <input id="videoUpload" type="file" accept="video/*">
+        <span>选择视频</span>
+      </label>
+      <div class="sourceSummary">
+        <strong id="uploadName">未选择视频</strong>
+        <span id="uploadState">等待上传</span>
+      </div>
+      <label class="modeField" for="vlmMode">
+        <span>视觉模式</span>
+        <select id="vlmMode" aria-label="视觉模式" disabled>
+          <option value="">正在读取可用模式</option>
+        </select>
+      </label>
+    </section>
+
+    <div id="serviceNotice" class="serviceNotice" role="status">
+      <span id="serviceDot" class="serviceDot"></span>
+      <div>
+        <strong id="serviceTitle">正在连接算力服务</strong>
+        <p id="serviceMessage">正在读取远端视觉模式和任务队列状态。</p>
+      </div>
+    </div>
+
+    <input id="videoId" type="hidden" value="">
+
+    <section class="primaryWorkspace">
+      <div class="videoWorkspace">
+        <div class="sectionHeader">
+          <div>
+            <p class="sectionLabel">当前视频</p>
+            <h2 id="videoTitle">正在载入</h2>
+          </div>
+          <span id="videoMeta" class="sectionMeta">-</span>
+        </div>
+
+        <div class="videoFrame">
+          <video id="mainVideo" controls preload="metadata"></video>
+          <div id="mediaNotice" class="mediaNotice" role="status" hidden>
+            <strong>证据模式：视频文件不在本地</strong>
+            <p>回答、时间戳证据、视频脉络和技术面板均来自已验证的知识包，可以完整查看与核对；但证据无法回看，因为源视频是第三方内容，不随仓库分发。</p>
+            <p class="mediaNoticeHint">补齐 <code>data/raw/cola_review.mp4</code>（SHA-256 已在产物清单中固定）后重启即可恢复回放。</p>
+          </div>
+        </div>
+
+        <div id="nowPlaying" class="nowPlaying" hidden>
+          <div>
+            <span class="pulseDot"></span>
+            <strong id="nowPlayingTitle">正在播放证据</strong>
+          </div>
+          <button id="clearWindowBtn" type="button">从当前位置继续播放</button>
+        </div>
+      </div>
+
+      <aside class="answerWorkspace">
+        <div class="sectionHeader questionHeader">
+          <div>
+            <p class="sectionLabel">向视频提问</p>
+            <h2>回答与证据</h2>
+          </div>
+          <span id="evidenceCount" class="sectionMeta">-</span>
+        </div>
+
+        <div id="queryControls" class="queryControls">
+          <textarea id="query" rows="3" aria-label="问题">这个视频主要讲了什么？请给出带时间戳的证据。</textarea>
+          <div id="presetRow" class="presetRow"></div>
+          <button id="runBtn" class="primaryButton" type="button">分析视频</button>
+        </div>
+
+        <div id="jobProgress" class="jobProgress" hidden>
+          <div class="progressTrack"><span id="progressBar"></span></div>
+          <div class="progressMeta">
+            <strong id="progressStage">等待任务</strong>
+            <span id="progressValue">0%</span>
+          </div>
+          <div id="jobMeta" class="jobMeta" hidden>
+            <span id="jobIdLabel">任务</span>
+            <span id="jobElapsedLabel">已用时 0s</span>
+          </div>
+        </div>
+
+        <p id="status" class="status" role="status">正在读取最近一次结果</p>
+        <button id="retryBtn" class="secondaryButton" type="button" hidden>重新提交上一个问题</button>
+
+        <div id="answer" class="answerArea">
+          <div class="emptyState">暂无分析结果</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="timelineSection">
+      <div class="sectionHeader">
+        <div>
+          <p class="sectionLabel">关键节点</p>
+          <h2>视频脉络</h2>
+        </div>
+        <span class="sectionMeta">点击时间点可直接播放</span>
+      </div>
+      <div id="timeline" class="timelineList"></div>
+    </section>
+
+    <details id="technicalDetails" class="technicalDetails">
+      <summary>技术实现</summary>
+      <div id="technicalContent" class="technicalContent"></div>
+    </details>
+  </main>
+
+  <script src="/static/playback.js"></script>
+  <script src="/static/technical.js"></script>
+  <script src="/static/job_status.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

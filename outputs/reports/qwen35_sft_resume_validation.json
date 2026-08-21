@@ -1,0 +1,113 @@
+{
+  "schema_version": "videotrace-qwen35-sft-metrics-v1",
+  "created_at_utc": "2026-08-20T06:52:32.781171+00:00",
+  "status": "completed",
+  "model_path": "/lavender/models/Qwen3.5-9B",
+  "adapter_path": "/lavender/VideoTrace/outputs/runs/latest/sft_resume_validation",
+  "dataset_path": "/lavender/VideoTrace/data/sft/grounded_qa.jsonl",
+  "dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
+  "gradient_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e",
+  "source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+  "split_validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "num_records": 12,
+    "counts": {
+      "train": 7,
+      "dev": 4,
+      "test": 1
+    },
+    "video_groups": {
+      "cola-review-frozen-test": [
+        "test"
+      ],
+      "safedroid-demo": [
+        "train"
+      ],
+      "yoga-action": [
+        "dev"
+      ]
+    }
+  },
+  "counts": {
+    "train": 7,
+    "dev": 4,
+    "frozen_test": 1
+  },
+  "hyperparameters": {
+    "output_dir": "/lavender/VideoTrace/outputs/runs/latest/sft_resume_validation",
+    "metrics_path": "/lavender/VideoTrace/outputs/reports/qwen35_sft_resume_validation.json",
+    "model_card_path": "/lavender/VideoTrace/outputs/runs/latest/sft_resume_validation_card.json",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "quantization": "none",
+    "seed": 42,
+    "num_train_epochs": 2,
+    "learning_rate": 0.0002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "max_length": 768,
+    "gradient_accumulation_steps": 8,
+    "per_device_batch_size": 1,
+    "gradient_checkpointing": true,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "lora_target_modules": [
+      "q_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "resume_from_checkpoint": "/lavender/VideoTrace/outputs/models/qwen35_sft_adapter",
+    "save_every_steps": 20,
+    "max_steps": 2
+  },
+  "lora_target_modules": [
+    "q_proj",
+    "v_proj",
+    "o_proj"
+  ],
+  "history": [
+    {
+      "step": 1,
+      "epoch": 1,
+      "loss": 1.4157356023788452,
+      "lr": 0.0002
+    },
+    {
+      "step": 2,
+      "epoch": 2,
+      "loss": 0.6611789464950562,
+      "lr": 0.0002
+    }
+  ],
+  "train_loss_last": 0.6611789464950562,
+  "dev_loss": 1.072001,
+  "steps": 2,
+  "steps_this_run": 1,
+  "resumed_from_checkpoint": "/lavender/VideoTrace/outputs/models/qwen35_sft_adapter",
+  "resumed_from_step": 1,
+  "checkpoint_contract_sha256": "4f842bca53c4d6124b9cc8bf683720a61161c5558c63b919bceba0f5f9445692",
+  "checkpoint_manifest_sha256": "7f079a8a2a3f4153bdd1bd747cdd1284748b3a67a08d2edc988741cbe251b8da",
+  "checkpoint_files": [
+    "README.md",
+    "adapter_config.json",
+    "adapter_model.safetensors",
+    "chat_template.jinja",
+    "optimizer.pt",
+    "rng_state.pt",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "trainer_state.json"
+  ],
+  "train_tokens": 509,
+  "tokens_per_second": 50.775,
+  "elapsed_seconds": 10.025,
+  "peak_cuda_memory_mib": 19156.73,
+  "cuda_visible_devices": "0",
+  "physical_gpu_ids": "0",
+  "resume_supported": true,
+  "failure_recovery": "checkpoint saves adapter, tokenizer, optimizer.pt, rng_state.pt and trainer_state.json; checkpoint_manifest.json is the commit marker and resume validates dataset/source/config hashes",
+  "frozen_test_policy": "test records are evaluated only and never passed to the optimizer"
+}

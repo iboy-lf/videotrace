@@ -1,0 +1,19 @@
+# Scripts
+
+- `run_web.py`：启动用户 Web。
+- `remote/run_qwen35_demo.sh`：在 iboy 的现成环境中运行 Qwen3.5 + SigLIP2 + 神经重排完整视频链路；本地统一入口是 `start.ps1` 或 `start.bat`。
+- `build_reranker_dataset.py`：从开发监督生成默认 5 秒窗口的 canonical 重排训练样本 `outputs_train/reranker_dev_5s.jsonl`。
+- `tune_reranker.py`：搜索并训练轻量神经重排器。
+- `build_reranker_model_card.py`：记录模型、数据、指标和源码指纹。
+- `build_preference_dataset.py`：将人工负例注释与已核验 SFT 正例合并为隔离的 DPO 数据。
+- `validate_preference_dataset.py`：校验偏好对、负例类型、视频分组和冻结可乐策略。
+- `train_qwen35_sft.py`：执行 BF16 LoRA SFT；保存 adapter/optimizer/RNG/trainer state/commit manifest，并支持把恢复验证写到独立 output、metrics 和 model-card 路径。
+- `train_qwen35_dpo.py`：以已准入 SFT adapter 为冻结参考，预计算 reference log-prob 后执行可恢复 LoRA DPO；恢复时将 AdamW 状态在 forward 期间卸载到 CPU，避免 24 GiB GPU 上的恢复专属 OOM。
+- `browser_e2e.py`：使用现成 Playwright/Chromium 对上传、VLM 选择、任务轮询、回答、证据播放、时间线、Range 和响应式布局做真实浏览器验收。
+- `select_best_qwen35_adapter.py`：在服务端固定白名单内比较 SFT/DPO，原子写入 hash-bound 最佳 adapter registry，并保留 SFT 回退。
+- `validate_outputs.py`：检查知识包、时间戳和视频一致性。
+- `validate_interview_package.py`：检查最终面试产物。
+- `validate_documentation_consistency.py`：检查面试文档中的 DPO、性能、浏览器 job、机器报告哈希和当前产品源码指纹是否一致。
+- `remote/select_gpus.py`：只选择稳定空闲的远端 GPU。
+- `remote/run_web.sh`：使用固定最佳技术栈启动远端 Web。
+- `remote/run_tests.sh`：在现成 iboy 环境运行回归测试。

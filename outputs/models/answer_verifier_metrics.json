@@ -1,0 +1,72 @@
+{
+  "schema_version": "videotrace-calibrated-answer-verifier-v2",
+  "status": "completed",
+  "source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
+  "dataset_sha256": "07ef05ea891c8823ab774ded9fb15b5c43c6f57728db7ada7d5434770a246e38",
+  "gradient_payload_sha256": "1b529e1253ee277275523757569e2a6ab8e13ebd7b6be5c2dd971960145d403b",
+  "checkpoint_sha256": "2bf74b976b366fb939368cb82c8077aeae32b703ee2ccf69da7bda394f2e7db1",
+  "model_format": "portable-numpy-logistic-v1",
+  "feature_contract": "answer-verifier-features-v1",
+  "feature_names": [
+    "has_refusal",
+    "grounding_sufficient",
+    "evidence_count_scaled",
+    "answer_length_log",
+    "timestamp_count_scaled",
+    "matched_timestamp_ratio",
+    "unmatched_timestamp_ratio",
+    "claim_support_coverage",
+    "unsupported_claim_ratio",
+    "answer_evidence_coverage",
+    "query_answer_coverage",
+    "decision_alignment",
+    "unsupported_overclaim",
+    "deterministic_ok"
+  ],
+  "threshold": 0.2,
+  "counts": {
+    "train": 14,
+    "dev": 8,
+    "test": 2
+  },
+  "frozen_test_excluded_from_gradient": true,
+  "evaluations": {
+    "train": {
+      "rows": 14,
+      "accuracy": 0.9285714285714286,
+      "balanced_accuracy": 0.9285714285714286,
+      "f1": 0.9333333333333333,
+      "roc_auc": 1.0,
+      "safe_recall": 1.0,
+      "unsafe_recall": 0.8571428571428571,
+      "pairwise_accuracy": 1.0
+    },
+    "dev": {
+      "rows": 8,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "safe_recall": 1.0,
+      "unsafe_recall": 1.0,
+      "pairwise_accuracy": 1.0
+    },
+    "frozen_test": {
+      "rows": 2,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "safe_recall": 1.0,
+      "unsafe_recall": 1.0,
+      "pairwise_accuracy": 1.0
+    }
+  },
+  "threshold_selection": {
+    "source": "dev_safe_recall_then_unsafe_recall",
+    "threshold": 0.2,
+    "safe_recall": 1.0,
+    "unsafe_recall": 1.0
+  },
+  "validated_for_product": true
+}

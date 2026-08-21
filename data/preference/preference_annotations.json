@@ -1,0 +1,103 @@
+{
+  "schema_version": "videotrace-preference-annotations-v1",
+  "created_at": "2026-08-20",
+  "annotation_contract": "Each rejected answer is manually authored against the cited SFT record. It must express one named failure mode without changing the source split, evidence, chosen answer, or frozen-test policy.",
+  "pairs": [
+    {
+      "pair_id": "safedroid-overview:wrong-timestamp",
+      "source_record_id": "safedroid-demo:safedroid-overview",
+      "negative_type": "wrong_timestamp",
+      "rejected": "问题：这个演示如何从手机应用界面进入Chrome设置，并最终显示敏感权限提示？\n结论：整个流程发生在45.0-65.0，先打开应用列表，再进入Chrome设置并看到敏感权限提示。(timestamp=45.0-65.0)",
+      "rationale": "把跨越全片的三段证据压缩到视频结束后的错误时间窗，时间绑定不可验证。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid evidence on 2026-08-20."
+    },
+    {
+      "pair_id": "safedroid-app-drawer:missing-timestamp",
+      "source_record_id": "safedroid-demo:safedroid-app-drawer",
+      "negative_type": "missing_timestamp",
+      "rejected": "问题：哪里显示了安卓应用列表，同时右侧配有机器人循环示意图？\n结论：视频开头展示了安卓应用列表，右侧还有机器人循环示意图。",
+      "rationale": "事实描述接近证据，但没有给出任何可播放、可核验的时间范围。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid evidence on 2026-08-20."
+    },
+    {
+      "pair_id": "safedroid-chrome-settings:wrong-timestamp",
+      "source_record_id": "safedroid-demo:safedroid-chrome-settings",
+      "negative_type": "wrong_timestamp",
+      "rejected": "问题：Chrome应用设置页面和权限选项出现在哪一段？\n结论：Chrome应用设置页面和权限入口出现在0.0-10.0。(timestamp=0.0-10.0)",
+      "rationale": "把人工核验的18.0-31.0错标为0.0-10.0，点击证据会跳到错误画面。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid evidence on 2026-08-20."
+    },
+    {
+      "pair_id": "safedroid-sensitive-permission:hallucinated-action",
+      "source_record_id": "safedroid-demo:safedroid-sensitive-permission",
+      "negative_type": "hallucinated_detail",
+      "rejected": "问题：哪里出现“Sensitive permission granted”提示以及“Allow only while using the app”权限按钮？\n结论：27.0-45.0出现敏感权限提示，用户随后点击“Allow only while using the app”并完成授权，系统确认权限已经永久生效。(timestamp=27.0-45.0)",
+      "rationale": "时间戳正确，但增加了未被人工证据确认的点击动作、永久生效和系统确认。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid evidence on 2026-08-20."
+    },
+    {
+      "pair_id": "safedroid-negative-terminal:unsupported-overclaim",
+      "source_record_id": "safedroid-demo:safedroid-negative-terminal",
+      "negative_type": "unsupported_overclaim",
+      "rejected": "问题：哪里展示了Linux终端命令和服务器日志？\n结论：12.0-18.0清楚展示了Linux终端命令，随后滚动输出服务器启动日志。(timestamp=12.0-18.0)",
+      "rationale": "源标注明确要求拒答，负例却虚构终端和服务器日志并附上伪造时间戳。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid abstention case on 2026-08-20."
+    },
+    {
+      "pair_id": "safedroid-negative-outdoor:unsupported-overclaim",
+      "source_record_id": "safedroid-demo:safedroid-negative-outdoor",
+      "negative_type": "unsupported_overclaim",
+      "rejected": "问题：视频中有没有户外跑步或瑜伽动作？\n结论：5.0-16.0可以看到人物在户外跑步，之后完成了一组瑜伽伸展。(timestamp=5.0-16.0)",
+      "rationale": "把手机界面演示误说成户外运动，属于无证据实体与动作过度回答。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid abstention case on 2026-08-20."
+    },
+    {
+      "pair_id": "safedroid-negative-drink:unsupported-overclaim",
+      "source_record_id": "safedroid-demo:safedroid-negative-drink",
+      "negative_type": "unsupported_overclaim",
+      "rejected": "问题：哪里有人拿着饮料进行口味评测？\n结论：30.0-42.0有人举起可乐并试喝，随后评价甜度和气泡感。(timestamp=30.0-42.0)",
+      "rationale": "源视频没有饮料试喝证据，负例混入了冻结可乐视频中的概念。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified SafeDroid abstention case on 2026-08-20."
+    },
+    {
+      "pair_id": "yoga-overview:wrong-timestamp",
+      "source_record_id": "yoga-action:yoga-overview",
+      "negative_type": "wrong_timestamp",
+      "rejected": "问题：这段户外视频中的女性完成了怎样的一组连续瑜伽动作？\n结论：12.0-22.0她从地面支撑连续过渡到站立伸展体式。(timestamp=12.0-22.0)",
+      "rationale": "视频人工核验范围是0.0-10.0，负例把动作定位到片段之外。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified Yoga evidence on 2026-08-20."
+    },
+    {
+      "pair_id": "yoga-pose-transition:hallucinated-action",
+      "source_record_id": "yoga-action:yoga-pose-transition",
+      "negative_type": "hallucinated_detail",
+      "rejected": "问题：哪里可以看到她从俯身支撑或下犬式过渡到侧向伸展、双臂展开的站立体式？\n结论：3.0-10.0她从下犬式跳起完成倒立，随后旋转一周并落到双臂展开的站立体式。(timestamp=3.0-10.0)",
+      "rationale": "保留正确时间窗但虚构跳起倒立、旋转一周等未被证据支持的动作。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified Yoga evidence on 2026-08-20."
+    },
+    {
+      "pair_id": "yoga-negative-screen:unsupported-overclaim",
+      "source_record_id": "yoga-action:yoga-negative-screen",
+      "negative_type": "unsupported_overclaim",
+      "rejected": "问题：视频中哪里展示了电脑屏幕、代码编辑器和网页仪表盘？\n结论：1.0-6.0镜头依次展示电脑屏幕、代码编辑器和网页数据仪表盘。(timestamp=1.0-6.0)",
+      "rationale": "户外瑜伽视频没有任何屏幕或代码证据，负例应被偏好模型压低。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified Yoga abstention case on 2026-08-20."
+    },
+    {
+      "pair_id": "yoga-negative-beverage:unsupported-overclaim",
+      "source_record_id": "yoga-action:yoga-negative-beverage",
+      "negative_type": "unsupported_overclaim",
+      "rejected": "问题：哪里出现了可乐瓶、饮料罐和试喝评价？\n结论：2.0-8.0人物展示多瓶可乐，倒入玻璃杯试喝并评价口味。(timestamp=2.0-8.0)",
+      "rationale": "将另一个视频的可乐内容错误迁移到瑜伽视频，属于跨视频幻觉。",
+      "provenance": "VideoTrace task-local preference annotation; manually authored from the verified Yoga abstention case on 2026-08-20."
+    },
+    {
+      "pair_id": "cola-review-frozen-overview:wrong-timestamp",
+      "source_record_id": "cola-review:frozen-overview-test",
+      "negative_type": "wrong_timestamp",
+      "rejected": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：0.0-20.0完成开场，20.0-40.0已经完成全部国家的试喝，40.0-60.0进入最终盲测并公布排名。(timestamp=0.0-20.0; timestamp=20.0-40.0; timestamp=40.0-60.0)",
+      "rationale": "仅开场时间与冻结证据吻合，另外两段把完整流程压缩到前一分钟并虚构盲测定位；该对只用于冻结测试。",
+      "provenance": "VideoTrace frozen cola preference annotation; manually authored for test-only admission on 2026-08-20."
+    }
+  ]
+}

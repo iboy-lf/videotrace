@@ -1,0 +1,181 @@
+{
+  "schema_version": "videotrace-performance-report-v1",
+  "created_at_utc": "2026-08-20T14:53:48.422712+00:00",
+  "scope": "single real cola task profile; no public benchmark or ranking claim",
+  "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
+  "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+  "runtime": {
+    "python": "3.10.20",
+    "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+    "packages": {
+      "numpy": "2.2.6",
+      "opencv-python": "4.13.0.92",
+      "opencv-python-headless": "5.0.0.93",
+      "scikit-learn": "1.7.2",
+      "torch": "2.5.1+cu121",
+      "transformers": "5.15.0.dev0"
+    },
+    "cuda": {
+      "available": true,
+      "device_count": 2,
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA GeForce RTX 3090",
+          "total_memory_mib": 24124.2,
+          "capability": [
+            8,
+            6
+          ]
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 3090",
+          "total_memory_mib": 24124.2,
+          "capability": [
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    "cuda_visible_devices": "0,1",
+    "physical_gpu_ids": "0,1"
+  },
+  "model_residency": {
+    "cold_pipeline_construction_and_run_seconds": 27.559,
+    "warm_cache_hit_run_seconds": 14.901,
+    "speedup": 1.849,
+    "same_pipeline_instance": true,
+    "gpu_requests": "serial queue / one resident pipeline per config"
+  },
+  "cold_pack_performance": {
+    "stage_seconds": {
+      "ingest": 1.431357,
+      "asr": 0.030938,
+      "segment_understanding": 0.00134,
+      "vlm_retrieval": 5.074403,
+      "ranking": 0.059531,
+      "agent": 19.201241,
+      "total": 26.176158
+    },
+    "cuda_memory": {
+      "available": true,
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA GeForce RTX 3090",
+          "allocated_mib": 17979.37,
+          "reserved_mib": 19972.0,
+          "peak_allocated_mib": 19501.21,
+          "peak_reserved_mib": 19972.0
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 3090",
+          "allocated_mib": 1690.01,
+          "reserved_mib": 1706.0,
+          "peak_allocated_mib": 1692.13,
+          "peak_reserved_mib": 1706.0
+        }
+      ]
+    },
+    "cache": {
+      "segment_understanding": {
+        "generated": 0,
+        "hits": 21,
+        "fallbacks": 0
+      },
+      "vlm": {
+        "hits": 21,
+        "misses": 0,
+        "unknown": 0
+      }
+    }
+  },
+  "warm_pack_performance": {
+    "stage_seconds": {
+      "ingest": 1.425004,
+      "asr": 0.000543,
+      "segment_understanding": 0.001482,
+      "vlm_retrieval": 0.037728,
+      "ranking": 0.033553,
+      "agent": 13.381548,
+      "total": 14.892504
+    },
+    "cuda_memory": {
+      "available": true,
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA GeForce RTX 3090",
+          "allocated_mib": 17979.37,
+          "reserved_mib": 19972.0,
+          "peak_allocated_mib": 19487.36,
+          "peak_reserved_mib": 19972.0
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 3090",
+          "allocated_mib": 1690.01,
+          "reserved_mib": 1706.0,
+          "peak_allocated_mib": 1692.13,
+          "peak_reserved_mib": 1706.0
+        }
+      ]
+    },
+    "cache": {
+      "segment_understanding": {
+        "generated": 0,
+        "hits": 21,
+        "fallbacks": 0
+      },
+      "vlm": {
+        "hits": 21,
+        "misses": 0,
+        "unknown": 0
+      }
+    }
+  },
+  "cache_reuse": {
+    "cold": {
+      "segment_understanding": {
+        "generated": 0,
+        "hits": 21,
+        "fallbacks": 0
+      },
+      "vlm": {
+        "hits": 21,
+        "misses": 0,
+        "unknown": 0
+      }
+    },
+    "warm": {
+      "segment_understanding": {
+        "generated": 0,
+        "hits": 21,
+        "fallbacks": 0
+      },
+      "vlm": {
+        "hits": 21,
+        "misses": 0,
+        "unknown": 0
+      }
+    },
+    "siglip_index_reuse": true
+  },
+  "precision": {
+    "bf16": "used by the remote Qwen3.5/SigLIP product path",
+    "int8_or_int4": "not enabled; remote bitsandbytes is CPU-only and failed the explicit 4bit preflight",
+    "correctness_check": {
+      "cold_verified": true,
+      "warm_verified": true,
+      "answer_timestamp_binding_preserved": true
+    }
+  },
+  "training_profile_reference": {
+    "source": "outputs/models/qwen35_sft_metrics.json",
+    "note": "one-step real LoRA training profile, not a serving benchmark"
+  }
+}

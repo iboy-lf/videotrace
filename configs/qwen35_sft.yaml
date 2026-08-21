@@ -1,0 +1,27 @@
+model_path: /lavender/models/Qwen3.5-9B
+dataset_path: data/sft/grounded_qa.jsonl
+output_dir: outputs/models/qwen35_sft_adapter
+metrics_path: outputs/models/qwen35_sft_metrics.json
+model_card_path: outputs/models/qwen35_sft_model_card.json
+device: cuda:0
+dtype: bfloat16
+quantization: none
+seed: 42
+num_train_epochs: 1
+learning_rate: 0.0002
+weight_decay: 0.01
+warmup_ratio: 0.05
+max_length: 768
+gradient_accumulation_steps: 8
+per_device_batch_size: 1
+gradient_checkpointing: true
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - v_proj
+  - o_proj
+resume_from_checkpoint: ""
+save_every_steps: 20
+max_steps: 0

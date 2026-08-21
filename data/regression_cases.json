@@ -1,0 +1,55 @@
+{
+  "schema_version": "videotrace-task-regression-v1",
+  "video_id": "cola-review-frozen-test",
+  "video_path": "data/raw/cola_review.mp4",
+  "frozen_test": true,
+  "purpose": "Small task-local product regression; never used for gradient updates and not reported as a public benchmark.",
+  "cases": [
+    {
+      "case_id": "cola-global-flow",
+      "case_type": "global_process",
+      "query": "这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。",
+      "expected_behavior": "answer",
+      "gold_spans": [[0.0, 20.0], [180.0, 320.0], [400.0, 416.22]],
+      "expected_keywords": ["展示", "盲测"],
+      "error_categories": ["retrieval_error", "temporal_coverage_error", "generation_error", "verifier_miss"]
+    },
+    {
+      "case_id": "cola-opening-products",
+      "case_type": "local_fact",
+      "query": "开场主持人展示了哪些可乐产品？请只根据开场画面回答并给出时间戳。",
+      "expected_behavior": "answer",
+      "gold_spans": [[0.0, 20.0]],
+      "expected_keywords": ["可口可乐", "非常可乐"],
+      "error_categories": ["retrieval_error", "visual_understanding_error", "generation_error", "verifier_miss"]
+    },
+    {
+      "case_id": "cola-label-transition",
+      "case_type": "difficult_local_fact",
+      "query": "300 秒左右先展示了什么产品信息，随后主持人又展示了什么？请给出时间戳。",
+      "expected_behavior": "answer",
+      "gold_spans": [[300.0, 320.0]],
+      "expected_keywords": ["配料表", "百事可乐"],
+      "error_categories": ["retrieval_error", "visual_understanding_error", "generation_error", "verifier_miss"]
+    },
+    {
+      "case_id": "cola-final-blind-test",
+      "case_type": "local_fact",
+      "query": "最后盲测时主持人佩戴了什么，桌上有什么？请给出时间戳。",
+      "expected_behavior": "answer",
+      "gold_spans": [[400.0, 416.22]],
+      "expected_keywords": ["眼罩", "饮料"],
+      "error_categories": ["retrieval_error", "visual_understanding_error", "generation_error", "verifier_miss"]
+    },
+    {
+      "case_id": "cola-no-car-desert",
+      "case_type": "no_evidence_refusal",
+      "query": "视频里主持人有没有驾驶汽车穿越沙漠？请给出证据。",
+      "expected_behavior": "abstain",
+      "gold_spans": [],
+      "expected_keywords": ["证据不足"],
+      "forbidden_assertions": ["主持人驾驶汽车", "穿越沙漠的画面"],
+      "error_categories": ["retrieval_error", "generation_error", "verifier_miss"]
+    }
+  ]
+}

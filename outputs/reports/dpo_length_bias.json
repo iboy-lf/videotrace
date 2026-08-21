@@ -1,0 +1,139 @@
+{
+  "schema_version": "videotrace-dpo-length-bias-v1",
+  "pairs": 12,
+  "beta": 0.1,
+  "token_delta": {
+    "mean": 25.6667,
+    "min": -23,
+    "max": 162,
+    "chosen_longer": 7
+  },
+  "pearson_token_delta_vs_reward_margin": -0.1986,
+  "reward_margin_positive": 12,
+  "policy_prefers_chosen": 8,
+  "reference_prefers_chosen_sum": 8,
+  "reference_prefers_chosen_per_token": 11,
+  "policy_flipped_vs_reference": 0,
+  "per_pair": [
+    {
+      "pair_id": "safedroid-overview:wrong-timestamp",
+      "split": "train",
+      "negative_type": "wrong_timestamp",
+      "token_delta": 112,
+      "reward_margin": 0.20338669,
+      "policy_prefers_chosen": false,
+      "reference_prefers_chosen_sum": false,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "safedroid-app-drawer:missing-timestamp",
+      "split": "train",
+      "negative_type": "missing_timestamp",
+      "token_delta": 40,
+      "reward_margin": 0.23210754,
+      "policy_prefers_chosen": false,
+      "reference_prefers_chosen_sum": false,
+      "reference_prefers_chosen_per_token": false
+    },
+    {
+      "pair_id": "safedroid-chrome-settings:wrong-timestamp",
+      "split": "train",
+      "negative_type": "wrong_timestamp",
+      "token_delta": 26,
+      "reward_margin": 0.19470901,
+      "policy_prefers_chosen": false,
+      "reference_prefers_chosen_sum": false,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "safedroid-sensitive-permission:hallucinated-action",
+      "split": "train",
+      "negative_type": "hallucinated_detail",
+      "token_delta": 16,
+      "reward_margin": 0.31781769,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "safedroid-negative-terminal:unsupported-overclaim",
+      "split": "train",
+      "negative_type": "unsupported_overclaim",
+      "token_delta": -21,
+      "reward_margin": 0.21801643,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "safedroid-negative-outdoor:unsupported-overclaim",
+      "split": "train",
+      "negative_type": "unsupported_overclaim",
+      "token_delta": -19,
+      "reward_margin": 0.17005959,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "safedroid-negative-drink:unsupported-overclaim",
+      "split": "train",
+      "negative_type": "unsupported_overclaim",
+      "token_delta": -23,
+      "reward_margin": 0.23473816,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "yoga-overview:wrong-timestamp",
+      "split": "dev",
+      "negative_type": "wrong_timestamp",
+      "token_delta": 23,
+      "reward_margin": 0.17002716,
+      "policy_prefers_chosen": false,
+      "reference_prefers_chosen_sum": false,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "yoga-pose-transition:hallucinated-action",
+      "split": "dev",
+      "negative_type": "hallucinated_detail",
+      "token_delta": 21,
+      "reward_margin": 0.17419739,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "yoga-negative-screen:unsupported-overclaim",
+      "split": "dev",
+      "negative_type": "unsupported_overclaim",
+      "token_delta": -14,
+      "reward_margin": 0.08248749,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "yoga-negative-beverage:unsupported-overclaim",
+      "split": "dev",
+      "negative_type": "unsupported_overclaim",
+      "token_delta": -15,
+      "reward_margin": 0.1338665,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    },
+    {
+      "pair_id": "cola-review-frozen-overview:wrong-timestamp",
+      "split": "frozen_test",
+      "negative_type": "wrong_timestamp",
+      "token_delta": 162,
+      "reward_margin": 0.09733963,
+      "policy_prefers_chosen": true,
+      "reference_prefers_chosen_sum": true,
+      "reference_prefers_chosen_per_token": true
+    }
+  ]
+}

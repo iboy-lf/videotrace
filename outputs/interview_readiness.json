@@ -1,0 +1,249 @@
+{
+  "valid": true,
+  "checks_passed": 17,
+  "checks_total": 17,
+  "failures": [],
+  "checks": [
+    {
+      "name": "required_artifacts_exist",
+      "passed": true,
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "name": "input_video_exists",
+      "passed": true,
+      "evidence": "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4"
+    },
+    {
+      "name": "source_fingerprint_matches",
+      "passed": true,
+      "evidence": {
+        "artifact": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+        "current": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+      }
+    },
+    {
+      "name": "video_fingerprint_matches",
+      "passed": true,
+      "evidence": {
+        "artifact": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+        "current": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781"
+      }
+    },
+    {
+      "name": "interview_stack_is_active",
+      "passed": true,
+      "evidence": {
+        "segment_understanding": "qwen35_local",
+        "vlm": "frozen_siglip",
+        "reranker": "neural",
+        "llm": "qwen35_local"
+      }
+    },
+    {
+      "name": "runtime_environment_is_recorded",
+      "passed": true,
+      "evidence": {
+        "python": "3.10.20",
+        "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+        "packages": {
+          "numpy": "2.2.6",
+          "opencv-python": "4.13.0.92",
+          "opencv-python-headless": "5.0.0.93",
+          "scikit-learn": "1.7.2",
+          "torch": "2.5.1+cu121",
+          "transformers": "5.15.0.dev0"
+        },
+        "cuda": {
+          "available": true,
+          "device_count": 2,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 3090",
+              "total_memory_mib": 24124.2,
+              "capability": [
+                8,
+                6
+              ]
+            },
+            {
+              "index": 1,
+              "name": "NVIDIA GeForce RTX 3090",
+              "total_memory_mib": 24124.2,
+              "capability": [
+                8,
+                6
+              ]
+            }
+          ]
+        },
+        "cuda_visible_devices": "0,1",
+        "physical_gpu_ids": "0,1"
+      }
+    },
+    {
+      "name": "agent_answer_is_grounded",
+      "passed": true,
+      "evidence": {
+        "verified": true,
+        "coverage": 1.0,
+        "tool_calls": 6
+      }
+    },
+    {
+      "name": "answer_timestamps_are_bound",
+      "passed": true,
+      "evidence": {
+        "timestamp_refs": [
+          "0.0-20.0",
+          "200.0-220.0",
+          "300.0-320.0",
+          "400.0-416.2"
+        ],
+        "unbound": []
+      }
+    },
+    {
+      "name": "overview_temporal_coverage_is_complete",
+      "passed": true,
+      "evidence": {
+        "selected": [
+          [
+            0.0,
+            20.0,
+            "temporal_coverage:opening"
+          ],
+          [
+            200.0,
+            220.0,
+            "temporal_coverage:middle"
+          ],
+          [
+            300.0,
+            320.0,
+            "relevance_plus_temporal_novelty"
+          ],
+          [
+            400.0,
+            416.22,
+            "temporal_coverage:ending"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "dense_index_is_persisted",
+      "passed": true,
+      "evidence": {
+        "enabled": true,
+        "backend": "frozen_siglip",
+        "storage_backend": "numpy_flat_cosine",
+        "vector_path": "outputs/indexes/cola_review-d8231ab2d3.npy",
+        "metadata_path": "outputs/indexes/cola_review-d8231ab2d3.json",
+        "num_vectors": 21,
+        "dim": 1024
+      }
+    },
+    {
+      "name": "replayable_media_exists",
+      "passed": true,
+      "evidence": {
+        "demo": "D:\\Agent\\VideoTrace\\outputs\\iboy_qwen35\\cola_review\\demo.html",
+        "clips": [
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4",
+          "D:\\Agent\\VideoTrace\\data\\raw\\cola_review.mp4"
+        ],
+        "playback_mode": "source_video_window"
+      }
+    },
+    {
+      "name": "training_split_has_no_test_leakage",
+      "passed": true,
+      "evidence": {
+        "splits": [
+          "dev"
+        ],
+        "training_video_ids": [
+          "safedroiddemo",
+          "yogaaction"
+        ],
+        "final_video_id": "colareview"
+      }
+    },
+    {
+      "name": "reranker_feature_contract_matches",
+      "passed": true,
+      "evidence": {
+        "feature_names": [
+          "query_coverage",
+          "retrieval_score",
+          "scorer_score",
+          "vlm_score",
+          "retrieval_rank_score",
+          "scorer_rank_score",
+          "vlm_rank_score",
+          "base_fusion_score",
+          "understanding_confidence",
+          "temporal_position",
+          "duration_ratio",
+          "text_length_log"
+        ],
+        "metrics_hidden_dim": 16,
+        "model_card_hidden_dims": [
+          16,
+          8
+        ]
+      }
+    },
+    {
+      "name": "training_counts_are_consistent",
+      "passed": true,
+      "evidence": {
+        "rows": 71,
+        "groups": 11,
+        "positive": 25
+      }
+    },
+    {
+      "name": "reranker_has_held_out_pairwise_signal",
+      "passed": true,
+      "evidence": {
+        "neural_pairwise_accuracy": 0.775,
+        "blended_pairwise_accuracy": 0.775,
+        "base_fusion_pairwise_accuracy": 0.725,
+        "recommended_blend_weight": 0.45,
+        "pairwise_eval_groups": 2
+      }
+    },
+    {
+      "name": "training_artifact_hashes_match",
+      "passed": true,
+      "evidence": {
+        "checkpoint_sha256": "5b3422a734672e6950654e484a524fbae571b3c0756a811571b9f965e14624db",
+        "dataset_sha256": "c3deddd1be2eb377593d34275b1ed8f32fb49a34e91d5423a090af81323ce7ac",
+        "metrics_sha256": "0696cda8c545675a7e072a5318f9ac64bbb17d4035abc3ae15ec97d3bcf97bf1"
+      }
+    },
+    {
+      "name": "model_card_matches_source_snapshot",
+      "passed": true,
+      "evidence": {
+        "model_card": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+        "current": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+      }
+    }
+  ],
+  "artifacts": {
+    "knowledge_pack": "D:\\Agent\\VideoTrace\\outputs\\iboy_qwen35\\cola_review\\knowledge_pack.json",
+    "checkpoint": "D:\\Agent\\VideoTrace\\outputs\\models\\neural_reranker.pt",
+    "metrics": "D:\\Agent\\VideoTrace\\outputs\\models\\neural_reranker_metrics.json",
+    "dataset": "D:\\Agent\\VideoTrace\\outputs_train\\reranker_dev_5s.jsonl",
+    "dataset_summary": "D:\\Agent\\VideoTrace\\outputs_train\\reranker_dev_5s.summary.json",
+    "model_card": "D:\\Agent\\VideoTrace\\outputs\\models\\neural_reranker_model_card.json"
+  }
+}

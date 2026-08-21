@@ -1,0 +1,136 @@
+{
+  "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
+  "duration_sec": 416.2151875,
+  "num_segments": 21,
+  "num_clips": 4,
+  "summary": "已处理 21 个视频片段；Agent 模式=plan_execute；证据校验=evidence attached; coverage=1.00; claim_support=1.00；通过=True",
+  "agent_mode": "plan_execute",
+  "scorer_mode": "rule_based",
+  "vlm_backend": "frozen_siglip",
+  "llm_backend": "qwen35_local",
+  "asr_backend": "sidecar",
+  "query_intent": {
+    "kind": "overview",
+    "coverage_mode": "distributed",
+    "stage_hints": [
+      "opening",
+      "middle",
+      "ending"
+    ],
+    "terms": [
+      "三个",
+      "个阶",
+      "体流",
+      "出时",
+      "分国",
+      "后盲",
+      "和最",
+      "喝和",
+      "国家",
+      "家试",
+      "并给",
+      "开场",
+      "括开",
+      "整体",
+      "是什",
+      "最后",
+      "概括",
+      "段并",
+      "流程",
+      "测三",
+      "的整",
+      "盲测",
+      "程是",
+      "试喝",
+      "请概",
+      "阶段"
+    ],
+    "rationale": "query asks for a global summary or multiple temporal stages",
+    "time_anchor_sec": null
+  },
+  "retrieval_strategy": "temporal_coverage",
+  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+  "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+  "environment": {
+    "python": "3.10.20",
+    "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+    "packages": {
+      "numpy": "2.2.6",
+      "opencv-python": "4.13.0.92",
+      "opencv-python-headless": "5.0.0.93",
+      "scikit-learn": "1.7.2",
+      "torch": "2.5.1+cu121",
+      "transformers": "5.15.0.dev0"
+    },
+    "cuda": {
+      "available": true,
+      "device_count": 2,
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA GeForce RTX 3090",
+          "total_memory_mib": 24124.2,
+          "capability": [
+            8,
+            6
+          ]
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 3090",
+          "total_memory_mib": 24124.2,
+          "capability": [
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    "cuda_visible_devices": "0,1",
+    "physical_gpu_ids": "0,1"
+  },
+  "performance": {
+    "stage_seconds": {
+      "ingest": 1.458128,
+      "asr": 0.029136,
+      "segment_understanding": 0.001423,
+      "vlm_retrieval": 7.178517,
+      "ranking": 0.035187,
+      "agent": 17.213184,
+      "total": 26.319
+    },
+    "cuda_memory": {
+      "available": true,
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA GeForce RTX 3090",
+          "allocated_mib": 17956.0,
+          "reserved_mib": 19510.0,
+          "peak_allocated_mib": 19457.34,
+          "peak_reserved_mib": 19510.0
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 3090",
+          "allocated_mib": 1689.51,
+          "reserved_mib": 1706.0,
+          "peak_allocated_mib": 1691.63,
+          "peak_reserved_mib": 1706.0
+        }
+      ]
+    },
+    "cache": {
+      "segment_understanding": {
+        "generated": 0,
+        "hits": 21,
+        "fallbacks": 0
+      },
+      "vlm": {
+        "hits": 21,
+        "misses": 0,
+        "unknown": 0
+      }
+    }
+  }
+}
