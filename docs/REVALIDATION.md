@@ -25,6 +25,22 @@
 
 ## 改动产品源码后的完整重跑顺序
 
+### 一条命令
+
+同步源码后，整条链路由 `scripts/remote/revalidate_all.sh` 按依赖顺序执行：
+
+```bash
+# 忙碌主机上先干跑，检查前置条件，不消耗任何 GPU
+bash scripts/remote/revalidate_all.sh --dry-run
+
+# 正式执行；最多等 1 小时直到出现一对安全空闲卡
+bash scripts/remote/revalidate_all.sh --wait 3600
+```
+
+GPU 安全策略不重新实现，全部走 `scripts/remote/select_gpus.py`：要求连续稳定探测确认真正空闲、不碰他人进程；等待窗口内没有安全的卡就非零退出，不会挤占。跑完默认停掉常驻 Web 服务（`--keep-web` 可保留），因为这是共享机器，不该让一个 9B 模型在无人值守时占着卡。
+
+### 或者逐条执行
+
 在 `iboy` 上，项目目录 `/lavender/VideoTrace`：
 
 ```bash

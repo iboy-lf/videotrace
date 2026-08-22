@@ -11,16 +11,20 @@ $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $archive = Join-Path $syncDir "videotrace-code-$stamp.tar.gz"
 $remoteArchive = "/tmp/videotrace-code-$stamp.tar.gz"
 
+# Source and small tracked inputs only. Raw video, model weights, outputs and
+# caches are never shipped over the wire; the remote already owns them.
 $include = @(
+    ".gitattributes",
     ".gitignore",
+    "LICENSE",
     "README.md",
     "THIRD_PARTY_NOTICES.md",
     "pyproject.toml",
     "start.bat",
     "start.ps1",
-    "assets",
     "configs",
     "data/preference",
+    "data/sft",
     "data/verifier",
     "data/supervision",
     "data/regression_cases.json",
@@ -29,6 +33,12 @@ $include = @(
     "src",
     "tests"
 )
+
+foreach ($item in $include) {
+    if (-not (Test-Path -LiteralPath (Join-Path $root $item))) {
+        throw "sync manifest lists a path that does not exist: $item"
+    }
+}
 
 try {
     & tar -czf $archive `
