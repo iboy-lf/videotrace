@@ -51,6 +51,8 @@ bash scripts/remote/run_browser_e2e.sh
 
 回到本地后：
 
+顺序有依赖，不能打乱：manifest 必须先于 delivery 重建，delivery 的结果又会被文档一致性检查读取。
+
 ```powershell
 $env:PYTHONPATH = 'src'
 python scripts/analyze_dpo_length_bias.py

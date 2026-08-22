@@ -64,6 +64,7 @@ def validate_documentation(root: Path) -> dict:
     browser = _load(root / "outputs/reports/browser_e2e.json")
     manifest = _load(root / "outputs/reports/artifact_manifest.json")
     length_bias = _load(root / "outputs/reports/dpo_length_bias.json")
+    delivery = _load(root / "outputs/reports/delivery_readiness.json")
 
     source_sha = str(manifest.get("source_sha256") or "")
     current_source_sha = source_fingerprint(root)
@@ -80,6 +81,7 @@ def validate_documentation(root: Path) -> dict:
     artifact_count = str(len(manifest.get("artifacts") or {}))
     admission_count = str(len(manifest.get("adapter_admission_history") or []))
     browser_sha = _sha256(root / "outputs/reports/browser_e2e.json")
+    delivery_current = f"{delivery.get('checks_passed')}/{delivery.get('checks_total')}"
     dpo_eval = dpo.get("evaluations", {})
     dpo_facts = [
         _number_text(dpo_eval.get("train", {}).get("mean_reward_margin")),
@@ -132,6 +134,13 @@ def validate_documentation(root: Path) -> dict:
         ],
         "docs/AGENT_TRACE_AUDIT_20260820.md": [job_id, job_elapsed],
         "docs/INTERVIEW_GUIDE.md": ["SFT", "DPO", "GRPO", "PPO/RLHF", "reference-relative"],
+        # Present-tense status documents must quote the delivery validator's
+        # *current* result. The dated acceptance records above legitimately keep
+        # their original numbers; these three do not, because they claim to
+        # describe the repository as it stands today.
+        "docs/READINESS_CHECKLIST.md": [delivery_current],
+        "docs/ROADMAP.md": [delivery_current],
+        "docs/JOB_READINESS_MATRIX.md": [delivery_current],
     }
     checks = []
     for relative, facts in required_by_doc.items():
