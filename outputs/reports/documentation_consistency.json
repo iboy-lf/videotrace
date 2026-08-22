@@ -3,8 +3,8 @@
   "valid": false,
   "content_valid": true,
   "snapshot_current": false,
-  "source_sha256": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
-  "current_source_sha256": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
+  "source_sha256": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
+  "current_source_sha256": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
   "browser_report_sha256": "b8bab40ed134c9abfbeaacc37283ade33ae9562c81fc482f84d7a19611dd0664",
   "job_id": "bba9b6fa535e45d596d2d31c7b9aadb4",
   "checks_passed": 11,
@@ -14,9 +14,9 @@
       "path": "current-product-source",
       "snapshot_binding": true,
       "passed": false,
-      "current_source_sha256": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
+      "current_source_sha256": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
       "machine_sources": {
-        "artifact_manifest": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
+        "artifact_manifest": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
         "browser_e2e": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
         "performance_report": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
       }

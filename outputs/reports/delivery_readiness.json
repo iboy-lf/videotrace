@@ -22,8 +22,8 @@
       "name": "artifact_manifest_is_complete_and_current",
       "passed": true,
       "evidence": {
-        "manifest_source": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
-        "current_source": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
+        "manifest_source": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
+        "current_source": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
         "missing": [],
         "hash_mismatches": []
       }
@@ -45,7 +45,7 @@
       "passed": false,
       "evidence": {
         "artifact": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "current": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982"
+        "current": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4"
       }
     },
     {
@@ -258,7 +258,7 @@
       "passed": false,
       "evidence": {
         "model_card": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "current": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982"
+        "current": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4"
       }
     },
     {
@@ -677,7 +677,7 @@
       "name": "source_bound_runtime_artifacts_match_final_snapshot",
       "passed": false,
       "evidence": {
-        "current": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
+        "current": "0068453eaaaf1ed51b385223264b74d8bb46f84fe93522c06b3bfa31f201feb4",
         "artifacts": {
           "canonical_pack": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
           "adapter_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
