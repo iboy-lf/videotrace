@@ -22,7 +22,11 @@ def main() -> None:
     report = validate_delivery_package(ROOT, args.manifest)
     output = ROOT / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # newline="\n" keeps the digest of this tracked report identical on Windows
+    # and Linux, so re-running the validator locally does not dirty the tree.
+    with output.open("w", encoding="utf-8", newline="\n") as stream:
+        json.dump(report, stream, ensure_ascii=False, indent=2)
+        stream.write("\n")
     print(json.dumps(report, ensure_ascii=False, indent=2))
     raise SystemExit(0 if report["valid"] else 1)
 
