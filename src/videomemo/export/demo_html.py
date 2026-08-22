@@ -79,6 +79,13 @@ def export_demo_html(pack: KnowledgePack, output_dir: str) -> Path:
     .videoPane {{ border-right:1px solid var(--line); }}
     video {{ display:block; width:100%; aspect-ratio:16/9; object-fit:contain; background:#080b0a; border-radius:6px; }}
     .playing {{ min-height:42px; margin-top:10px; padding:10px; color:#10514e; background:#eef7f5; border:1px solid #c9e0db; border-radius:6px; font-size:13px; }}
+    .mediaMissing {{ margin-top:10px; padding:14px; color:#70551e; background:#fff8e8; border:1px solid #ead8a9; border-radius:6px; }}
+    .mediaMissing strong {{ display:block; font-size:13px; }}
+    .mediaMissing p {{ margin-top:6px; font-size:12px; line-height:1.6; overflow-wrap:anywhere; }}
+    .mediaMissing .hint {{ color:#8a7440; }}
+    .mediaMissing code {{ padding:1px 4px; background:rgba(0,0,0,.06); border-radius:3px; }}
+    .evidence[disabled] {{ cursor:not-allowed; opacity:.72; }}
+    .evidence[disabled] b {{ visibility:hidden; }}
     .answerPane h1 {{ margin-bottom:12px; font-size:20px; }}
     .conclusion {{ padding:13px; line-height:1.65; background:#eef7f5; border-left:4px solid var(--teal); }}
     .answerPane h2 {{ margin:20px 0 10px; font-size:15px; }}
@@ -101,6 +108,11 @@ def export_demo_html(pack: KnowledgePack, output_dir: str) -> Path:
     <section class="grid">
       <div class="videoPane">
         <video id="video" controls preload="metadata" src="{escape(video_src)}"></video>
+        <div id="mediaMissing" class="mediaMissing" hidden>
+          <strong>证据模式：找不到源视频</strong>
+          <p>下面的回答、时间戳和证据都来自已核验的知识包，可以完整查看；但证据无法回看，因为源视频是第三方内容，不随仓库分发。</p>
+          <p class="hint">把原视频放回 <code>{escape(video_src)}</code> 后重新打开本页即可恢复回放。</p>
+        </div>
         <div id="playing" class="playing">点击右侧证据，直接回看对应位置</div>
       </div>
       <div class="answerPane">
@@ -120,6 +132,18 @@ def export_demo_html(pack: KnowledgePack, output_dir: str) -> Path:
     const video = document.getElementById("video");
     const playing = document.getElementById("playing");
     let activeEnd = null;
+    // The knowledge pack stays valid when the source video is absent -- it is
+    // third-party content and is not redistributed. Say so rather than leaving
+    // a dead player whose evidence buttons silently do nothing.
+    video.addEventListener("error", () => {{
+      document.getElementById("mediaMissing").hidden = false;
+      video.hidden = true;
+      playing.hidden = true;
+      document.querySelectorAll(".evidence").forEach((button) => {{
+        button.disabled = true;
+        button.title = "源视频不在本地，无法回看这一段证据";
+      }});
+    }});
     document.querySelectorAll(".evidence").forEach((button, index) => {{
       button.addEventListener("click", () => {{
         document.querySelectorAll(".evidence.active").forEach((item) => item.classList.remove("active"));
@@ -142,5 +166,8 @@ def export_demo_html(pack: KnowledgePack, output_dir: str) -> Path:
 </body>
 </html>
 """
-    html_path.write_text(html, encoding="utf-8")
+    # newline="\n" keeps this tracked artifact's digest identical on Windows and
+    # Linux; the artifact manifest hashes these bytes.
+    with html_path.open("w", encoding="utf-8", newline="\n") as stream:
+        stream.write(html)
     return html_path

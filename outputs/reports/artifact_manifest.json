@@ -1,7 +1,7 @@
 {
   "schema_version": "videotrace-artifact-manifest-v1",
-  "created_at_utc": "2026-08-22T02:16:32.075783+00:00",
-  "source_sha256": "72b647a644d69ecab25dc6220dcfbc1c399fa0de4830e9c33ddcba6420f9c2e1",
+  "created_at_utc": "2026-08-22T02:47:26.477447+00:00",
+  "source_sha256": "006dca84aad5961bb5c16f5b556322df7a476e3d685a3b239dce75f9bf031982",
   "complete": true,
   "missing_required": [],
   "artifacts": {

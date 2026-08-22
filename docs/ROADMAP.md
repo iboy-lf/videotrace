@@ -12,7 +12,7 @@
 - 24 行 answer-verifier 数据、`14/8/2` split、纯 NumPy 可移植逻辑回归 checkpoint、canonical 实际加载验证。
 - 5/5 冻结回归、冷/热 profile、峰值显存、BF16 和失败的 4bit preflight。
 - artifact manifest、岗位矩阵、面试指南、开源 attribution。
-- 本地 `126 passed, 1 skipped`、全新 clone `125 passed, 2 skipped`；artifact manifest 包含 51 个核心制品和 14 份不可变准入历史，本地 manifest hash mismatch 为 0。interview `17/17`、delivery `40/40` 是 20260820 完整验收快照的结果；当前源码指纹已变化，delivery 为 `34/40`，六项 GPU/远端检查待在 `iboy` 重跑，见 `docs/REVALIDATION.md`。
+- 本地 `129 passed, 1 skipped`、全新 clone `128 passed, 2 skipped`；artifact manifest 包含 51 个核心制品和 14 份不可变准入历史，本地 manifest hash mismatch 为 0。interview `17/17`、delivery `40/40` 是 20260820 完整验收快照的结果；当前源码指纹已变化，delivery 为 `34/40`，六项 GPU/远端检查待在 `iboy` 重跑，见 `docs/REVALIDATION.md`。
 
 ## 有意保留的边界
 
