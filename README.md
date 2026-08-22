@@ -1,5 +1,8 @@
 # VideoTrace
 
+[![ci](https://github.com/iboy-lf/videotrace/actions/workflows/ci.yml/badge.svg)](https://github.com/iboy-lf/videotrace/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 VideoTrace 是一个面向长视频的多模态证据问答 Agent：它把视频切成可检索的时间窗口，用 Qwen3.5-9B 做片段理解与回答生成，用冻结的 SigLIP2 做视觉检索增强，再由可训练神经重排器和 Plan-Execute Agent 组织证据、上下文、回答与校验。最终产品返回可回看的原视频时间窗，而不是只给一段无法核验的文字。
 
 这个项目的目标不是堆模型名，而是把一条真实可复现的 LLM/VLM/Agent/后训练/推理优化链路做完整：有真实视频、有远端训练、有失败恢复、有错误分类、有 hash-bound 产物准入，也明确记录没有实现的能力边界。
