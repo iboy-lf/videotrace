@@ -22,6 +22,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="videotrace-run-regression-suite")
     parser.add_argument("--cases", default="data/regression_cases.json")
     parser.add_argument("--config", default="configs/iboy_qwen35.yaml")
+    parser.add_argument(
+        "--adapter",
+        default="",
+        help="optional explicit hash-checked adapter path for an isolated experiment; does not alter the Web registry",
+    )
     parser.add_argument("--output", default="outputs/reports/error_analysis.json")
     args = parser.parse_args()
 
@@ -31,6 +36,13 @@ def main() -> None:
     if not video_path.exists():
         raise FileNotFoundError(video_path)
     config = VideoMemoConfig.load(str(_rooted(args.config)))
+    if args.adapter:
+        adapter = _rooted(args.adapter)
+        if not (adapter / "adapter_config.json").is_file() or not (
+            adapter / "adapter_model.safetensors"
+        ).is_file():
+            raise FileNotFoundError(f"adapter is incomplete: {adapter}")
+        config.llm_adapter_path = str(adapter)
     pipeline = VideoMemoPipeline(config)
     results = []
     for case in payload.get("cases", []):

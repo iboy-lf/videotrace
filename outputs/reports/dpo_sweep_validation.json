@@ -1,0 +1,102 @@
+{
+  "schema_version": "videotrace-dpo-sweep-validation-v1",
+  "valid": true,
+  "failures": [],
+  "evidence": {
+    "current_source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+    "sweep_sha256": "f03b076e5db6306b667b480e28d7bb51d3920fed2709579625aca2f6425740a4",
+    "evaluation_sha256": "f72a13521812b1e0dce84fef41e3b6581f0fee2524e07255ee2f7c87e5b18402",
+    "regression_sha256": "d36f97479b3a3c8b4ec51aabbf5b1cd2f8f50a9e227aeeb23fb8fba9c62688b9",
+    "candidate_count": 10,
+    "selected_candidate_id": "beta0p05_steps2_seed43",
+    "selected_spec": {
+      "beta": 0.05,
+      "max_steps": 2,
+      "seed": 43
+    },
+    "selected_dev": {
+      "num_pairs": 4,
+      "mean_loss": 0.61871304,
+      "mean_reward_margin": 0.15616388,
+      "mean_chosen_reward": 0.14309034,
+      "mean_rejected_reward": -0.01307354,
+      "mean_abs_implicit_reward": 0.08084083,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 0.75,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 1,
+      "by_negative_type": {
+        "hallucinated_detail": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.21605949,
+          "policy_preference_accuracy": 1.0
+        },
+        "unsupported_overclaim": {
+          "num_pairs": 2,
+          "mean_reward_margin": 0.08795013,
+          "policy_preference_accuracy": 1.0
+        },
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.23269577,
+          "policy_preference_accuracy": 1.0
+        }
+      }
+    },
+    "selected_frozen_test": {
+      "num_pairs": 1,
+      "mean_loss": 0.61391477,
+      "mean_reward_margin": 0.16528702,
+      "mean_chosen_reward": 0.18048782,
+      "mean_rejected_reward": 0.01520081,
+      "mean_abs_implicit_reward": 0.09784431,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 1.0,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 0,
+      "by_negative_type": {
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.16528702,
+          "policy_preference_accuracy": 1.0
+        }
+      }
+    },
+    "product_comparison": {
+      "baseline_verified": true,
+      "adapter_verified": true,
+      "baseline_coverage": 1.0,
+      "adapter_coverage": 1.0,
+      "coverage_delta": 0.0,
+      "adapter_timestamp_binding_ok": true,
+      "adapter_claim_support_ok": true,
+      "coverage_non_regression": true,
+      "answer_changed": true,
+      "validated_for_web": true,
+      "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
+    },
+    "regression": {
+      "passed": 5,
+      "total": 5
+    },
+    "seed_robustness": {
+      "beta": 0.05,
+      "max_steps": 2,
+      "seeds": [
+        43,
+        44,
+        45
+      ],
+      "num_runs": 3,
+      "dev_reward_margin_mean": 0.15501256,
+      "dev_reward_margin_std": 0.00265381,
+      "dev_policy_accuracy_mean": 1.0,
+      "dev_policy_accuracy_std": 0.0
+    },
+    "default_registry_untouched": true
+  }
+}

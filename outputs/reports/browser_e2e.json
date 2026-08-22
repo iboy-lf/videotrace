@@ -1,10 +1,10 @@
 {
   "schema_version": "videotrace-browser-e2e-v1",
-  "created_at": 1787424563.5395305,
+  "created_at": 1787434021.0693858,
   "base_url": "http://127.0.0.1:7860/",
   "video": "/lavender/VideoTrace/data/raw/cola_review.mp4",
   "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
-  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
   "vlm_mode": "auto_best",
   "checks": {
     "core_controls_visible": true,
@@ -33,55 +33,55 @@
     "qwen35_video",
     "siglip_retrieval"
   ],
-  "job_id": "0cada81cba474080ad95db585cc589be",
+  "job_id": "f6d582f2ef434a689845b23e8c671f07",
   "job": {
     "status": "completed",
     "phase": "completed",
     "error_code": "",
-    "elapsed_sec": 29.0,
-    "rechecked_elapsed_sec": 29.0,
-    "execution_elapsed_sec": 29.042598485946655,
+    "elapsed_sec": 29.2,
+    "rechecked_elapsed_sec": 29.2,
+    "execution_elapsed_sec": 29.18610715866089,
     "elapsed_delta_sec": 0.0,
-    "started_at": 1787424564.539955,
-    "completed_at": 1787424593.5825534,
+    "started_at": 1787434022.0962567,
+    "completed_at": 1787434051.282364,
     "events": [
       {
-        "at": 1787424564.5392675,
+        "at": 1787434022.0955923,
         "status": "queued",
         "phase": "queued",
         "progress": 0,
         "message": "任务已进入 GPU 串行队列。"
       },
       {
-        "at": 1787424564.539955,
+        "at": 1787434022.0962567,
         "status": "running",
         "phase": "checking_resources",
         "progress": 5,
         "message": "正在复核 GPU 安全状态。"
       },
       {
-        "at": 1787424567.1108687,
+        "at": 1787434024.6578503,
         "status": "running",
         "phase": "loading_models",
         "progress": 15,
         "message": "正在复用或加载 自动最佳（Qwen3.5 + SigLIP2）。"
       },
       {
-        "at": 1787424568.5319796,
+        "at": 1787434026.0959604,
         "status": "running",
         "phase": "analyzing",
         "progress": 35,
         "message": "正在切片、检索并生成证据回答。"
       },
       {
-        "at": 1787424593.5010443,
+        "at": 1787434051.2017434,
         "status": "running",
         "phase": "exporting",
         "progress": 90,
         "message": "正在校验并整理知识包。"
       },
       {
-        "at": 1787424593.5825534,
+        "at": 1787434051.282364,
         "status": "completed",
         "phase": "completed",
         "progress": 100,

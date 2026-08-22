@@ -49,7 +49,7 @@
     "time_anchor_sec": null
   },
   "retrieval_strategy": "temporal_coverage",
-  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
   "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
   "environment": {
     "python": "3.10.20",
@@ -91,13 +91,13 @@
   },
   "performance": {
     "stage_seconds": {
-      "ingest": 1.447835,
-      "asr": 0.029065,
-      "segment_understanding": 0.001403,
-      "vlm_retrieval": 4.956117,
-      "ranking": 0.033595,
-      "agent": 17.141991,
-      "total": 23.976114
+      "ingest": 1.452546,
+      "asr": 0.029314,
+      "segment_understanding": 0.00133,
+      "vlm_retrieval": 4.946894,
+      "ranking": 0.033821,
+      "agent": 17.420515,
+      "total": 24.27088
     },
     "cuda_memory": {
       "available": true,

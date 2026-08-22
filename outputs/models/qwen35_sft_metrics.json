@@ -7,7 +7,7 @@
   "dataset_path": "/lavender/VideoTrace/data/sft/grounded_qa.jsonl",
   "dataset_sha256": "f79f059813dc46347caedd01fedea13d7c1376063d751b49cbc9b08a5d483628",
   "gradient_payload_sha256": "4050b168f19a385e053020056eaca5324f09500d24e98fd5ce993176b7b5293e",
-  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
   "split_validation": {
     "valid": true,
     "errors": [],
@@ -105,5 +105,5 @@
   "failure_recovery": "checkpoint saves adapter, tokenizer, optimizer.pt, rng_state.pt and trainer_state.json; checkpoint_manifest.json is the commit marker and resume validates dataset/source/config hashes",
   "frozen_test_policy": "test records are evaluated only and never passed to the optimizer",
   "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
-  "admission_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
+  "admission_source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc"
 }

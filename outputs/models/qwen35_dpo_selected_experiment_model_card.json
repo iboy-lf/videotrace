@@ -1,0 +1,313 @@
+{
+  "schema_version": "videotrace-qwen35-dpo-model-card-v1",
+  "model_name": "VideoTrace Qwen3.5 evidence-preference LoRA adapter",
+  "base_model": "/lavender/models/Qwen3.5-9B",
+  "initial_adapter": "/lavender/VideoTrace/outputs/models/qwen35_sft_adapter",
+  "adapter_path": "/lavender/VideoTrace/outputs/experiments/dpo_sweep/selected_final/adapter",
+  "intended_use": "Prefer timestamp-correct, evidence-supported Chinese video answers and explicit abstention over wrong timestamps, missing timestamps, hallucinated details and unsupported overclaims.",
+  "training_method": "single-policy LoRA DPO with frozen precomputed SFT reference log-probabilities",
+  "reference_policy": {
+    "kind": "frozen admitted SFT adapter",
+    "adapter_sha256": "d224b1ea1066f67906deca440f9aa3c2e2099fec4589ec4d30d0c485fa703f98",
+    "logprob_artifact": {
+      "path": "/lavender/VideoTrace/outputs/models/qwen35_dpo_reference_logprobs.json",
+      "sha256": "e47d60edb32cfc9a244ebe4109f8886aec292685945c957a201d3b7bc8b1129c",
+      "schema_version": "videotrace-qwen35-dpo-reference-logprobs-v1",
+      "num_pairs": 12,
+      "frozen_before_optimizer": true
+    },
+    "memory_design": "precomputed reference log-probs avoid co-resident policy/reference 9B models"
+  },
+  "data": {
+    "dataset": "/lavender/VideoTrace/data/preference/grounded_dpo.jsonl",
+    "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
+    "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1",
+    "counts": {
+      "train": 7,
+      "dev": 4,
+      "frozen_test": 1
+    },
+    "negative_type_counts": {
+      "wrong_timestamp": 4,
+      "missing_timestamp": 1,
+      "hallucinated_detail": 2,
+      "unsupported_overclaim": 5
+    },
+    "train_dev_test_isolation": true,
+    "frozen_test_excluded_from_gradients": true
+  },
+  "task_local_evaluation": {
+    "train": {
+      "num_pairs": 7,
+      "mean_loss": 0.58450585,
+      "mean_reward_margin": 0.23181373,
+      "mean_chosen_reward": 0.19535302,
+      "mean_rejected_reward": -0.03646071,
+      "mean_abs_implicit_reward": 0.11783252,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 0.571429,
+      "reference_preference_accuracy": 0.571429,
+      "policy_preference_accuracy_per_token": 0.857143,
+      "reference_preference_accuracy_per_token": 0.857143,
+      "policy_flip_count_vs_reference": 0,
+      "by_negative_type": {
+        "hallucinated_detail": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.3616642,
+          "policy_preference_accuracy": 1.0
+        },
+        "missing_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.23292046,
+          "policy_preference_accuracy": 0.0
+        },
+        "unsupported_overclaim": {
+          "num_pairs": 3,
+          "mean_reward_margin": 0.17078915,
+          "policy_preference_accuracy": 1.0
+        },
+        "wrong_timestamp": {
+          "num_pairs": 2,
+          "mean_reward_margin": 0.25787201,
+          "policy_preference_accuracy": 0.0
+        }
+      },
+      "pairs": [
+        {
+          "pair_id": "safedroid-overview:wrong-timestamp",
+          "negative_type": "wrong_timestamp",
+          "loss": 0.56677694,
+          "reward_margin": 0.27105179,
+          "policy_preference_correct": false,
+          "reference_preference_correct": false,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 178,
+          "rejected_tokens": 66
+        },
+        {
+          "pair_id": "safedroid-app-drawer:missing-timestamp",
+          "negative_type": "missing_timestamp",
+          "loss": 0.58345317,
+          "reward_margin": 0.23292046,
+          "policy_preference_correct": false,
+          "reference_preference_correct": false,
+          "policy_preference_correct_per_token": false,
+          "reference_preference_correct_per_token": false,
+          "chosen_tokens": 75,
+          "rejected_tokens": 35
+        },
+        {
+          "pair_id": "safedroid-chrome-settings:wrong-timestamp",
+          "negative_type": "wrong_timestamp",
+          "loss": 0.57826675,
+          "reward_margin": 0.24469223,
+          "policy_preference_correct": false,
+          "reference_preference_correct": false,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 74,
+          "rejected_tokens": 48
+        },
+        {
+          "pair_id": "safedroid-sensitive-permission:hallucinated-action",
+          "negative_type": "hallucinated_detail",
+          "loss": 0.52857687,
+          "reward_margin": 0.3616642,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 92,
+          "rejected_tokens": 76
+        },
+        {
+          "pair_id": "safedroid-negative-terminal:unsupported-overclaim",
+          "negative_type": "unsupported_overclaim",
+          "loss": 0.61155127,
+          "reward_margin": 0.17044601,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 31,
+          "rejected_tokens": 52
+        },
+        {
+          "pair_id": "safedroid-negative-outdoor:unsupported-overclaim",
+          "negative_type": "unsupported_overclaim",
+          "loss": 0.62693848,
+          "reward_margin": 0.13711376,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 30,
+          "rejected_tokens": 49
+        },
+        {
+          "pair_id": "safedroid-negative-drink:unsupported-overclaim",
+          "negative_type": "unsupported_overclaim",
+          "loss": 0.59597748,
+          "reward_margin": 0.20480766,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 29,
+          "rejected_tokens": 52
+        }
+      ]
+    },
+    "dev": {
+      "num_pairs": 4,
+      "mean_loss": 0.61871304,
+      "mean_reward_margin": 0.15616388,
+      "mean_chosen_reward": 0.14309034,
+      "mean_rejected_reward": -0.01307354,
+      "mean_abs_implicit_reward": 0.08084083,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 0.75,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 1,
+      "by_negative_type": {
+        "hallucinated_detail": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.21605949,
+          "policy_preference_accuracy": 1.0
+        },
+        "unsupported_overclaim": {
+          "num_pairs": 2,
+          "mean_reward_margin": 0.08795013,
+          "policy_preference_accuracy": 1.0
+        },
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.23269577,
+          "policy_preference_accuracy": 1.0
+        }
+      },
+      "pairs": [
+        {
+          "pair_id": "yoga-overview:wrong-timestamp",
+          "negative_type": "wrong_timestamp",
+          "loss": 0.5835525,
+          "reward_margin": 0.23269577,
+          "policy_preference_correct": true,
+          "reference_preference_correct": false,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 75,
+          "rejected_tokens": 52
+        },
+        {
+          "pair_id": "yoga-pose-transition:hallucinated-action",
+          "negative_type": "hallucinated_detail",
+          "loss": 0.59094133,
+          "reward_margin": 0.21605949,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 94,
+          "rejected_tokens": 73
+        },
+        {
+          "pair_id": "yoga-negative-screen:unsupported-overclaim",
+          "negative_type": "unsupported_overclaim",
+          "loss": 0.65878814,
+          "reward_margin": 0.06994076,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 37,
+          "rejected_tokens": 51
+        },
+        {
+          "pair_id": "yoga-negative-beverage:unsupported-overclaim",
+          "negative_type": "unsupported_overclaim",
+          "loss": 0.6415702,
+          "reward_margin": 0.10595951,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 38,
+          "rejected_tokens": 53
+        }
+      ]
+    },
+    "frozen_test": {
+      "num_pairs": 1,
+      "mean_loss": 0.61391477,
+      "mean_reward_margin": 0.16528702,
+      "mean_chosen_reward": 0.18048782,
+      "mean_rejected_reward": 0.01520081,
+      "mean_abs_implicit_reward": 0.09784431,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 1.0,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 0,
+      "by_negative_type": {
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.16528702,
+          "policy_preference_accuracy": 1.0
+        }
+      },
+      "pairs": [
+        {
+          "pair_id": "cola-review-frozen-overview:wrong-timestamp",
+          "negative_type": "wrong_timestamp",
+          "loss": 0.61391477,
+          "reward_margin": 0.16528702,
+          "policy_preference_correct": true,
+          "reference_preference_correct": true,
+          "policy_preference_correct_per_token": true,
+          "reference_preference_correct_per_token": true,
+          "chosen_tokens": 273,
+          "rejected_tokens": 111
+        }
+      ]
+    }
+  },
+  "checkpoint_recovery": {
+    "resume_supported": true,
+    "contract_sha256": "5d981306f13deccef966166b61899ed482be7d0f4eb5604c7308686ca7249088",
+    "manifest_sha256": "57a28422fa729d3420536c138deb6d8b47caf23eecb122f79f747ef45bcbf9a3",
+    "files": [
+      "README.md",
+      "adapter_config.json",
+      "adapter_model.safetensors",
+      "chat_template.jinja",
+      "optimizer.pt",
+      "rng_state.pt",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "trainer_state.json"
+    ],
+    "resumed_from_step": 0,
+    "policy": "The checkpoint commit manifest binds adapter/tokenizer/optimizer/RNG/trainer state and the frozen reference, data, SFT initialization, source and optimizer contract."
+  },
+  "limitations": [
+    "Small manually authored task-local preference set; no public benchmark or broad alignment claim.",
+    "One short LoRA update demonstrates a real, recoverable DPO path but is not large-scale preference training.",
+    "Visual recognition remains provided by the Qwen3.5/SigLIP2 inference stack; DPO targets answer behavior.",
+    "Product use still requires frozen-pack comparison and hash-bound best-adapter admission.",
+    "The installed bitsandbytes build is CPU-only, so the verified run uses BF16 LoRA rather than claiming QLoRA.",
+    "Frozen-test results were read only for the final selected run."
+  ],
+  "metrics_path": "outputs/models/qwen35_dpo_metrics.json",
+  "reproducibility": {
+    "source_sha256": "b92cb3b8913ae09086d1ff8ad539c5124f127dd1f1f1ee5ddba88735d2ffc2ea",
+    "training_source_sha256": "b92cb3b8913ae09086d1ff8ad539c5124f127dd1f1f1ee5ddba88735d2ffc2ea",
+    "cuda_visible_devices": "0,1",
+    "physical_gpu_ids": "0,1",
+    "resume_supported": true
+  }
+}

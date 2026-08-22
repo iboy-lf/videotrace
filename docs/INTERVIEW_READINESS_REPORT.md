@@ -14,14 +14,16 @@ VideoTrace 已形成一条可现场演示、可远端复现、可用 hash 交叉
 ## 当前机器验收
 
 - interview package：`17/17`；delivery readiness：`40/40`。
-- 本地完整 pytest：`140 passed, 1 skipped`；远端重验证预检 `138 passed`，compileall、4 个 JS syntax 和 3 个 JS behavior test 均通过。
-- 源码 SHA：`642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6`。
-- 浏览器任务：`0cada81cba474080ad95db585cc589be`；真实视频上传和完整任务队列均执行，默认 URL `http://127.0.0.1:7860` 上 `19 项` E2E 检查全部通过。
-- Web 任务终态耗时 `29.0s`，复查仍为 `29.0s`，与 `29.043s` 执行时间窗一致；任务记录 `durable=true, restored=false`。
-- 浏览器报告 SHA-256：`3de7912a0766c34f07e9c9e188177d1bf85dc175eebf217b0bb63065e88cec3a`。
+- 本地完整 pytest：`147 passed, 1 skipped`；远端重验证预检 `145 passed`，compileall、4 个 JS syntax 和 3 个 JS behavior test 均通过。
+- 源码 SHA：`7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc`。
+- 浏览器任务：`f6d582f2ef434a689845b23e8c671f07`；真实视频上传和完整任务队列均执行，默认 URL `http://127.0.0.1:7860` 上 `19 项` E2E 检查全部通过。
+- Web 任务终态耗时 `29.2s`，复查仍为 `29.2s`，与 `29.186s` 执行时间窗一致；任务记录 `durable=true, restored=false`。
+- 浏览器报告 SHA-256：`0b05057627b7bee829455c73766f5b8861bccdaf25c07278966bbbc77331dd7c`。
 - canonical 加载 verifier checkpoint `2bf74b976b366fb939368cb82c8077aeae32b703ee2ccf69da7bda394f2e7db1`，实际 `safe_probability=0.92716`。
-- 冻结产品回归 `5/5`；冷/热 profile 为 `26.531s/15.228s`，缓存复用加速 `1.742×`，正确性守恒。
-- manifest 覆盖 51 个核心制品和 18 份不可变 adapter 准入历史；DPO evaluation SHA 为 `d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a`，SFT fallback evaluation SHA 为 `97060b2e52d89996f6b33c66ac3f51186bb4b5ee13878707dbcb4ea32ecc76de`。
+- 冻结产品回归 `5/5`；冷/热 profile 为 `26.631s/15.151s`，缓存复用加速 `1.758×`，正确性守恒。
+- 模型选型对照：同一 frozen pack 上 Qwen3.5-9B 为 `22.778s`，Qwen2.5-VL-7B 为 `15.52s`，两者均通过 grounding、claim-support 与 timestamp binding；面试可解释质量/延迟取舍。
+- DPO 研究 sweep 已完成：10 个候选封存 frozen test 选择，`beta=0.05, step=2` 的 3-seed dev margin 为 `0.15501256±0.00265381`、绝对偏好准确率 `1.0`；一次性 frozen margin `0.16528702`，产品回归 `5/5`。该候选保留在研究目录，默认 Web adapter 未被静默替换。
+- manifest 覆盖 60 个核心制品和 20 份不可变 adapter 准入历史；DPO/SFT evaluation 的精确 SHA 以 `outputs/models/best_adapter.json` 为准。
 
 ## 面试定位
 

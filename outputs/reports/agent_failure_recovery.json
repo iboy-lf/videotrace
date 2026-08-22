@@ -1,6 +1,6 @@
 {
   "schema_version": "videotrace-agent-failure-recovery-v1",
-  "created_at_utc": "2026-08-22T18:48:05.255224+00:00",
+  "created_at_utc": "2026-08-22T21:25:42.880752+00:00",
   "scenario": "retrieval timeout -> bounded retry -> circuit open -> controlled fallback",
   "simulated_failure_isolated": true,
   "attempts": 4,
@@ -28,7 +28,7 @@
         "query": "最后盲测在哪里？"
       },
       "output": null,
-      "latency_ms": 0.06566941738128662,
+      "latency_ms": 0.061687082052230835,
       "ok": false,
       "error": "TimeoutError: SigLIP index timeout (simulated)",
       "status": "error",
@@ -44,9 +44,9 @@
         }
       },
       "circuit_state": "closed",
-      "call_id": "7e5dfaa4f5a6404694ebcca070dffe9e",
-      "started_at_utc": "2026-08-22T18:48:05.255098+00:00",
-      "finished_at_utc": "2026-08-22T18:48:05.255152+00:00",
+      "call_id": "9693e863ed7c4b4c83d01770c2ef7db4",
+      "started_at_utc": "2026-08-22T21:25:42.880631+00:00",
+      "finished_at_utc": "2026-08-22T21:25:42.880680+00:00",
       "attempt_trace": [
         {
           "attempt": 1,
@@ -54,7 +54,7 @@
           "ok": false,
           "error_code": "execution_error",
           "error": "TimeoutError: SigLIP index timeout (simulated)",
-          "latency_ms": 0.0065267086029052734,
+          "latency_ms": 0.00634416937828064,
           "will_retry": true,
           "backoff_sec": 0.0
         },
@@ -64,7 +64,7 @@
           "ok": false,
           "error_code": "execution_error",
           "error": "TimeoutError: SigLIP index timeout (simulated)",
-          "latency_ms": 0.0023245811462402344,
+          "latency_ms": 0.002261251211166382,
           "will_retry": false,
           "backoff_sec": 0.0
         }
@@ -76,7 +76,7 @@
         "query": "最后盲测在哪里？"
       },
       "output": null,
-      "latency_ms": 0.022709369659423828,
+      "latency_ms": 0.02281367778778076,
       "ok": false,
       "error": "TimeoutError: SigLIP index timeout (simulated)",
       "status": "error",
@@ -92,9 +92,9 @@
         }
       },
       "circuit_state": "open",
-      "call_id": "c5ddb9b3a3054e809ec5fce94969f9bc",
-      "started_at_utc": "2026-08-22T18:48:05.255168+00:00",
-      "finished_at_utc": "2026-08-22T18:48:05.255196+00:00",
+      "call_id": "4d11fe35497449dda0c7f94b42925a0d",
+      "started_at_utc": "2026-08-22T21:25:42.880697+00:00",
+      "finished_at_utc": "2026-08-22T21:25:42.880725+00:00",
       "attempt_trace": [
         {
           "attempt": 1,
@@ -102,7 +102,7 @@
           "ok": false,
           "error_code": "execution_error",
           "error": "TimeoutError: SigLIP index timeout (simulated)",
-          "latency_ms": 0.0020675361156463623,
+          "latency_ms": 0.0020153820514678955,
           "will_retry": true,
           "backoff_sec": 0.0
         },
@@ -112,7 +112,7 @@
           "ok": false,
           "error_code": "execution_error",
           "error": "TimeoutError: SigLIP index timeout (simulated)",
-          "latency_ms": 0.001650303602218628,
+          "latency_ms": 0.0017024576663970947,
           "will_retry": false,
           "backoff_sec": 0.0
         }
@@ -124,7 +124,7 @@
         "query": "最后盲测在哪里？"
       },
       "output": null,
-      "latency_ms": 0.01119077205657959,
+      "latency_ms": 0.01107528805732727,
       "ok": false,
       "error": "Tool circuit is open: retrieve_segments",
       "status": "error",
@@ -138,9 +138,9 @@
         "metadata": {}
       },
       "circuit_state": "open",
-      "call_id": "e26884926754489f84e08b56ece386f1",
-      "started_at_utc": "2026-08-22T18:48:05.255208+00:00",
-      "finished_at_utc": "2026-08-22T18:48:05.255219+00:00",
+      "call_id": "3ccf35eff9994f0aa12a80e597650d3e",
+      "started_at_utc": "2026-08-22T21:25:42.880735+00:00",
+      "finished_at_utc": "2026-08-22T21:25:42.880746+00:00",
       "attempt_trace": [
         {
           "attempt": 0,

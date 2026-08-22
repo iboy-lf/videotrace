@@ -66,6 +66,21 @@ DEFAULT_ARTIFACT_PATHS: dict[str, str] = {
     "browser_e2e": "outputs/reports/browser_e2e.json",
 }
 
+# Research artifacts are tracked when available but are deliberately separate
+# from the product admission contract. A failed/unfinished exploratory sweep
+# must never make the Web fallback unsafe or silently change the default model.
+OPTIONAL_ARTIFACT_PATHS: dict[str, str] = {
+    "dpo_sweep_report": "outputs/reports/dpo_sweep.json",
+    "dpo_selected_experiment_metrics": "outputs/reports/qwen35_dpo_selected_experiment.json",
+    "dpo_selected_experiment_model_card": "outputs/models/qwen35_dpo_selected_experiment_model_card.json",
+    "dpo_selected_experiment_evaluation": "outputs/reports/qwen35_dpo_selected_experiment_eval.json",
+    "dpo_selected_experiment_regression": "outputs/reports/qwen35_dpo_selected_experiment_regression.json",
+    "dpo_sweep_validation": "outputs/reports/dpo_sweep_validation.json",
+    "dpo_sweep_gpu_selection": "outputs/reports/gpu_selection_dpo_sweep.json",
+    "model_variant_benchmark": "outputs/reports/model_variant_benchmark.json",
+    "model_variant_gpu_selection": "outputs/reports/gpu_selection_model_variant_benchmark.json",
+}
+
 
 def build_artifact_manifest(
     root: str | Path,
@@ -82,6 +97,14 @@ def build_artifact_manifest(
             continue
         artifacts[name] = _artifact_entry(root, path)
 
+    optional = dict(OPTIONAL_ARTIFACT_PATHS)
+    if artifact_paths:
+        optional.update({name: value for name, value in artifact_paths.items() if name in optional})
+    for name, value in optional.items():
+        path = _rooted(root, value)
+        if path.is_file():
+            artifacts[name] = _artifact_entry(root, path)
+
     admission_history: list[dict] = []
     history_dir = root / "outputs" / "reports" / "adapter_admissions"
     if history_dir.exists():
@@ -91,25 +114,26 @@ def build_artifact_manifest(
             if path.is_file()
         ]
 
-    payloads = {
-        name: _load_json(_rooted(root, configured[name]))
-        for name in (
-            "canonical_pack",
-            "sft_metrics",
-            "sft_resume_validation",
-            "dpo_metrics",
-            "dpo_resume_validation",
-            "best_adapter_registry",
-            "adapter_evaluation",
-            "error_analysis",
-            "performance_report",
-            "agent_failure_recovery",
-            "gpu_selection_canonical",
-            "browser_e2e",
-            "answer_verifier_metrics",
-        )
-        if name in configured and _rooted(root, configured[name]).is_file()
-    }
+    payloads: dict[str, dict] = {}
+    for name in (
+        "canonical_pack",
+        "sft_metrics",
+        "sft_resume_validation",
+        "dpo_metrics",
+        "dpo_resume_validation",
+        "best_adapter_registry",
+        "adapter_evaluation",
+        "error_analysis",
+        "performance_report",
+        "agent_failure_recovery",
+        "gpu_selection_canonical",
+        "browser_e2e",
+        "answer_verifier_metrics",
+        "dpo_sweep_report",
+    ):
+        value = configured.get(name) or optional.get(name)
+        if value and _rooted(root, value).is_file():
+            payloads[name] = _load_json(_rooted(root, value))
     return {
         "schema_version": ARTIFACT_MANIFEST_SCHEMA,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),

@@ -1,0 +1,653 @@
+{
+  "schema_version": "videotrace-dpo-sweep-v1",
+  "created_at_utc": "2026-08-22T20:13:11.330804+00:00",
+  "selection_policy": "seal frozen test for every candidate; maximize dev policy preference accuracy, then minimize mean absolute implicit reward, then use fewer steps",
+  "source_sha256": "b92cb3b8913ae09086d1ff8ad539c5124f127dd1f1f1ee5ddba88735d2ffc2ea",
+  "config_path": "configs/qwen35_dpo.yaml",
+  "config_sha256": "d8ad1d37850b385491a06eb425e608c79fd60b0b9b404c0287158414c0468814",
+  "candidates": [
+    {
+      "candidate_id": "beta0p1_steps1_seed43",
+      "spec": {
+        "beta": 0.1,
+        "max_steps": 1,
+        "seed": 43
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps1_seed43/metrics.json",
+      "metrics_sha256": "3dc9e1f1451a936be1f73ded2c6e5779011365fd596ad917bd24bd9ca1f4d670",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps1_seed43/adapter",
+      "adapter_sha256": "9a274d5b6beef4a01b5af77c7a3ea6a6247311d1e58464f09c4424154014fdab",
+      "steps": 1,
+      "tokens_per_second": 43.466,
+      "peak_cuda_memory_mib": 9682.22,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.62471437,
+        "mean_reward_margin": 0.14250326,
+        "mean_chosen_reward": 0.13259535,
+        "mean_rejected_reward": -0.00990791,
+        "mean_abs_implicit_reward": 0.07466578,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 0.75,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 0,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.17957458,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.09643383,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.1975708,
+            "policy_preference_accuracy": 0.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p1_steps2_seed43",
+      "spec": {
+        "beta": 0.1,
+        "max_steps": 2,
+        "seed": 43
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps2_seed43/metrics.json",
+      "metrics_sha256": "8e0ceb41c9c5c5005dcd4f661c586e8c610802eecfe23346e99413218a3e52e1",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps2_seed43/adapter",
+      "adapter_sha256": "1b92399c653e01b01d4f41fd378330624e3c58c8d7c1db4401321fc2101ebd9a",
+      "steps": 2,
+      "tokens_per_second": 53.155,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.55303859,
+        "mean_reward_margin": 0.30824442,
+        "mean_chosen_reward": 0.29806738,
+        "mean_rejected_reward": -0.01017704,
+        "mean_abs_implicit_reward": 0.15492616,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.37399368,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.18145199,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.49608002,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p1_steps3_seed43",
+      "spec": {
+        "beta": 0.1,
+        "max_steps": 3,
+        "seed": 43
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps3_seed43/metrics.json",
+      "metrics_sha256": "3ac21fc3bd1d65e524f271932bd96bb6247ba65a9e94d67c39c9c907855dab7c",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps3_seed43/adapter",
+      "adapter_sha256": "0488a2bb7a12714774e3f8edb559a5d9626998d18061950cf35fdb7d730595c0",
+      "steps": 3,
+      "tokens_per_second": 54.131,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.5059525,
+        "mean_reward_margin": 0.43116245,
+        "mean_chosen_reward": 0.4127306,
+        "mean_rejected_reward": -0.01843185,
+        "mean_abs_implicit_reward": 0.22163267,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.57067032,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.22609634,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.7017868,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p1_steps4_seed43",
+      "spec": {
+        "beta": 0.1,
+        "max_steps": 4,
+        "seed": 43
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps4_seed43/metrics.json",
+      "metrics_sha256": "85d2047a7c8023adf02fc7e31151bfc7a73eb8b9a10ba97fbdb53aeb0b08d6f5",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps4_seed43/adapter",
+      "adapter_sha256": "3b7204b203d529aca60604ba01b7d0c77624712233c98706d85cab2dff36e541",
+      "steps": 4,
+      "tokens_per_second": 54.635,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.44267363,
+        "mean_reward_margin": 0.60969429,
+        "mean_chosen_reward": 0.58604584,
+        "mean_rejected_reward": -0.02364845,
+        "mean_abs_implicit_reward": 0.30963535,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.78947067,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.34597359,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.95735931,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p05_steps2_seed43",
+      "spec": {
+        "beta": 0.05,
+        "max_steps": 2,
+        "seed": 43
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed43/metrics.json",
+      "metrics_sha256": "67559167b09154a4ede4d90acd9faa71abb8f10d39090ee622466bc28bbfcf13",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed43/adapter",
+      "adapter_sha256": "5bfe4da6574e3efe85d710c8119f07bcee11694f705b3d98f7ff51a9e1e50de8",
+      "steps": 2,
+      "tokens_per_second": 52.306,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.62051677,
+        "mean_reward_margin": 0.15203962,
+        "mean_chosen_reward": 0.14500217,
+        "mean_rejected_reward": -0.00703745,
+        "mean_abs_implicit_reward": 0.07648234,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.17800064,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.09322796,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.24370193,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p05_steps2_seed44",
+      "spec": {
+        "beta": 0.05,
+        "max_steps": 2,
+        "seed": 44
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed44/metrics.json",
+      "metrics_sha256": "058dbdaa8de4ccbe0c0a03f4f6f28f0b9edadbb62ffa1b0bcc8a2732f766300b",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed44/adapter",
+      "adapter_sha256": "457bd10b9d2615fe6a3eaa8820dfd1d490cf05480708909bd10383dbe0e70464",
+      "steps": 2,
+      "tokens_per_second": 53.813,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.61990184,
+        "mean_reward_margin": 0.15451527,
+        "mean_chosen_reward": 0.1697607,
+        "mean_rejected_reward": 0.01524544,
+        "mean_abs_implicit_reward": 0.09250307,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.22669868,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.0645937,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.26217499,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p05_steps2_seed45",
+      "spec": {
+        "beta": 0.05,
+        "max_steps": 2,
+        "seed": 45
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed45/metrics.json",
+      "metrics_sha256": "10c929e38a70bbb5c41bd40f707148735d6333cc0ad73011cdb2b71b5e3dd007",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed45/adapter",
+      "adapter_sha256": "b605d8b9b790cab0ab07d5330e693db166d2e9a13f918f611ad9000cf5dee17a",
+      "steps": 2,
+      "tokens_per_second": 51.835,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.61805448,
+        "mean_reward_margin": 0.15848279,
+        "mean_chosen_reward": 0.17097201,
+        "mean_rejected_reward": 0.01248922,
+        "mean_abs_implicit_reward": 0.09173062,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.23916588,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.06920595,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.25635338,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p2_steps2_seed43",
+      "spec": {
+        "beta": 0.2,
+        "max_steps": 2,
+        "seed": 43
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p2_steps2_seed43/metrics.json",
+      "metrics_sha256": "e3218c0e33f05bf25b292902580cc04ceef9364426a40ef9dbc943104d9ce303",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p2_steps2_seed43/adapter",
+      "adapter_sha256": "574651d2420755337896638c96f697e54aac6e3cbb66a7ffcdce38de780b178d",
+      "steps": 2,
+      "tokens_per_second": 52.868,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.4574527,
+        "mean_reward_margin": 0.56208096,
+        "mean_chosen_reward": 0.56341152,
+        "mean_rejected_reward": 0.00133057,
+        "mean_abs_implicit_reward": 0.29975271,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.69461212,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.34037514,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.87296143,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p1_steps2_seed44",
+      "spec": {
+        "beta": 0.1,
+        "max_steps": 2,
+        "seed": 44
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps2_seed44/metrics.json",
+      "metrics_sha256": "90244f817c87f29d98b4549f1ba8a7958650e263372b1afa5b4d9074352b9d93",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps2_seed44/adapter",
+      "adapter_sha256": "d63d79b6939de7cd0f441b2e9c9d407b403091122c1ecfcb24f7b4afbc7a485b",
+      "steps": 2,
+      "tokens_per_second": 53.129,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.5504902,
+        "mean_reward_margin": 0.32066164,
+        "mean_chosen_reward": 0.34259367,
+        "mean_rejected_reward": 0.02193203,
+        "mean_abs_implicit_reward": 0.18226285,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.48392258,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.12208309,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.5545578,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    },
+    {
+      "candidate_id": "beta0p1_steps2_seed45",
+      "spec": {
+        "beta": 0.1,
+        "max_steps": 2,
+        "seed": 45
+      },
+      "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps2_seed45/metrics.json",
+      "metrics_sha256": "edc2cb67a8e36adfbd7b8eb2ef2d52511459576f41fdcdda21497bc86df948c4",
+      "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p1_steps2_seed45/adapter",
+      "adapter_sha256": "e5809e2d8a65b239e6906ac7fe8e3f1cb98da6cd6edaa3de4f059ff24f418071",
+      "steps": 2,
+      "tokens_per_second": 54.376,
+      "peak_cuda_memory_mib": 11099.59,
+      "dev": {
+        "num_pairs": 4,
+        "mean_loss": 0.55376088,
+        "mean_reward_margin": 0.31030874,
+        "mean_chosen_reward": 0.3377202,
+        "mean_rejected_reward": 0.02741146,
+        "mean_abs_implicit_reward": 0.18256583,
+        "reward_preference_accuracy": 1.0,
+        "policy_preference_accuracy": 1.0,
+        "reference_preference_accuracy": 0.75,
+        "policy_preference_accuracy_per_token": 1.0,
+        "reference_preference_accuracy_per_token": 1.0,
+        "policy_flip_count_vs_reference": 1,
+        "by_negative_type": {
+          "hallucinated_detail": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.46195831,
+            "policy_preference_accuracy": 1.0
+          },
+          "unsupported_overclaim": {
+            "num_pairs": 2,
+            "mean_reward_margin": 0.13553524,
+            "policy_preference_accuracy": 1.0
+          },
+          "wrong_timestamp": {
+            "num_pairs": 1,
+            "mean_reward_margin": 0.50820618,
+            "policy_preference_accuracy": 1.0
+          }
+        }
+      },
+      "frozen_test": {
+        "num_pairs": 1,
+        "skipped": true,
+        "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+      }
+    }
+  ],
+  "seed_robustness": {
+    "beta": 0.05,
+    "max_steps": 2,
+    "seeds": [
+      43,
+      44,
+      45
+    ],
+    "num_runs": 3,
+    "dev_reward_margin_mean": 0.15501256,
+    "dev_reward_margin_std": 0.00265381,
+    "dev_policy_accuracy_mean": 1.0,
+    "dev_policy_accuracy_std": 0.0
+  },
+  "selected_candidate": {
+    "candidate_id": "beta0p05_steps2_seed43",
+    "spec": {
+      "beta": 0.05,
+      "max_steps": 2,
+      "seed": 43
+    },
+    "metrics_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed43/metrics.json",
+    "metrics_sha256": "67559167b09154a4ede4d90acd9faa71abb8f10d39090ee622466bc28bbfcf13",
+    "adapter_path": "outputs/experiments/dpo_sweep/candidates/beta0p05_steps2_seed43/adapter",
+    "adapter_sha256": "5bfe4da6574e3efe85d710c8119f07bcee11694f705b3d98f7ff51a9e1e50de8",
+    "steps": 2,
+    "tokens_per_second": 52.306,
+    "peak_cuda_memory_mib": 11099.59,
+    "dev": {
+      "num_pairs": 4,
+      "mean_loss": 0.62051677,
+      "mean_reward_margin": 0.15203962,
+      "mean_chosen_reward": 0.14500217,
+      "mean_rejected_reward": -0.00703745,
+      "mean_abs_implicit_reward": 0.07648234,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 0.75,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 1,
+      "by_negative_type": {
+        "hallucinated_detail": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.17800064,
+          "policy_preference_accuracy": 1.0
+        },
+        "unsupported_overclaim": {
+          "num_pairs": 2,
+          "mean_reward_margin": 0.09322796,
+          "policy_preference_accuracy": 1.0
+        },
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.24370193,
+          "policy_preference_accuracy": 1.0
+        }
+      }
+    },
+    "frozen_test": {
+      "num_pairs": 1,
+      "skipped": true,
+      "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev"
+    }
+  },
+  "selected_final": {
+    "candidate_id": "beta0p05_steps2_seed43",
+    "spec": {
+      "beta": 0.05,
+      "max_steps": 2,
+      "seed": 43
+    },
+    "metrics_path": "outputs/reports/qwen35_dpo_selected_experiment.json",
+    "metrics_sha256": "913724a3db2a0604d32647f60d468e55c9aa9dd0e29bf3a374f83dbd9ed78f44",
+    "adapter_path": "outputs/experiments/dpo_sweep/selected_final/adapter",
+    "adapter_sha256": "082c209e30ef2d1744cbd92d98466bcb588169bd1f077b98867bb76b24b3130a",
+    "steps": 2,
+    "tokens_per_second": 53.101,
+    "peak_cuda_memory_mib": 11099.59,
+    "dev": {
+      "num_pairs": 4,
+      "mean_loss": 0.61871304,
+      "mean_reward_margin": 0.15616388,
+      "mean_chosen_reward": 0.14309034,
+      "mean_rejected_reward": -0.01307354,
+      "mean_abs_implicit_reward": 0.08084083,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 0.75,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 1,
+      "by_negative_type": {
+        "hallucinated_detail": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.21605949,
+          "policy_preference_accuracy": 1.0
+        },
+        "unsupported_overclaim": {
+          "num_pairs": 2,
+          "mean_reward_margin": 0.08795013,
+          "policy_preference_accuracy": 1.0
+        },
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.23269577,
+          "policy_preference_accuracy": 1.0
+        }
+      }
+    },
+    "frozen_test": {
+      "num_pairs": 1,
+      "mean_loss": 0.61391477,
+      "mean_reward_margin": 0.16528702,
+      "mean_chosen_reward": 0.18048782,
+      "mean_rejected_reward": 0.01520081,
+      "mean_abs_implicit_reward": 0.09784431,
+      "reward_preference_accuracy": 1.0,
+      "policy_preference_accuracy": 1.0,
+      "reference_preference_accuracy": 1.0,
+      "policy_preference_accuracy_per_token": 1.0,
+      "reference_preference_accuracy_per_token": 1.0,
+      "policy_flip_count_vs_reference": 0,
+      "by_negative_type": {
+        "wrong_timestamp": {
+          "num_pairs": 1,
+          "mean_reward_margin": 0.16528702,
+          "policy_preference_accuracy": 1.0
+        }
+      }
+    }
+  },
+  "frozen_test_policy": "candidate runs skip frozen test; selected setup is evaluated exactly once"
+}

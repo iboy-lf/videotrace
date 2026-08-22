@@ -35,7 +35,7 @@
 
 能在 24 GiB 级 GPU 上真实运行并恢复。`beta=0.1` 是隐式 reward 的尺度，也是底层 KL 正则系数：更大的 `beta` 对应更强的 KL 惩罚，同样的偏好 logit 只需要更小的 `log(π/πref)` 偏移；但它也会线性放大初始 DPO 梯度。更小的 `beta` 初始梯度更弱，却允许最优解离 reference 更远。因此不能把 `beta` 简化成“越大越激进”，必须同时看实际 KL、偏好门和冻结产品回归。
 
-当前结果应表述为：正式一步后 train/dev/frozen mean reference-relative reward margin 为 `0.22440502/0.14014463/0.09733963`，所有 pair 相对 reference 朝正确方向移动；absolute policy preference accuracy 为 `0.571429/0.75/1.0`，所以不能说每个 pair 已被完全解决。产品采用 DPO 还依赖冻结 grounding、时间戳、claim-support 和 coverage 门，任一权重或报告哈希失效就回退 SFT。
+当前正式产品结果应表述为：step 1 后 train/dev/frozen mean reference-relative reward margin 为 `0.22440502/0.14014463/0.09733963`，absolute policy preference accuracy 为 `0.571429/0.75/1.0`，所以不能说每个 pair 已被完全解决。为回答“是不是只跑一步”，另有封存 frozen test 的 10 候选 sweep：选中 `beta=0.05, step=2` 的 3 个 seed dev margin 为 `0.1550±0.0027`，绝对偏好准确率均为 `1.0`；按 dev 选择后一次性解封 frozen test，margin `0.16528702`、accuracy `1.0`，并通过独立 `5/5` 产品回归。研究候选不自动替换 Web 默认 adapter；产品采用任一 adapter 仍必须经过冻结 grounding、时间戳、claim-support、coverage 和 source/hash 门。
 
 ## DPO 和 PPO/RLHF 是什么关系
 
@@ -186,7 +186,7 @@ VideoTrace 若要做，正确的切入点不是蒸馏最终回答，而是蒸馏
 不满足下面全部条件就不应该叫蒸馏：
 
 - **teacher**：已冻结的 Qwen3.5-9B 片段理解路径，输出已经按视频/时间窗/帧指纹缓存——也就是说训练数据可以零额外推理成本地从现有缓存产出，这是本项目做蒸馏的实际优势。
-- **student**：明确的部署目标（例如可在单卡常驻、把当前冷运行 `26.531s` 中的昂贵前向压下去），而不是"换个小模型试试"。
+- **student**：明确的部署目标（例如可在单卡常驻、把当前冷运行 `26.631s` 中的昂贵前向压下去），而不是"换个小模型试试"。
 - **契约**：逐字段的结构化输出 schema，而不是自由文本；否则无法逐项验证。
 - **验收**：student 必须在**同一批冻结回归案例**上，保持时间戳绑定、claim-support 与覆盖不回退，并单独报告 OCR 这类困难字段的退化幅度——蒸馏的典型失败是整体指标持平但困难字段崩掉。
 - **误差传播**：teacher 本身的错误率是 student 的性能上限。必须先报告 teacher 在冻结集上的错误分类，否则 student 的"接近 teacher"没有意义。
@@ -201,6 +201,7 @@ PPO/RLHF 适合有稳定 reward model、在线采样、critic 训练预算和成
 | `beta` 是什么？调大会怎样？ | 它是隐式 reward 尺度和底层 KL 系数；调大意味着更强的 KL 惩罚、同一偏好 logit 所需策略偏移更小，但 DPO 初始梯度也更大，必须联看实际 KL 与冻结回归 | `beta=0.1`，`outputs/models/qwen35_dpo_metrics.json` |
 | 你的 margin 是不是长度造成的？ | 不是；`pearson(token 差, margin) = -0.1986`，但绝对偏好准确率确实受长度影响 | `outputs/reports/dpo_length_bias.json` |
 | 一步训练能说明什么？ | 只能说明 12/12 相对 reference 方向正确、闭环真实可恢复；`0/12` 绝对偏好翻转，不能声称能力提升 | 同上 |
+| DPO 是否只跑了一步？ | 产品正式 adapter 是 step 1，另有封存 frozen test 的 10 候选 step/beta/seed sweep；选中 `beta=0.05, step=2` 后 frozen margin `0.16528702`、5/5 回归通过，但研究候选未自动替换默认 adapter | `outputs/reports/dpo_sweep.json` |
 | 为什么不用 GRPO？ | 当前是静态证据回答，没有动作导致的状态差异；且唯一可用 reward 与偏好数据同源，会形成训练—评测闭环 | 本文 GRPO 章节 |
 | 为什么不用 PPO？ | 12 对数据训不出能抵抗策略漂移的 reward model，critic+rollout 成本无收益 | 本文 PPO 章节 |
 | 蒸馏你会怎么做？ | 蒸片段理解而非最终回答，用反向 KL，逐字段 schema 验收，先报 teacher 错误率 | 本文蒸馏章节 |

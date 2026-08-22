@@ -1,6 +1,6 @@
 {
   "schema_version": "videotrace-gpu-selection-audit-v1",
-  "completed_at_utc": "2026-08-22T21:22:39.343698+00:00",
+  "completed_at_utc": "2026-08-22T21:18:14.167917+00:00",
   "status": "selected",
   "selected_physical_gpu_ids": [
     0,
@@ -36,7 +36,7 @@
   "non_interference_policy": "selection only; selected GPUs must have zero compute PIDs for every stable probe; the selector never terminates or signals existing processes",
   "probes": [
     {
-      "observed_at_utc": "2026-08-22T21:22:29.023962+00:00",
+      "observed_at_utc": "2026-08-22T21:18:03.805182+00:00",
       "selected_pair": [
         0,
         1
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "observed_at_utc": "2026-08-22T21:22:34.195854+00:00",
+      "observed_at_utc": "2026-08-22T21:18:08.976202+00:00",
       "selected_pair": [
         0,
         1
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "observed_at_utc": "2026-08-22T21:22:39.343552+00:00",
+      "observed_at_utc": "2026-08-22T21:18:14.167771+00:00",
       "selected_pair": [
         0,
         1

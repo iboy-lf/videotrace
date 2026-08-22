@@ -1,12 +1,12 @@
 {
   "schema_version": "videotrace-error-analysis-v1",
-  "created_at_utc": "2026-08-22T21:25:41.442815+00:00",
+  "created_at_utc": "2026-08-22T19:53:26.719046+00:00",
   "scope": "frozen task-local cola regression; not a public benchmark",
   "case_manifest": "/lavender/VideoTrace/data/regression_cases.json",
   "case_manifest_sha256": "ca07bef3d3358a08e146aeb307d68fe5f721fbd7e543aaf7d36f808a9f1f9811",
   "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
   "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
-  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+  "source_sha256": "3a251e01b5140046677983856f231f4e190af7a4f428edadc8848ed9e8aac930",
   "resolved_config": {
     "segment_seconds": 20,
     "sample_fps": 1.0,
@@ -62,7 +62,7 @@
     "llm_backend": "qwen35_local",
     "llm_base_url": "",
     "llm_model": "/lavender/models/Qwen3.5-9B",
-    "llm_adapter_path": "/lavender/VideoTrace/outputs/models/qwen35_dpo_adapter",
+    "llm_adapter_path": "/lavender/VideoTrace/outputs/experiments/dpo_sweep/selected_final/adapter",
     "llm_api_key": "EMPTY",
     "llm_device": "cuda:0",
     "llm_dtype": "bfloat16",
@@ -190,7 +190,7 @@
       },
       "primary_error_category": "none",
       "passed": true,
-      "answer": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：视频开场展示多罐可口可乐并介绍主题，随后分国家试喝阶段展示不同国家可乐的配料表与试饮，最后进入盲测阶段，男子戴眼罩品尝并猜测饮料来源。\n- 0.0-20.0：一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 (timestamp=0.0-20.0)\n- 200.0-220.0：一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 (timestamp=200.0-220.0)\n- 300.0-320.0：视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 (timestamp=300.0-320.0)\n- 400.0-416.2：一名戴着眼罩的男子坐在桌前，桌上摆放着多种带有吸管的饮料，他正在品尝并尝试猜测饮料的种类，画面中出现了“马来西亚”、“哈萨克斯坦”、“加拿大”等文字标签。 (timestamp=400.0-416.2)",
+      "answer": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：视频开场展示多罐可口可乐并介绍主题，随后分国家试喝阶段展示不同国家可乐的配料与口感，最后进入盲测阶段，男子戴眼罩品尝并猜测饮料来源。\n- 0.0-20.0：一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 (timestamp=0.0-20.0)\n- 200.0-220.0：一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 (timestamp=200.0-220.0)\n- 300.0-320.0：视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 (timestamp=300.0-320.0)\n- 400.0-416.2：一名戴着眼罩的男子坐在桌前，桌上摆放着多种带有吸管的饮料，他正在品尝并尝试猜测饮料的种类，画面中出现了“马来西亚”、“哈萨克斯坦”、“加拿大”等文字标签。 (timestamp=400.0-416.2)",
       "timeline": [
         {
           "start_sec": 0.0,

@@ -14,6 +14,9 @@
 - `remote/run_adapter_evaluations.sh`：安全选一张空闲卡，运行共享 baseline、SFT/DPO candidate 与 compare，并发布最佳 adapter；所有 `--variant`、输入和输出路径显式固定。
 - `remote/run_profile_runtime.sh`：安全选择两张空闲卡后重跑冷/热性能报告，避免 profile 绕过共享主机 GPU 协议。
 - `remote/run_regression_suite.sh`：安全选择两张空闲卡后重跑 5 个冻结产品案例和错误分类报告。
+- `run_dpo_sweep.py` / `remote/run_dpo_sweep.sh`：封存 frozen test，运行 step/beta/seed 对照，仅按 dev 选择最小充分策略，再对选中配置一次性解封 frozen test。
+- `validate_dpo_sweep.py`：检查 sweep 的 frozen-test 封存、dev 选择、一次性 frozen gate、产品回归、seed 稳定性和默认 registry 未被改写。
+- `run_model_variant_benchmark.py` / `remote/run_model_variant_benchmark.sh`：在同一 frozen pack 上比较不同本地视觉语言模型的延迟与 grounding，隔离子进程避免权重共驻留。
 - `validate_outputs.py`：检查知识包、时间戳和视频一致性。
 - `validate_interview_package.py`：检查最终面试产物。
 - `validate_documentation_consistency.py`：检查面试文档中的 DPO、性能、浏览器 job、机器报告哈希和当前产品源码指纹是否一致。

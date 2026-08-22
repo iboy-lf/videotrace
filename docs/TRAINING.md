@@ -47,6 +47,8 @@ reference policy 是已准入 SFT adapter。训练器在第一次 optimizer upda
 
 真实一步正式运行：DPO loss `0.69314718`，411 response tokens，`45.501 tokens/s`，双卡 model parallel 报告峰值显存 `9715.34 MiB`；更新后 train/dev/frozen-test mean reward margin 为 `0.22440502/0.14014463/0.09733963`，三者 reference-relative preference accuracy 均为 `1.0`。checkpoint 保存 adapter、tokenizer、optimizer、RNG 和绑定 reference/data/SFT/source/config hash 的 trainer state。随后从正式 step 1 checkpoint 真实恢复到 step 2，仅执行一个新 optimizer step：loss `0.59365082`、`61.506 tokens/s`、峰值 `11141.65 MiB`，train/dev/frozen margin 提升到 `0.46911376/0.29970732/0.37768097`。恢复路径仍保持双卡 model parallel，且 contract、reference log-prob、数据、初始 SFT 和源码哈希全部一致。正式产品 adapter 仍使用通过冻结产品门的一步权重；step 2 恢复目录用于证明 checkpoint 可恢复性。该结果证明可运行、可恢复和行为方向正确，不等于大规模泛化提升。
 
+为补足“只跑一步”的实验深度，`scripts/run_dpo_sweep.py` 在 frozen test 封存状态下运行 10 个 step/beta/seed 候选，仅按 dev 选择；选中 `beta=0.05, step=2` 的 3 个 seed dev reward margin 为 `0.15501256±0.00265381`，绝对 policy preference accuracy 均为 `1.0`。最终一次性解封 frozen test 后 margin `0.16528702`、preference accuracy `1.0`，并通过独立 5/5 冻结产品回归。该研究 adapter 保持在独立实验目录，未自动写入 Web 默认 registry。
+
 ### 最佳 adapter registry
 
 `scripts/select_best_qwen35_adapter.py` 只比较服务端白名单 `qwen35_sft` 和 `qwen35_dpo`。候选必须通过冻结 pack 的 grounding、时间戳、claim-support、coverage non-regression 与 source hash；DPO 还必须通过真实训练、reference chain、dev/frozen reward margin 门。全部通过才选择 DPO，并把 SFT 保留为 hash-validated fallback。`resolve_validated_adapter()` 不信任浏览器路径；权重、config、metrics、model card 或不可变 evaluation 任一哈希变化时，DPO 会回退 SFT。

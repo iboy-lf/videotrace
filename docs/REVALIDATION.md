@@ -63,6 +63,11 @@ bash scripts/remote/run_profile_runtime.sh
 # 5. 重新跑 5 个冻结回归案例（同样走 GPU 安全选择器）
 bash scripts/remote/run_regression_suite.sh
 
+# 5a. 可选研究实验：封存 frozen test 的 DPO step/beta/seed sweep；
+#     通过 validate_dpo_sweep.py 后，研究 adapter 仍不会自动替换 Web registry
+bash scripts/remote/run_dpo_sweep.sh --force
+python scripts/validate_dpo_sweep.py
+
 # 6. 常驻 Web 服务 + 浏览器 E2E（传入真实视频路径）
 bash scripts/remote/start_web_service.sh
 bash scripts/remote/run_browser_e2e.sh /lavender/VideoTrace/data/raw/cola_review.mp4
@@ -85,4 +90,4 @@ python scripts/validate_documentation_links.py
 
 ## 当前状态
 
-2026-08-23 已按上述顺序完成全量重验证：真实视频上传 Web E2E、canonical、SFT/DPO candidate compare 与准入、5 个冻结回归、失败恢复、冷/热 profile、reranker model card 和最终 manifest 均绑定源码 `642cc023…`。当前 delivery 为 `40/40`，interview package 为 `17/17`；最新 job、哈希和性能数字已写入最终验收与面试文档。
+2026-08-23 已按上述顺序完成全量重验证：真实视频上传 Web E2E、canonical、SFT/DPO candidate compare 与准入、5 个冻结回归、失败恢复、冷/热 profile、reranker model card 和最终 manifest 均绑定源码 `7374516a…`。随后又完成独立 DPO sweep：10 候选封存 frozen test、dev 选择、seed 稳定性和一次性 frozen gate，研究 adapter 未写入默认 registry；另有同一 frozen pack 的 Qwen3.5/Qwen2.5 模型选型对照。当前 delivery 为 `40/40`，interview package 为 `17/17`；最新 job、哈希和性能数字已写入最终验收与面试文档。

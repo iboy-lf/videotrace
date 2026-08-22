@@ -41,6 +41,7 @@ def dpo_statistics(
         "reward_margin": reward_margin,
         "reward_preference_correct": reward_margin > 0,
         "policy_preference_correct": policy_logratio > 0,
+        "reference_preference_correct": reference_logratio > 0,
         "chosen_logp_gradient": chosen_gradient,
         "rejected_logp_gradient": rejected_gradient,
     }

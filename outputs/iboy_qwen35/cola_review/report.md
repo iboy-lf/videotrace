@@ -1495,7 +1495,7 @@
     "selected_vlm_mode": "auto_best",
     "selected_vlm_mode_label": "自动最佳（Qwen3.5 + SigLIP2）"
   },
-  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
   "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
   "environment": {
     "python": "3.10.20",
@@ -1547,13 +1547,13 @@
   },
   "performance": {
     "stage_seconds": {
-      "ingest": 1.447835,
-      "asr": 0.029065,
-      "segment_understanding": 0.001403,
-      "vlm_retrieval": 4.956117,
-      "ranking": 0.033595,
-      "agent": 17.141991,
-      "total": 23.976114
+      "ingest": 1.452546,
+      "asr": 0.029314,
+      "segment_understanding": 0.00133,
+      "vlm_retrieval": 4.946894,
+      "ranking": 0.033821,
+      "agent": 17.420515,
+      "total": 24.27088
     },
     "cuda_memory": {
       "available": true,
@@ -2316,7 +2316,7 @@
             "selection_reason": "temporal_coverage:ending"
           }
         ],
-        "latency_ms": 0.09239464998245239,
+        "latency_ms": 0.09726732969284058,
         "ok": true,
         "error": "",
         "status": "success",
@@ -2480,9 +2480,9 @@
           }
         },
         "circuit_state": "closed",
-        "call_id": "79097c8a2a5a40d493bbeece5b455884",
-        "started_at_utc": "2026-08-22T18:44:56.311939+00:00",
-        "finished_at_utc": "2026-08-22T18:44:56.312003+00:00",
+        "call_id": "8238e3f3559a450fb52bdc2e1739c44b",
+        "started_at_utc": "2026-08-22T21:22:48.707178+00:00",
+        "finished_at_utc": "2026-08-22T21:22:48.707253+00:00",
         "attempt_trace": [
           {
             "attempt": 1,
@@ -2490,7 +2490,7 @@
             "ok": true,
             "error_code": "",
             "error": "",
-            "latency_ms": 0.025764107704162598,
+            "latency_ms": 0.02740323543548584,
             "will_retry": false,
             "backoff_sec": 0.0
           }
@@ -2879,7 +2879,7 @@
             "structured_matched_concepts": null
           }
         },
-        "latency_ms": 0.08907169103622437,
+        "latency_ms": 0.09726360440254211,
         "ok": true,
         "error": "",
         "status": "success",
@@ -3123,9 +3123,9 @@
           }
         },
         "circuit_state": "closed",
-        "call_id": "3af5746373cd4657a0a41862ac09bc16",
-        "started_at_utc": "2026-08-22T18:44:56.312023+00:00",
-        "finished_at_utc": "2026-08-22T18:44:56.312111+00:00",
+        "call_id": "950bd64eba14476cb01b238914d8ab63",
+        "started_at_utc": "2026-08-22T21:22:48.707273+00:00",
+        "finished_at_utc": "2026-08-22T21:22:48.707368+00:00",
         "attempt_trace": [
           {
             "attempt": 1,
@@ -3133,7 +3133,7 @@
             "ok": true,
             "error_code": "",
             "error": "",
-            "latency_ms": 0.07380172610282898,
+            "latency_ms": 0.0820942223072052,
             "will_retry": false,
             "backoff_sec": 0.0
           }
@@ -3412,7 +3412,7 @@
           "structured_match_count": 0,
           "structured_matched_concepts": null
         },
-        "latency_ms": 0.06823614239692688,
+        "latency_ms": 0.06308779120445251,
         "ok": true,
         "error": "",
         "status": "success",
@@ -3466,9 +3466,9 @@
           }
         },
         "circuit_state": "closed",
-        "call_id": "190d21ae4d994c2da30070e953a26914",
-        "started_at_utc": "2026-08-22T18:44:56.312123+00:00",
-        "finished_at_utc": "2026-08-22T18:44:56.312190+00:00",
+        "call_id": "09cd4c82bea543b0a210b990e15bd037",
+        "started_at_utc": "2026-08-22T21:22:48.707381+00:00",
+        "finished_at_utc": "2026-08-22T21:22:48.707441+00:00",
         "attempt_trace": [
           {
             "attempt": 1,
@@ -3476,7 +3476,7 @@
             "ok": true,
             "error_code": "",
             "error": "",
-            "latency_ms": 0.055421143770217896,
+            "latency_ms": 0.049307942390441895,
             "will_retry": false,
             "backoff_sec": 0.0
           }
@@ -3581,7 +3581,7 @@
             "score": 3.2805655992817493
           }
         ],
-        "latency_ms": 1.2233257293701172,
+        "latency_ms": 1.2351199984550476,
         "ok": true,
         "error": "",
         "status": "success",
@@ -3690,9 +3690,9 @@
           }
         },
         "circuit_state": "closed",
-        "call_id": "65400069e94e4014ad5675cf8c39fdb2",
-        "started_at_utc": "2026-08-22T18:44:56.312201+00:00",
-        "finished_at_utc": "2026-08-22T18:44:56.313423+00:00",
+        "call_id": "b03a413c74da4b59b1cc79b4241e8a28",
+        "started_at_utc": "2026-08-22T21:22:48.707452+00:00",
+        "finished_at_utc": "2026-08-22T21:22:48.708686+00:00",
         "attempt_trace": [
           {
             "attempt": 1,
@@ -3700,7 +3700,7 @@
             "ok": true,
             "error_code": "",
             "error": "",
-            "latency_ms": 1.211024820804596,
+            "latency_ms": 1.222219318151474,
             "will_retry": false,
             "backoff_sec": 0.0
           }
@@ -4074,7 +4074,7 @@
           }
         },
         "output": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：视频开场展示多罐可口可乐并介绍主题，随后分国家试喝阶段展示不同国家可乐的配料与口感，最后进入盲测阶段，男子戴眼罩品尝并猜测饮料来源。\n- 0.0-20.0：一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 (timestamp=0.0-20.0)\n- 200.0-220.0：一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 (timestamp=200.0-220.0)\n- 300.0-320.0：视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 (timestamp=300.0-320.0)\n- 400.0-416.2：一名戴着眼罩的男子坐在桌前，桌上摆放着多种带有吸管的饮料，他正在品尝并尝试猜测饮料的种类，画面中出现了“马来西亚”、“哈萨克斯坦”、“加拿大”等文字标签。 (timestamp=400.0-416.2)",
-        "latency_ms": 17057.859010994434,
+        "latency_ms": 17329.353276640177,
         "ok": true,
         "error": "",
         "status": "success",
@@ -4090,9 +4090,9 @@
           }
         },
         "circuit_state": "closed",
-        "call_id": "bf11b010a836478cb9c8e9671975490c",
-        "started_at_utc": "2026-08-22T18:44:56.313435+00:00",
-        "finished_at_utc": "2026-08-22T18:45:13.371322+00:00",
+        "call_id": "3fb945d97483406f9a4d1d6cf7785833",
+        "started_at_utc": "2026-08-22T21:22:48.708701+00:00",
+        "finished_at_utc": "2026-08-22T21:23:06.038078+00:00",
         "attempt_trace": [
           {
             "attempt": 1,
@@ -4100,7 +4100,7 @@
             "ok": true,
             "error_code": "",
             "error": "",
-            "latency_ms": 17057.837951928377,
+            "latency_ms": 17329.327680170536,
             "will_retry": false,
             "backoff_sec": 0.0
           }
@@ -4497,7 +4497,7 @@
           },
           "calibrated_verifier_ok": true
         },
-        "latency_ms": 4.50313463807106,
+        "latency_ms": 4.442647099494934,
         "ok": true,
         "error": "",
         "status": "success",
@@ -4679,9 +4679,9 @@
           }
         },
         "circuit_state": "closed",
-        "call_id": "ccce3b9e3f2e4945b7dcc9d8ca6ea9ed",
-        "started_at_utc": "2026-08-22T18:45:13.371416+00:00",
-        "finished_at_utc": "2026-08-22T18:45:13.375887+00:00",
+        "call_id": "d62f573348094680a50847028b9c9ed5",
+        "started_at_utc": "2026-08-22T21:23:06.038182+00:00",
+        "finished_at_utc": "2026-08-22T21:23:06.042591+00:00",
         "attempt_trace": [
           {
             "attempt": 1,
@@ -4689,7 +4689,7 @@
             "ok": true,
             "error_code": "",
             "error": "",
-            "latency_ms": 4.435136914253235,
+            "latency_ms": 4.366595298051834,
             "will_retry": false,
             "backoff_sec": 0.0
           }

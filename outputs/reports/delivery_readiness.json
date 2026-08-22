@@ -15,8 +15,8 @@
       "name": "artifact_manifest_is_complete_and_current",
       "passed": true,
       "evidence": {
-        "manifest_source": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-        "current_source": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "manifest_source": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+        "current_source": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
         "missing": [],
         "hash_mismatches": []
       }
@@ -37,8 +37,8 @@
       "name": "core::source_fingerprint_matches",
       "passed": true,
       "evidence": {
-        "artifact": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
+        "artifact": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+        "current": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc"
       }
     },
     {
@@ -250,8 +250,8 @@
       "name": "core::model_card_matches_source_snapshot",
       "passed": true,
       "evidence": {
-        "model_card": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
+        "model_card": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+        "current": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc"
       }
     },
     {
@@ -265,14 +265,14 @@
           "method": "dpo",
           "path": "/lavender/VideoTrace/outputs/models/qwen35_dpo_adapter",
           "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
-          "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
-          "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
+          "evaluation_sha256": "2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e",
+          "pack_sha256": "c7927bd6c5e897714aadbef3970a1fe2bb61958a75f71ec5f1e4a1bdef4cd172",
           "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
           "registry_path": "/lavender/VideoTrace/outputs/models/best_adapter.json",
-          "registry_sha256": "c3dc42bcd327485399eb436de23e853521f0f223513e7dd202f19dc790c05d3d"
+          "registry_sha256": "dbca5024ba7be0425323d122b109c783898962acbd194623adfc994c2e1770f4"
         },
         "current_adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
-        "registry_sha256": "c3dc42bcd327485399eb436de23e853521f0f223513e7dd202f19dc790c05d3d",
+        "registry_sha256": "dbca5024ba7be0425323d122b109c783898962acbd194623adfc994c2e1770f4",
         "selected_candidate_id": "qwen35_dpo",
         "resolved_adapter": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter",
         "admission_metadata": {
@@ -282,11 +282,11 @@
           "candidate_id": "qwen35_dpo",
           "method": "dpo",
           "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
-          "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
-          "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
+          "evaluation_sha256": "2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e",
+          "pack_sha256": "c7927bd6c5e897714aadbef3970a1fe2bb61958a75f71ec5f1e4a1bdef4cd172",
           "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
           "decision": "DPO selected: frozen product regression passed and the real preference run improved reference-relative margins on dev and frozen cola; SFT remains the hash-validated fallback.",
-          "registry_sha256": "c3dc42bcd327485399eb436de23e853521f0f223513e7dd202f19dc790c05d3d",
+          "registry_sha256": "dbca5024ba7be0425323d122b109c783898962acbd194623adfc994c2e1770f4",
           "fallback_used": false
         }
       }
@@ -295,9 +295,10 @@
       "name": "canonical_load_admission_is_immutable",
       "passed": true,
       "evidence": {
-        "pack_evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
+        "pack_evaluation_sha256": "2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e",
         "preserved_evaluation_hashes": [
           "16add71aa1ee3dd7d21b888e5999ca877189476a18dc817573de88f6700046de",
+          "2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e",
           "3a2ea1d5fd2d193d63f10aa606e90c0264071507a70ea2807d1ef630a1835352",
           "49adcefc093ef7c3b25f53f4795498537f7aaf52a033489bcf142db10cd0e618",
           "7873400eb2dfa4edacf80de6717ad5e528ba6789feabff9cb5ab5fb4a8fc486e",
@@ -314,6 +315,7 @@
           "cd8e522dbba6592a73b128cd318e69d057a4c4be30a6c56454365a44ebf26673",
           "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
           "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
+          "f50ee184d2a237163cd170fdcb60bc22aa0b97e94990a4382d0cdc9e1013ae04",
           "fc5b394a58d8245c3dd30b0bc017e21eb9c412d47c403e72e254bc027727e34f"
         ]
       }
@@ -623,9 +625,9 @@
           "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
         },
         "same_pack": true,
-        "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
-        "pack_file_sha256": "483d72b8511e4d5f46cc1e7025ccbe35f6556762b25020d3d601334ac08cae25",
-        "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
+        "pack_sha256": "c7927bd6c5e897714aadbef3970a1fe2bb61958a75f71ec5f1e4a1bdef4cd172",
+        "pack_file_sha256": "a177d8f3cba4573ecb24ef3bc31d3d659138f97f7b3a35f8366fb3eaf4c56050",
+        "evaluation_sha256": "2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e",
         "admission": {
           "candidate_id": "qwen35_dpo",
           "method": "dpo",
@@ -664,16 +666,16 @@
           "adapter_path": "outputs/models/qwen35_dpo_adapter",
           "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
           "adapter_config_sha256": "1223ac3fc92b24c3f62110b23e52e8d2b94f16ee310a93b88553115d7c2f0efd",
-          "metrics_sha256": "87295f36cf7a766600e1df20e35ccefb39ae219039468140f9e6ecfdef905a51",
-          "model_card_sha256": "3d0e6d5fc8be0ce055fd5cb9945b420ac47ac637fe52730db69956b3562f2b93",
-          "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_dpo_eval_d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a.json",
+          "metrics_sha256": "ce27ef5bb85c2608cb950c485e55b341d65bb1f2c50d2105abcdb5b0605c0574",
+          "model_card_sha256": "e50f84cf335b9a3fccb548dd2ff337a73f15f197f43e8b91f241c8bf9827940a",
+          "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_dpo_eval_2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e.json",
           "evaluation_latest_report": "/lavender/VideoTrace/outputs/reports/qwen35_dpo_eval.json",
-          "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
-          "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
+          "evaluation_sha256": "2ca9b8e0c165b5b424273d8a4f8dc422495acb2feb50d038c054d412b862d44e",
+          "pack_sha256": "c7927bd6c5e897714aadbef3970a1fe2bb61958a75f71ec5f1e4a1bdef4cd172",
           "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
-          "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
           "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
-          "admission_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "admission_source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
           "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
           "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1"
         }
@@ -683,17 +685,17 @@
       "name": "source_bound_runtime_artifacts_match_final_snapshot",
       "passed": true,
       "evidence": {
-        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "current": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
         "artifacts": {
-          "canonical_pack": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "adapter_eval_baseline": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "adapter_eval_adapter": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "error_analysis": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "performance_report": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "sft_eval_baseline": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "sft_eval_candidate": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "dpo_eval_baseline": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-          "dpo_eval_candidate": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
+          "canonical_pack": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "adapter_eval_baseline": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "adapter_eval_adapter": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "error_analysis": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "performance_report": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "sft_eval_baseline": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "sft_eval_candidate": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "dpo_eval_baseline": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+          "dpo_eval_candidate": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc"
         }
       }
     },
@@ -713,9 +715,9 @@
       "passed": true,
       "evidence": {
         "model_residency": {
-          "cold_pipeline_construction_and_run_seconds": 26.531,
-          "warm_cache_hit_run_seconds": 15.228,
-          "speedup": 1.742,
+          "cold_pipeline_construction_and_run_seconds": 26.631,
+          "warm_cache_hit_run_seconds": 15.151,
+          "speedup": 1.758,
           "same_pipeline_instance": true,
           "gpu_requests": "serial queue / one resident pipeline per config"
         },
@@ -1010,7 +1012,7 @@
           "mobile_no_horizontal_overflow": true,
           "console_clean": true
         },
-        "job_id": "0cada81cba474080ad95db585cc589be",
+        "job_id": "f6d582f2ef434a689845b23e8c671f07",
         "job_persistence": {
           "durable": true,
           "restored": false

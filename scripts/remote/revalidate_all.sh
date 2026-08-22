@@ -108,6 +108,9 @@ fi
 
 step "7/7 rebuild interview artifacts, manifest and re-check delivery on the host"
 run "$PY" scripts/analyze_dpo_length_bias.py >/dev/null || fail "length-bias diagnostic"
+if [[ -f outputs/reports/dpo_sweep.json ]]; then
+  run "$PY" scripts/validate_dpo_sweep.py >/dev/null || fail "DPO sweep validation"
+fi
 run "$PY" scripts/build_reranker_model_card.py \
   --dataset outputs_train/reranker_dev_5s.jsonl \
   --model outputs/models/neural_reranker.pt \

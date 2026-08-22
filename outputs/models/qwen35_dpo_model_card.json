@@ -181,9 +181,9 @@
     "physical_gpu_ids": "0,1",
     "resume_supported": true,
     "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
-    "admission_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
+    "admission_source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc"
   },
   "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
-  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
-  "admission_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+  "admission_source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc"
 }

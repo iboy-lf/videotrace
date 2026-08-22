@@ -103,3 +103,11 @@ def test_global_process_evaluator_keeps_visual_error_when_stage_facts_are_absent
     assert result["retrieval_ok"]
     assert not result["visual_understanding_ok"]
     assert result["primary_error_category"] == "visual_understanding_error"
+
+
+def test_regression_cli_exposes_isolated_adapter_override():
+    source = (ROOT / "scripts" / "run_regression_suite.py").read_text(encoding="utf-8")
+    # Keep this a source-level contract test: the experiment adapter must be
+    # selectable without mutating the hash-bound Web registry.
+    assert '"--adapter"' in source
+    assert "config.llm_adapter_path = str(adapter)" in source

@@ -13,7 +13,7 @@
 
 ## 当前结果
 
-`outputs/reports/error_analysis.json` 绑定产品源码 `642cc023…` 与指定视频 SHA，结果为 `5/5 passed`、`error_category_counts={"none": 5}`。案例覆盖全局流程、开场产品、约 300 秒配料/OCR、末尾盲测和无证据拒答。
+`outputs/reports/error_analysis.json` 绑定产品源码 `7374516a…` 与指定视频 SHA，结果为 `5/5 passed`、`error_category_counts={"none": 5}`。案例覆盖全局流程、开场产品、约 300 秒配料/OCR、末尾盲测和无证据拒答。
 
 canonical 的硬时间戳/claim-support 校验全通过；calibrated verifier 也实际运行并通过，概率 `0.92716`、阈值 `0.2`。学习式层只能否决硬规则已通过的答案，因此错误定位仍优先落到检索、视觉、时序、生成和确定性校验，不能用模型分数掩盖硬失败。
 

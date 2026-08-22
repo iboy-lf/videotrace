@@ -1,0 +1,100 @@
+{
+  "schema_version": "videotrace-model-variant-benchmark-v1",
+  "created_at_utc": "2026-08-22T21:40:26.256847+00:00",
+  "scope": "same frozen cola evidence pack; model-selection and inference trade-off only; not a public benchmark",
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
+  "pack_path": "outputs/iboy_qwen35/cola_review/knowledge_pack.json",
+  "pack_sha256": "a177d8f3cba4573ecb24ef3bc31d3d659138f97f7b3a35f8366fb3eaf4c56050",
+  "variants": [
+    {
+      "variant_id": "qwen35",
+      "model_path": "/lavender/models/Qwen3.5-9B",
+      "model_exists_at_run": true,
+      "evaluation_path": "outputs/experiments/model_variants/qwen35/evaluation.json",
+      "evaluation_sha256": "c8b1572bc36bca53a981cebdecfb1e6d8ac7c5f34881e4fc1083563c35b85e46",
+      "elapsed_seconds": 22.778,
+      "answer_sha256": "a666d7df17bdb9e85dc94727d601be5b1bc52ce81df1fc4df2d8ba98c5d8d32a",
+      "verified": true,
+      "coverage": 1.0,
+      "claim_support_ok": true,
+      "timestamp_binding_ok": true,
+      "runtime": {
+        "python": "3.10.20",
+        "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+        "packages": {
+          "numpy": "2.2.6",
+          "opencv-python": "4.13.0.92",
+          "opencv-python-headless": "5.0.0.93",
+          "scikit-learn": "1.7.2",
+          "torch": "2.5.1+cu121",
+          "transformers": "5.15.0.dev0"
+        },
+        "cuda": {
+          "available": true,
+          "device_count": 1,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 3090",
+              "total_memory_mib": 24124.2,
+              "capability": [
+                8,
+                6
+              ]
+            }
+          ]
+        },
+        "cuda_visible_devices": "0",
+        "physical_gpu_ids": "0"
+      }
+    },
+    {
+      "variant_id": "qwen25",
+      "model_path": "/lavender/models/Qwen2.5-VL-7B-Instruct",
+      "model_exists_at_run": true,
+      "evaluation_path": "outputs/experiments/model_variants/qwen25/evaluation.json",
+      "evaluation_sha256": "efe42d6da53edafaf4949d70f14f7135b9994746b52829435822806787cb275d",
+      "elapsed_seconds": 15.52,
+      "answer_sha256": "357b8c9f7d01b6567e8f3ac534bc043b65f00d712df9a6b2e9aa1063fa899815",
+      "verified": true,
+      "coverage": 1.0,
+      "claim_support_ok": true,
+      "timestamp_binding_ok": true,
+      "runtime": {
+        "python": "3.10.20",
+        "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
+        "packages": {
+          "numpy": "2.2.6",
+          "opencv-python": "4.13.0.92",
+          "opencv-python-headless": "5.0.0.93",
+          "scikit-learn": "1.7.2",
+          "torch": "2.5.1+cu121",
+          "transformers": "5.15.0.dev0"
+        },
+        "cuda": {
+          "available": true,
+          "device_count": 1,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 3090",
+              "total_memory_mib": 24124.2,
+              "capability": [
+                8,
+                6
+              ]
+            }
+          ]
+        },
+        "cuda_visible_devices": "0",
+        "physical_gpu_ids": "0"
+      }
+    }
+  ],
+  "interpretation": {
+    "fastest_verified_variant": "qwen25",
+    "fastest_overall_variant": "qwen25",
+    "all_verified": true,
+    "rule": "choose the smallest/fastest model only after frozen grounding and timestamp gates; parameter count alone is not an optimization result"
+  }
+}

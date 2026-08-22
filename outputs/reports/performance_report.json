@@ -1,10 +1,10 @@
 {
   "schema_version": "videotrace-performance-report-v1",
-  "created_at_utc": "2026-08-22T18:49:03.817580+00:00",
+  "created_at_utc": "2026-08-22T21:26:41.440289+00:00",
   "scope": "single real cola task profile; no public benchmark or ranking claim",
   "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
   "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
-  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "source_sha256": "7374516adfcea3f8f4505117c6d7c5362975f4ce0de45efad595f41226f195fc",
   "runtime": {
     "python": "3.10.20",
     "platform": "Linux-5.15.0-60-generic-x86_64-with-glibc2.35",
@@ -44,21 +44,21 @@
     "physical_gpu_ids": "0,1"
   },
   "model_residency": {
-    "cold_pipeline_construction_and_run_seconds": 26.531,
-    "warm_cache_hit_run_seconds": 15.228,
-    "speedup": 1.742,
+    "cold_pipeline_construction_and_run_seconds": 26.631,
+    "warm_cache_hit_run_seconds": 15.151,
+    "speedup": 1.758,
     "same_pipeline_instance": true,
     "gpu_requests": "serial queue / one resident pipeline per config"
   },
   "cold_pack_performance": {
     "stage_seconds": {
-      "ingest": 1.438082,
-      "asr": 0.029079,
-      "segment_understanding": 0.001382,
-      "vlm_retrieval": 4.962269,
-      "ranking": 0.042354,
-      "agent": 18.210085,
-      "total": 25.055403
+      "ingest": 1.4702,
+      "asr": 0.02907,
+      "segment_understanding": 0.001403,
+      "vlm_retrieval": 5.152342,
+      "ranking": 0.035555,
+      "agent": 18.004139,
+      "total": 25.099671
     },
     "cuda_memory": {
       "available": true,
@@ -96,13 +96,13 @@
   },
   "warm_pack_performance": {
     "stage_seconds": {
-      "ingest": 1.410136,
-      "asr": 0.000401,
-      "segment_understanding": 0.001493,
-      "vlm_retrieval": 0.038278,
-      "ranking": 0.031589,
-      "agent": 13.724073,
-      "total": 15.219749
+      "ingest": 1.397113,
+      "asr": 0.000385,
+      "segment_understanding": 0.00146,
+      "vlm_retrieval": 0.03757,
+      "ranking": 0.029063,
+      "agent": 13.662911,
+      "total": 15.142227
     },
     "cuda_memory": {
       "available": true,

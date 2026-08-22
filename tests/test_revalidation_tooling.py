@@ -66,6 +66,12 @@ def test_browser_revalidation_requires_the_real_canonical_video():
     assert 'args+=(--video "$VIDEO")' in script
 
 
+def test_browser_e2e_waits_for_async_preset_render_before_asserting_controls():
+    source = (ROOT / "scripts/browser_e2e.py").read_text(encoding="utf-8")
+    assert "#presetRow .preset" in source
+    assert "length >= 4" in source
+
+
 def test_regression_revalidation_selects_a_safe_gpu_pair():
     script = (ROOT / "scripts/remote/run_regression_suite.sh").read_text(encoding="utf-8")
 
@@ -105,6 +111,29 @@ def test_runtime_profile_revalidation_selects_a_safe_gpu_pair():
     assert "scripts/remote/select_gpus.py" in script
     assert 'export CUDA_VISIBLE_DEVICES="$gpu_pair"' in script
     assert 'exec "$PY" scripts/profile_runtime.py' in script
+
+
+def test_dpo_sweep_wrapper_uses_stable_gpu_selection():
+    script = (ROOT / "scripts/remote/run_dpo_sweep.sh").read_text(encoding="utf-8")
+    assert "scripts/remote/select_gpus.py" in script
+    assert "--stable-checks 3" in script
+    assert 'export CUDA_VISIBLE_DEVICES="$gpu_pair"' in script
+    assert 'exec "$PY" scripts/run_dpo_sweep.py' in script
+
+
+def test_dpo_sweep_validator_is_present_and_seals_frozen_test():
+    source = (ROOT / "scripts/validate_dpo_sweep.py").read_text(encoding="utf-8")
+    assert "frozen_test" in source
+    assert "default_registry_untouched" in source
+    assert "seed_robustness" in source
+
+
+def test_model_variant_benchmark_has_explicit_frozen_pack_and_subprocess_isolation():
+    source = (ROOT / "scripts/run_model_variant_benchmark.py").read_text(encoding="utf-8")
+    assert "same frozen cola evidence pack" in source
+    assert "subprocess.run" in source
+    assert "claim_support_ok" in source
+    assert "timestamp_binding_ok" in source
 
 
 def test_sync_manifest_only_lists_paths_that_exist():

@@ -65,9 +65,17 @@ def main() -> None:
     parser.add_argument("--model-card-path", default=None)
     parser.add_argument("--reference-logprobs-path", default=None)
     parser.add_argument("--device", default=None)
+    parser.add_argument("--beta", type=float, default=None)
+    parser.add_argument("--learning-rate", type=float, default=None)
+    parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--max-steps", type=int, default=None)
     parser.add_argument("--num-train-epochs", type=int, default=None)
     parser.add_argument("--resume-from-checkpoint", default=None)
+    parser.add_argument(
+        "--skip-frozen-eval",
+        action="store_true",
+        help="seal the frozen test during hyperparameter selection",
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
@@ -91,6 +99,14 @@ def main() -> None:
         config["max_steps"] = args.max_steps
     if args.num_train_epochs is not None:
         config["num_train_epochs"] = args.num_train_epochs
+    if args.beta is not None:
+        config["beta"] = args.beta
+    if args.learning_rate is not None:
+        config["learning_rate"] = args.learning_rate
+    if args.seed is not None:
+        config["seed"] = args.seed
+    if args.skip_frozen_eval:
+        config["evaluate_frozen_test"] = False
     config = _resolve_config_paths(config)
 
     records = load_preference_records(config["dataset_path"])
@@ -380,15 +396,23 @@ def _train(
     evaluations = {
         "train": _evaluate_preferences(model, [encoded_by_id[item.pair_id] for item in train_records], reference_rows, beta, torch, dtype),
         "dev": _evaluate_preferences(model, [encoded_by_id[item.pair_id] for item in dev_records], reference_rows, beta, torch, dtype),
-        "frozen_test": _evaluate_preferences(
+    }
+    frozen_evaluated = bool(config.get("evaluate_frozen_test", True))
+    if frozen_evaluated:
+        evaluations["frozen_test"] = _evaluate_preferences(
             model,
             [encoded_by_id[item.pair_id] for item in frozen_test_records],
             reference_rows,
             beta,
             torch,
             dtype,
-        ),
-    }
+        )
+    else:
+        evaluations["frozen_test"] = {
+            "skipped": True,
+            "reason": "sealed during hyperparameter selection; evaluate only after selecting on dev",
+            "num_pairs": len(frozen_test_records),
+        }
     _save_checkpoint(
         model,
         tokenizer,
@@ -455,6 +479,7 @@ def _train(
         "tokens_per_second": round(tokens_this_run / elapsed, 3),
         "elapsed_seconds": round(elapsed, 3),
         "evaluations": evaluations,
+        "frozen_test_evaluated": frozen_evaluated,
         "peak_cuda_memory_mib": peak_memory,
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES", ""),
         "physical_gpu_ids": os.environ.get("VIDEOTRACE_PHYSICAL_GPUS", ""),
@@ -550,6 +575,11 @@ def _model_card(metrics: dict) -> dict:
             "Visual recognition remains provided by the Qwen3.5/SigLIP2 inference stack; DPO targets answer behavior.",
             "Product use still requires frozen-pack comparison and hash-bound best-adapter admission.",
             "The installed bitsandbytes build is CPU-only, so the verified run uses BF16 LoRA rather than claiming QLoRA.",
+            (
+                "Frozen-test evaluation was sealed during hyperparameter selection."
+                if metrics.get("frozen_test_evaluated") is False
+                else "Frozen-test results were read only for the final selected run."
+            ),
         ],
         "metrics_path": "outputs/models/qwen35_dpo_metrics.json",
         "reproducibility": {
@@ -743,18 +773,72 @@ def _evaluate_preferences(model, examples, reference_rows, beta, torch, dtype) -
                 float(reference["rejected_logp"]),
                 beta=beta,
             )
-            rows.append({"pair_id": example.pair_id, "negative_type": example.negative_type, **stats})
+            chosen_tokens = sum(label != -100 for label in example.chosen.labels)
+            rejected_tokens = sum(label != -100 for label in example.rejected.labels)
+            policy_chosen_per_token = chosen / max(1, chosen_tokens)
+            policy_rejected_per_token = rejected / max(1, rejected_tokens)
+            reference_chosen_per_token = float(reference["chosen_logp"]) / max(1, chosen_tokens)
+            reference_rejected_per_token = float(reference["rejected_logp"]) / max(1, rejected_tokens)
+            rows.append(
+                {
+                    "pair_id": example.pair_id,
+                    "negative_type": example.negative_type,
+                    "chosen_tokens": chosen_tokens,
+                    "rejected_tokens": rejected_tokens,
+                    "policy_preference_correct_per_token": policy_chosen_per_token
+                    > policy_rejected_per_token,
+                    "reference_preference_correct_per_token": reference_chosen_per_token
+                    > reference_rejected_per_token,
+                    **stats,
+                }
+            )
     model.eval()
+    by_type: dict[str, list[dict]] = {}
+    for row in rows:
+        by_type.setdefault(str(row["negative_type"]), []).append(row)
     return {
         "num_pairs": len(rows),
         "mean_loss": round(_mean(item["loss"] for item in rows), 8),
         "mean_reward_margin": round(_mean(item["reward_margin"] for item in rows), 8),
+        "mean_chosen_reward": round(_mean(item["chosen_reward"] for item in rows), 8),
+        "mean_rejected_reward": round(_mean(item["rejected_reward"] for item in rows), 8),
+        "mean_abs_implicit_reward": round(
+            _mean(
+                (abs(item["chosen_reward"]) + abs(item["rejected_reward"])) / 2.0
+                for item in rows
+            ),
+            8,
+        ),
         "reward_preference_accuracy": round(
             _mean(float(item["reward_preference_correct"]) for item in rows), 6
         ),
         "policy_preference_accuracy": round(
             _mean(float(item["policy_preference_correct"]) for item in rows), 6
         ),
+        "reference_preference_accuracy": round(
+            _mean(float(item["reference_preference_correct"]) for item in rows), 6
+        ),
+        "policy_preference_accuracy_per_token": round(
+            _mean(float(item["policy_preference_correct_per_token"]) for item in rows), 6
+        ),
+        "reference_preference_accuracy_per_token": round(
+            _mean(float(item["reference_preference_correct_per_token"]) for item in rows), 6
+        ),
+        "policy_flip_count_vs_reference": sum(
+            bool(item["policy_preference_correct"])
+            != bool(item["reference_preference_correct"])
+            for item in rows
+        ),
+        "by_negative_type": {
+            negative_type: {
+                "num_pairs": len(items),
+                "mean_reward_margin": round(_mean(item["reward_margin"] for item in items), 8),
+                "policy_preference_accuracy": round(
+                    _mean(float(item["policy_preference_correct"]) for item in items), 6
+                ),
+            }
+            for negative_type, items in sorted(by_type.items())
+        },
         "pairs": [
             {
                 "pair_id": item["pair_id"],
@@ -762,6 +846,15 @@ def _evaluate_preferences(model, examples, reference_rows, beta, torch, dtype) -
                 "loss": round(float(item["loss"]), 8),
                 "reward_margin": round(float(item["reward_margin"]), 8),
                 "policy_preference_correct": bool(item["policy_preference_correct"]),
+                "reference_preference_correct": bool(item["reference_preference_correct"]),
+                "policy_preference_correct_per_token": bool(
+                    item["policy_preference_correct_per_token"]
+                ),
+                "reference_preference_correct_per_token": bool(
+                    item["reference_preference_correct_per_token"]
+                ),
+                "chosen_tokens": int(item["chosen_tokens"]),
+                "rejected_tokens": int(item["rejected_tokens"]),
             }
             for item in rows
         ],

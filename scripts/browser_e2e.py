@@ -75,6 +75,10 @@ def main() -> None:
                 "() => document.querySelectorAll('#vlmMode option').length > 0",
                 timeout=timeout_ms,
             )
+            page.wait_for_function(
+                "() => document.querySelectorAll('#presetRow .preset').length >= 4",
+                timeout=timeout_ms,
+            )
             report["checks"]["core_controls_visible"] = all(
                 page.locator(selector).is_visible()
                 for selector in ("#videoUpload", "#query", "#vlmMode", "#runBtn")

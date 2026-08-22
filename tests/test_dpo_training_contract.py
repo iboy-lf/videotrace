@@ -22,6 +22,7 @@ def test_dpo_objective_has_standard_initial_loss_and_gradient_signs():
     assert stats["reward_margin"] == pytest.approx(0.0)
     assert stats["chosen_logp_gradient"] == pytest.approx(-0.05)
     assert stats["rejected_logp_gradient"] == pytest.approx(0.05)
+    assert stats["reference_preference_correct"] is True
 
 
 def test_dpo_objective_rewards_policy_margin_over_frozen_reference():
@@ -175,6 +176,17 @@ def test_dpo_device_map_uses_balanced_visible_gpus_when_requested():
     )
     assert device_map == "balanced"
     assert max_memory == {0: "21GiB", 1: "21GiB"}
+
+
+def test_dpo_sweep_selects_dev_solution_with_minimal_implicit_drift():
+    from scripts.run_dpo_sweep import select_candidate
+
+    rows = [
+        {"candidate_id": "one", "spec": {"beta": 0.1, "max_steps": 1, "seed": 43}, "dev": {"reward_preference_accuracy": 1.0, "mean_reward_margin": 0.1, "policy_preference_accuracy": 0.75, "mean_abs_implicit_reward": 0.1}},
+        {"candidate_id": "two", "spec": {"beta": 0.1, "max_steps": 2, "seed": 43}, "dev": {"reward_preference_accuracy": 1.0, "mean_reward_margin": 0.2, "policy_preference_accuracy": 1.0, "mean_abs_implicit_reward": 0.08}},
+        {"candidate_id": "three", "spec": {"beta": 0.2, "max_steps": 2, "seed": 43}, "dev": {"reward_preference_accuracy": 1.0, "mean_reward_margin": 0.3, "policy_preference_accuracy": 1.0, "mean_abs_implicit_reward": 0.2}},
+    ]
+    assert select_candidate(rows)["candidate_id"] == "two"
 
 
 def test_dpo_resume_checkpoint_rejects_partial_provenance_or_corruption(tmp_path):
