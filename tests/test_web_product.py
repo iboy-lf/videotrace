@@ -26,24 +26,41 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def _find_node_binary() -> str | None:
     """Find Node even on managed hosts where it is not exported in PATH."""
-    candidates: list[Path] = []
     configured = os.environ.get("VIDEOTRACE_NODE", "").strip()
     if configured:
-        candidates.append(Path(configured).expanduser())
+        candidate = Path(configured).expanduser()
+        if _is_executable(candidate):
+            return str(candidate)
     path_node = shutil.which("node")
-    if path_node:
-        candidates.append(Path(path_node))
-    # iboy's VS Code/Cursor runtimes are stable, user-owned binaries and do
-    # not require installing anything into the environment.
+    if path_node and _is_executable(Path(path_node)):
+        return str(path_node)
+
+    # Only now fall back to scanning known runtime locations. iboy's VS
+    # Code/Cursor runtimes are stable, user-owned binaries and do not require
+    # installing anything into the environment. On a CI runner these paths can
+    # exist while belonging to another user, so an unreadable directory must be
+    # skipped rather than aborting discovery.
+    candidates: list[Path] = []
     for root in (Path("/root/.vscode-server"), Path("/root/.cursor-server")):
-        if root.exists():
+        try:
+            if not root.exists():
+                continue
             candidates.extend(sorted(root.glob("**/server/node"), reverse=True))
             candidates.extend(sorted(root.glob("**/node"), reverse=True))
+        except OSError:
+            continue
     candidates.append(Path("/usr/local/nvm/versions/node/v18.20.3/bin/node"))
     for candidate in candidates:
-        if candidate.is_file() and os.access(candidate, os.X_OK):
+        if _is_executable(candidate):
             return str(candidate)
     return None
+
+
+def _is_executable(candidate: Path) -> bool:
+    try:
+        return candidate.is_file() and os.access(candidate, os.X_OK)
+    except OSError:
+        return False
 
 
 def test_user_web_exposes_only_visual_mode_and_keeps_core_controls_visible():
@@ -479,3 +496,39 @@ def test_clip_export_preserves_source_codec_and_audio(tmp_path):
     assert clips[0]["file"] == str(video.resolve())
     assert clips[0]["playback_mode"] == "source_video_window"
     assert not (tmp_path / "artifact" / "clips").exists()
+
+
+def test_node_discovery_survives_unreadable_runtime_directories(monkeypatch):
+    """A CI runner has /root/.vscode-server owned by another user.
+
+    Globbing it raised PermissionError and aborted the whole test module. The
+    scan must skip unreadable roots instead.
+    """
+
+    monkeypatch.setattr(shutil, "which", lambda _name: None)
+    monkeypatch.delenv("VIDEOTRACE_NODE", raising=False)
+
+    def _boom(self, _pattern):
+        raise PermissionError(13, "Permission denied", str(self))
+
+    monkeypatch.setattr(Path, "exists", lambda self: True)
+    monkeypatch.setattr(Path, "glob", _boom)
+    monkeypatch.setattr(Path, "is_file", lambda self: False)
+
+    assert _find_node_binary() is None
+
+
+def test_node_discovery_prefers_path_and_skips_scanning(monkeypatch):
+    """When node is on PATH the fallback scan must never run."""
+
+    monkeypatch.delenv("VIDEOTRACE_NODE", raising=False)
+    monkeypatch.setattr(shutil, "which", lambda _name: "/usr/bin/node")
+    monkeypatch.setattr(Path, "is_file", lambda self: True)
+    monkeypatch.setattr(os, "access", lambda _path, _mode: True)
+
+    def _fail(self, _pattern):  # pragma: no cover - must not be reached
+        raise AssertionError("fallback scan ran even though PATH resolved node")
+
+    monkeypatch.setattr(Path, "glob", _fail)
+
+    assert _find_node_binary() == "/usr/bin/node"

@@ -18,7 +18,7 @@
 - [x] 5 个冻结案例覆盖局部事实、全局流程、困难 OCR、盲测和拒答
 - [x] 冷/热延迟、峰值显存、缓存复用、BF16 与失败的 4bit preflight
 - [x] GPU 三次稳定探测、显式 `CUDA_VISIBLE_DEVICES`、不终止外部进程
-- [x] 本地 pytest `129 passed, 1 skipped`；全新 clone `128 passed, 2 skipped`（缺少不分发权重的契约测试显式 skip）；compileall、4 个 JS syntax、3 个行为测试通过
+- [x] 本地 pytest `131 passed, 1 skipped`；全新 clone `130 passed, 2 skipped`（缺少不分发权重的契约测试显式 skip）；compileall、4 个 JS syntax、3 个行为测试通过
 - [ ] delivery readiness 当前为 `34/40`：文档、链接、manifest 和长度偏差诊断已与当前源码一致，但六项依赖 GPU 与远端 Web 的检查需要在 `iboy` 重跑一次才会回到 `40/40`。`17/17` 与 `40/40` 是 20260820 快照的结果，不是当前树的结果；步骤见 `docs/REVALIDATION.md`
 - [x] source/video/data/checkpoint/adapter/report hash 可审计，且缺失产物由 manifest 记录而不是被隐藏
 - [x] canonical、checkpoint、数据、metrics、模型卡和 registry 本地/远端 SHA-256 对齐
