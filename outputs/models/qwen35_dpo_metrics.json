@@ -10,7 +10,7 @@
   "dataset_path": "/lavender/VideoTrace/data/preference/grounded_dpo.jsonl",
   "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
   "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1",
-  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
   "split_validation": {
     "valid": true,
     "errors": [],
@@ -265,5 +265,5 @@
   "failure_recovery": "checkpoint_manifest.json commits adapter/tokenizer/optimizer/RNG/trainer-state hashes at optimizer-step boundaries; resume validates reference, dataset, SFT adapter, source and optimizer-affecting config",
   "frozen_test_policy": "cola preference pairs are evaluation-only and never passed to optimizer/backward",
   "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
-  "admission_source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+  "admission_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
 }

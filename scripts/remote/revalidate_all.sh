@@ -62,7 +62,7 @@ run() {
   "$@"
 }
 
-step "0/6 preflight: interpreter, models, source fingerprint"
+step "0/7 preflight: interpreter, models, source fingerprint"
 [[ -x "$PY" ]] || fail "interpreter missing: $PY"
 "$PY" - <<'PYEOF'
 import sys
@@ -72,27 +72,32 @@ from videomemo.eval.reproducibility import source_fingerprint
 print("source_sha256:", source_fingerprint(Path(".")))
 PYEOF
 
-step "1/6 test suite"
+step "1/7 test suite"
+export VIDEOTRACE_SKIP_DOCUMENTATION_CONSISTENCY=1
 run bash scripts/remote/run_tests.sh || fail "remote test suite"
+unset VIDEOTRACE_SKIP_DOCUMENTATION_CONSISTENCY
 
-step "2/6 canonical knowledge pack (Qwen3.5-9B + SigLIP2)"
+step "2/7 canonical knowledge pack (Qwen3.5-9B + SigLIP2)"
 run bash scripts/remote/run_qwen35_demo.sh || fail "canonical demo"
 
-step "3/6 adapter evaluation and hash-bound admission"
-run "$PY" scripts/evaluate_qwen35_adapter.py || fail "adapter evaluation"
-run "$PY" scripts/select_best_qwen35_adapter.py || fail "adapter admission"
+step "3/7 adapter evaluation and hash-bound admission"
+run bash scripts/remote/run_adapter_evaluations.sh || fail "adapter evaluation/admission"
 
-step "4/6 cold/warm runtime profile"
-run "$PY" scripts/profile_runtime.py || fail "runtime profile"
+step "4/7 frozen regression suite"
+run bash scripts/remote/run_regression_suite.sh || fail "frozen regression suite"
+run "$PY" scripts/run_failure_recovery_demo.py >/dev/null || fail "failure recovery demo"
+
+step "5/7 cold/warm runtime profile"
+run bash scripts/remote/run_profile_runtime.sh || fail "runtime profile"
 
 if [[ "$SKIP_BROWSER" -eq 1 ]]; then
-  step "5/6 browser E2E -- SKIPPED by request"
+  step "6/7 browser E2E -- SKIPPED by request"
   echo "NOTE: browser_e2e.json keeps its previous source fingerprint, so"
   echo "      validate_delivery_package.py will still report that check red."
 else
-  step "5/6 resident web service + browser E2E"
+  step "6/7 resident web service + browser E2E"
   run bash scripts/remote/start_web_service.sh || fail "web service start"
-  run bash scripts/remote/run_browser_e2e.sh || fail "browser E2E"
+  run bash scripts/remote/run_browser_e2e.sh "$ROOT/data/raw/cola_review.mp4" || fail "browser E2E"
   if [[ "$KEEP_WEB" -eq 1 ]]; then
     echo "    web service left resident by request (--keep-web)"
   else
@@ -101,8 +106,21 @@ else
   fi
 fi
 
-step "6/6 rebuild manifest and re-check delivery on the host"
+step "7/7 rebuild interview artifacts, manifest and re-check delivery on the host"
 run "$PY" scripts/analyze_dpo_length_bias.py >/dev/null || fail "length-bias diagnostic"
+run "$PY" scripts/build_reranker_model_card.py \
+  --dataset outputs_train/reranker_dev_5s.jsonl \
+  --model outputs/models/neural_reranker.pt \
+  --metrics outputs/models/neural_reranker_metrics.json \
+  --output outputs/models/neural_reranker_model_card.json >/dev/null || fail "reranker model card"
+run "$PY" scripts/validate_interview_package.py \
+  --knowledge-pack outputs/iboy_qwen35/cola_review/knowledge_pack.json \
+  --checkpoint outputs/models/neural_reranker.pt \
+  --metrics outputs/models/neural_reranker_metrics.json \
+  --dataset outputs_train/reranker_dev_5s.jsonl \
+  --dataset-summary outputs_train/reranker_dev_5s.summary.json \
+  --model-card outputs/models/neural_reranker_model_card.json \
+  --output outputs/interview_readiness.json >/dev/null || fail "interview package"
 run "$PY" scripts/build_artifact_manifest.py >/dev/null || fail "artifact manifest"
 run "$PY" scripts/validate_delivery_package.py >/dev/null 2>&1 || true
 if [[ "$DRY_RUN" -eq 1 ]]; then

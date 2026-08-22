@@ -28,3 +28,10 @@ def test_source_binding_check_is_reported_separately_and_not_silently_dropped():
     report = validate_documentation(ROOT)
     assert "snapshot_current" in report
     assert report["valid"] == (report["content_valid"] and report["snapshot_current"])
+
+
+def test_dpo_beta_explanation_does_not_invert_the_kl_regularization_direction():
+    guide = (ROOT / "docs" / "POST_TRAINING_DECISION_GUIDE.md").read_text(encoding="utf-8")
+
+    assert "调大等于放松 KL" not in guide
+    assert "更强的 KL 惩罚" in guide

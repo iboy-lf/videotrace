@@ -46,15 +46,65 @@ def test_revalidation_script_supports_a_dry_run_and_stops_the_web_service():
     for stage in (
         "bash scripts/remote/run_tests.sh",
         "bash scripts/remote/run_qwen35_demo.sh",
-        '"$PY" scripts/evaluate_qwen35_adapter.py',
-        '"$PY" scripts/select_best_qwen35_adapter.py',
-        '"$PY" scripts/profile_runtime.py',
+        "bash scripts/remote/run_adapter_evaluations.sh",
+        "bash scripts/remote/run_regression_suite.sh",
+        "bash scripts/remote/run_profile_runtime.sh",
         "bash scripts/remote/run_browser_e2e.sh",
     ):
         assert f"run {stage}" in text, f"stage not guarded by run(): {stage}"
     # Courtesy on a shared machine: do not leave a 9B model holding a card.
     assert "stop_web_service.sh" in text
     assert "--keep-web" in text
+    assert 'run bash scripts/remote/run_browser_e2e.sh "$ROOT/data/raw/cola_review.mp4"' in text
+
+
+def test_browser_revalidation_requires_the_real_canonical_video():
+    script = (ROOT / "scripts/remote/run_browser_e2e.sh").read_text(encoding="utf-8")
+
+    assert 'VIDEO="${1:-$ROOT/data/raw/cola_review.mp4}"' in script
+    assert "browser E2E requires the canonical real video" in script
+    assert 'args+=(--video "$VIDEO")' in script
+
+
+def test_regression_revalidation_selects_a_safe_gpu_pair():
+    script = (ROOT / "scripts/remote/run_regression_suite.sh").read_text(encoding="utf-8")
+
+    assert "scripts/remote/select_gpus.py" in script
+    assert 'export CUDA_VISIBLE_DEVICES="$gpu_pair"' in script
+    assert 'exec "$PY" scripts/run_regression_suite.py' in script
+
+
+def test_remote_test_preflight_can_explicitly_defer_documentation_consistency():
+    script = (ROOT / "scripts/remote/run_tests.sh").read_text(encoding="utf-8")
+
+    assert "VIDEOTRACE_SKIP_DOCUMENTATION_CONSISTENCY" in script
+    assert "--ignore=tests/test_documentation_consistency.py" in script
+    assert "final validation remains mandatory" in script
+
+
+def test_adapter_revalidation_runs_both_candidates_with_explicit_variants():
+    script = (ROOT / "scripts" / "remote" / "run_adapter_evaluations.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert script.count("--variant baseline") == 1
+    assert script.count("--variant adapter") == 2
+    assert script.count("--variant compare") == 2
+    for candidate in ("qwen35_sft", "qwen35_dpo"):
+        assert f"--candidate-id {candidate}" in script
+        assert f"outputs/reports/{candidate}_eval.json" in script
+    assert "scripts/select_best_qwen35_adapter.py" in script
+    assert "scripts/remote/select_gpus.py" in script
+
+
+def test_runtime_profile_revalidation_selects_a_safe_gpu_pair():
+    script = (ROOT / "scripts" / "remote" / "run_profile_runtime.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert "scripts/remote/select_gpus.py" in script
+    assert 'export CUDA_VISIBLE_DEVICES="$gpu_pair"' in script
+    assert 'exec "$PY" scripts/profile_runtime.py' in script
 
 
 def test_sync_manifest_only_lists_paths_that_exist():

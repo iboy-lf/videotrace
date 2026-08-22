@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="${VIDEOTRACE_ROOT:-/lavender/VideoTrace}"
 ENV_ROOT="${VIDEOTRACE_ENV:-/linyuanping/miniconda3/envs/guide2play-qwen35}"
 BASE_URL="${VIDEOTRACE_WEB_URL:-http://127.0.0.1:7860}"
-VIDEO="${1:-}"
+VIDEO="${1:-$ROOT/data/raw/cola_review.mp4}"
 QUERY="${2:-这个视频主要讲了什么？请给出带时间戳的证据。}"
 
 cd "$ROOT"
@@ -14,7 +14,9 @@ args=(
   --query "$QUERY"
   --output outputs/reports/browser_e2e.json
 )
-if [[ -n "$VIDEO" ]]; then
-  args+=(--video "$VIDEO")
+if [[ -z "$VIDEO" || ! -f "$VIDEO" ]]; then
+  echo "browser E2E requires the canonical real video: $VIDEO" >&2
+  exit 1
 fi
+args+=(--video "$VIDEO")
 "$ENV_ROOT/bin/python" "${args[@]}"

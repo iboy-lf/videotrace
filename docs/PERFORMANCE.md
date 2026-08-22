@@ -4,11 +4,11 @@
 
 | 项目 | 实测 |
 | --- | ---: |
-| 冷 pipeline 构造+运行 | 27.559 s |
-| 热缓存运行 | 14.901 s |
-| speedup | 1.849× |
-| Qwen peak allocated（冷/热） | 19501.21 / 19487.36 MiB |
-| SigLIP peak allocated | 1692.13 MiB |
+| 冷 pipeline 构造+运行 | 26.531 s |
+| 热缓存运行 | 15.228 s |
+| speedup | 1.742× |
+| Qwen peak allocated（冷/热） | 19487.53 / 19469.84 MiB |
+| SigLIP peak allocated | 1691.63 MiB |
 | 热 Qwen 片段缓存 | 21/21 命中 |
 | 热 SigLIP 缓存 | 21/21 命中 |
 

@@ -33,7 +33,7 @@
 
 `-log sigmoid(beta * ((logπ(y+|x)-logπ(y-|x))-(logπref(y+|x)-logπref(y-|x))))`
 
-能在 24 GiB 级 GPU 上真实运行并恢复。`beta=0.1` 控制偏好更新相对 reference 的强度；过小信号弱，过大则更容易偏离 SFT 能力和过拟合小偏好集。
+能在 24 GiB 级 GPU 上真实运行并恢复。`beta=0.1` 是隐式 reward 的尺度，也是底层 KL 正则系数：更大的 `beta` 对应更强的 KL 惩罚，同样的偏好 logit 只需要更小的 `log(π/πref)` 偏移；但它也会线性放大初始 DPO 梯度。更小的 `beta` 初始梯度更弱，却允许最优解离 reference 更远。因此不能把 `beta` 简化成“越大越激进”，必须同时看实际 KL、偏好门和冻结产品回归。
 
 当前结果应表述为：正式一步后 train/dev/frozen mean reference-relative reward margin 为 `0.22440502/0.14014463/0.09733963`，所有 pair 相对 reference 朝正确方向移动；absolute policy preference accuracy 为 `0.571429/0.75/1.0`，所以不能说每个 pair 已被完全解决。产品采用 DPO 还依赖冻结 grounding、时间戳、claim-support 和 coverage 门，任一权重或报告哈希失效就回退 SFT。
 
@@ -60,7 +60,7 @@ RLHF 的目标是在不偏离 reference 太远的前提下最大化 reward：
 三个可被追问的推论：
 
 1. **reward model 没有消失，它被参数化进了 policy 本身。** `beta * log(π/πref)` 就是隐式 reward——`scripts/analyze_dpo_length_bias.py` 报告的 `reward_margin` 正是这个量的 chosen/rejected 之差。
-2. **KL 约束也没有消失。** 它就藏在 `beta` 里：`beta` 同时是偏好项的温度和 KL 惩罚强度，这是它不能随便调大的根本原因，而不只是"经验上会过拟合"。
+2. **KL 约束也没有消失。** 它就藏在 `beta` 里：在上面的 RL 目标中，更大的 `beta` 是更强的 KL 惩罚；在 DPO loss 中，它同时缩放 preference logit 与梯度。两种作用必须一起解释，所以超参选择应报告策略相对 reference 的实际偏移与产品回归，不能仅凭 loss 下降判断。
 3. **消掉 `log Z(x)` 的前提是同一个 `x`。** 所以 DPO 必须用成对同 prompt 数据；未配对的赞/踩数据不满足这个条件，这才是要换 KTO 而不是"KTO 更方便"的理由。
 
 代价也随之明确：DPO 只在偏好数据的支撑集上定义了 reward，off-distribution 的 `y` 没有任何约束；PPO 则通过在线采样持续在当前策略的分布上取样并打分。这是 DPO 会出现"在训练分布内变好、自由生成时漂移"的机理性原因。
@@ -186,7 +186,7 @@ VideoTrace 若要做，正确的切入点不是蒸馏最终回答，而是蒸馏
 不满足下面全部条件就不应该叫蒸馏：
 
 - **teacher**：已冻结的 Qwen3.5-9B 片段理解路径，输出已经按视频/时间窗/帧指纹缓存——也就是说训练数据可以零额外推理成本地从现有缓存产出，这是本项目做蒸馏的实际优势。
-- **student**：明确的部署目标（例如可在单卡常驻、把冷启动 `27.559s` 里的片段理解部分压下去），而不是"换个小模型试试"。
+- **student**：明确的部署目标（例如可在单卡常驻、把当前冷运行 `26.531s` 中的昂贵前向压下去），而不是"换个小模型试试"。
 - **契约**：逐字段的结构化输出 schema，而不是自由文本；否则无法逐项验证。
 - **验收**：student 必须在**同一批冻结回归案例**上，保持时间戳绑定、claim-support 与覆盖不回退，并单独报告 OCR 这类困难字段的退化幅度——蒸馏的典型失败是整体指标持平但困难字段崩掉。
 - **误差传播**：teacher 本身的错误率是 student 的性能上限。必须先报告 teacher 在冻结集上的错误分类，否则 student 的"接近 teacher"没有意义。
@@ -198,7 +198,7 @@ PPO/RLHF 适合有稳定 reward model、在线采样、critic 训练预算和成
 | 追问 | 一句话回答 | 支撑证据 |
 |---|---|---|
 | DPO 为什么不用 reward model？ | 它把 reward 重参数化成 `beta*log(π/πref)`，Bradley-Terry 的差消掉了配分函数 | 本文推导；`src/videomemo/training/dpo_objective.py` |
-| `beta` 是什么？调大会怎样？ | 同时是偏好温度和 KL 强度；调大等于放松 KL 约束，更易偏离 SFT 能力并过拟合小偏好集 | `beta=0.1`，`outputs/models/qwen35_dpo_metrics.json` |
+| `beta` 是什么？调大会怎样？ | 它是隐式 reward 尺度和底层 KL 系数；调大意味着更强的 KL 惩罚、同一偏好 logit 所需策略偏移更小，但 DPO 初始梯度也更大，必须联看实际 KL 与冻结回归 | `beta=0.1`，`outputs/models/qwen35_dpo_metrics.json` |
 | 你的 margin 是不是长度造成的？ | 不是；`pearson(token 差, margin) = -0.1986`，但绝对偏好准确率确实受长度影响 | `outputs/reports/dpo_length_bias.json` |
 | 一步训练能说明什么？ | 只能说明 12/12 相对 reference 方向正确、闭环真实可恢复；`0/12` 绝对偏好翻转，不能声称能力提升 | 同上 |
 | 为什么不用 GRPO？ | 当前是静态证据回答，没有动作导致的状态差异；且唯一可用 reward 与偏好数据同源，会形成训练—评测闭环 | 本文 GRPO 章节 |

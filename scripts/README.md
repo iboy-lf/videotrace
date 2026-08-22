@@ -11,6 +11,9 @@
 - `train_qwen35_dpo.py`：以已准入 SFT adapter 为冻结参考，预计算 reference log-prob 后执行可恢复 LoRA DPO；恢复时将 AdamW 状态在 forward 期间卸载到 CPU，避免 24 GiB GPU 上的恢复专属 OOM。
 - `browser_e2e.py`：使用现成 Playwright/Chromium 对上传、VLM 选择、任务轮询、回答、证据播放、时间线、Range 和响应式布局做真实浏览器验收。
 - `select_best_qwen35_adapter.py`：在服务端固定白名单内比较 SFT/DPO，原子写入 hash-bound 最佳 adapter registry，并保留 SFT 回退。
+- `remote/run_adapter_evaluations.sh`：安全选一张空闲卡，运行共享 baseline、SFT/DPO candidate 与 compare，并发布最佳 adapter；所有 `--variant`、输入和输出路径显式固定。
+- `remote/run_profile_runtime.sh`：安全选择两张空闲卡后重跑冷/热性能报告，避免 profile 绕过共享主机 GPU 协议。
+- `remote/run_regression_suite.sh`：安全选择两张空闲卡后重跑 5 个冻结产品案例和错误分类报告。
 - `validate_outputs.py`：检查知识包、时间戳和视频一致性。
 - `validate_interview_package.py`：检查最终面试产物。
 - `validate_documentation_consistency.py`：检查面试文档中的 DPO、性能、浏览器 job、机器报告哈希和当前产品源码指纹是否一致。

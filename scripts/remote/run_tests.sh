@@ -56,7 +56,16 @@ fi
 cd "$ROOT"
 "$ENV_ROOT/bin/python" -m compileall -q src scripts tests
 echo "VideoTrace test Python: $TEST_PYTHON"
-"$TEST_PYTHON" -m pytest -q
+pytest_args=(-q)
+if [[ "${VIDEOTRACE_SKIP_DOCUMENTATION_CONSISTENCY:-0}" == "1" ]]; then
+  # During the first revalidation stage the tracked machine reports may still
+  # describe the previous source snapshot. This is an expected dependency
+  # ordering issue, not permission to ship stale docs: the final artifact and
+  # documentation validators run after every report has been regenerated.
+  echo "Skipping documentation consistency test during preflight; final validation remains mandatory."
+  pytest_args+=(--ignore=tests/test_documentation_consistency.py)
+fi
+"$TEST_PYTHON" -m pytest "${pytest_args[@]}"
 if [[ -n "$NODE_BIN" ]]; then
   "$NODE_BIN" --check src/videomemo/web/static/app.js
   "$NODE_BIN" --check src/videomemo/web/static/playback.js

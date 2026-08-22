@@ -47,22 +47,25 @@ GPU 安全策略不重新实现，全部走 `scripts/remote/select_gpus.py`：�
 # 0. 同步当前源码到远端（在本地 Windows 执行）
 powershell -ExecutionPolicy Bypass -File .\scripts\remote\sync_to_iboy.ps1
 
-# 1. 远端测试基线
+# 1. 远端测试基线（首次预检会暂时跳过依赖旧机器报告的文档一致性测试；最终校验仍必须完整运行）
 bash scripts/remote/run_tests.sh
 
 # 2. 重新生成 canonical 知识包（Qwen3.5 + SigLIP2 全链路）
 bash scripts/remote/run_qwen35_demo.sh
 
-# 3. 重新评估并重新准入 adapter；DPO 未过门时自动回退 SFT
-python scripts/evaluate_qwen35_adapter.py
-python scripts/select_best_qwen35_adapter.py
+# 3. 在安全空闲卡上依次跑 baseline、SFT、DPO 和 compare，再重新准入；
+#    DPO 未过门时自动回退 SFT
+bash scripts/remote/run_adapter_evaluations.sh
 
 # 4. 冷/热性能 profile
-python scripts/profile_runtime.py
+bash scripts/remote/run_profile_runtime.sh
 
-# 5. 常驻 Web 服务 + 浏览器 E2E
+# 5. 重新跑 5 个冻结回归案例（同样走 GPU 安全选择器）
+bash scripts/remote/run_regression_suite.sh
+
+# 6. 常驻 Web 服务 + 浏览器 E2E（传入真实视频路径）
 bash scripts/remote/start_web_service.sh
-bash scripts/remote/run_browser_e2e.sh
+bash scripts/remote/run_browser_e2e.sh /lavender/VideoTrace/data/raw/cola_review.mp4
 ```
 
 回到本地后：
@@ -82,4 +85,4 @@ python scripts/validate_documentation_links.py
 
 ## 当前状态
 
-本轮改动涉及 `scripts/start.py`、`src/videomemo/web/static/*`、新增的诊断脚本与测试，因此源码指纹已经变化。本地可重建的四个产物已经重跑并与当前源码一致；依赖 GPU 与远端 Web 的六项检查需要按上面的顺序在 `iboy` 上重跑一次才会恢复 40/40。README 与 `docs/FINAL_ACCEPTANCE_20260820.md` 记录的是上一次完整验收快照，重跑后应一并更新其中的 job id、哈希与性能数字。
+2026-08-23 已按上述顺序完成全量重验证：真实视频上传 Web E2E、canonical、SFT/DPO candidate compare 与准入、5 个冻结回归、失败恢复、冷/热 profile、reranker model card 和最终 manifest 均绑定源码 `642cc023…`。当前 delivery 为 `40/40`，interview package 为 `17/17`；最新 job、哈希和性能数字已写入最终验收与面试文档。

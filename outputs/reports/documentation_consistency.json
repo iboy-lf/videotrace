@@ -1,25 +1,13 @@
 {
   "schema_version": "videotrace-documentation-consistency-v1",
-  "valid": false,
+  "valid": true,
   "content_valid": true,
-  "snapshot_current": false,
-  "source_sha256": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
-  "current_source_sha256": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
-  "browser_report_sha256": "b8bab40ed134c9abfbeaacc37283ade33ae9562c81fc482f84d7a19611dd0664",
-  "job_id": "bba9b6fa535e45d596d2d31c7b9aadb4",
-  "checks_passed": 11,
+  "snapshot_current": true,
+  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "current_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+  "browser_report_sha256": "3de7912a0766c34f07e9c9e188177d1bf85dc175eebf217b0bb63065e88cec3a",
+  "job_id": "0cada81cba474080ad95db585cc589be",
+  "checks_passed": 12,
   "checks_total": 12,
-  "failures": [
-    {
-      "path": "current-product-source",
-      "snapshot_binding": true,
-      "passed": false,
-      "current_source_sha256": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
-      "machine_sources": {
-        "artifact_manifest": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
-        "browser_e2e": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "performance_report": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
-      }
-    }
-  ]
+  "failures": []
 }

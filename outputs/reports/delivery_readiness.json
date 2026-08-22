@@ -1,15 +1,8 @@
 {
-  "valid": false,
-  "checks_passed": 34,
+  "valid": true,
+  "checks_passed": 40,
   "checks_total": 40,
-  "failures": [
-    "core::source_fingerprint_matches",
-    "core::model_card_matches_source_snapshot",
-    "canonical_uses_hash_bound_admitted_adapter",
-    "adapter_evaluation_and_product_admission_are_bound",
-    "source_bound_runtime_artifacts_match_final_snapshot",
-    "browser_e2e_and_durable_job_observability_pass"
-  ],
+  "failures": [],
   "checks": [
     {
       "name": "required_delivery_artifacts_exist",
@@ -22,8 +15,8 @@
       "name": "artifact_manifest_is_complete_and_current",
       "passed": true,
       "evidence": {
-        "manifest_source": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
-        "current_source": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
+        "manifest_source": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "current_source": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
         "missing": [],
         "hash_mismatches": []
       }
@@ -42,10 +35,10 @@
     },
     {
       "name": "core::source_fingerprint_matches",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "artifact": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "current": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae"
+        "artifact": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
       }
     },
     {
@@ -255,15 +248,15 @@
     },
     {
       "name": "core::model_card_matches_source_snapshot",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "model_card": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "current": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae"
+        "model_card": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
       }
     },
     {
       "name": "canonical_uses_hash_bound_admitted_adapter",
-      "passed": false,
+      "passed": true,
       "evidence": {
         "pack_adapter": {
           "enabled": true,
@@ -272,20 +265,29 @@
           "method": "dpo",
           "path": "/lavender/VideoTrace/outputs/models/qwen35_dpo_adapter",
           "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
-          "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
-          "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+          "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
+          "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
           "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
           "registry_path": "/lavender/VideoTrace/outputs/models/best_adapter.json",
-          "registry_sha256": "b36614bdf314866a94f57f4fd887b3277f9143e24cfc66a8d026aae04483a641"
+          "registry_sha256": "c3dc42bcd327485399eb436de23e853521f0f223513e7dd202f19dc790c05d3d"
         },
         "current_adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
-        "registry_sha256": "b36614bdf314866a94f57f4fd887b3277f9143e24cfc66a8d026aae04483a641",
+        "registry_sha256": "c3dc42bcd327485399eb436de23e853521f0f223513e7dd202f19dc790c05d3d",
         "selected_candidate_id": "qwen35_dpo",
-        "resolved_adapter": "",
+        "resolved_adapter": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter",
         "admission_metadata": {
-          "enabled": false,
-          "path": "",
-          "validated_for_web": false
+          "enabled": true,
+          "path": "D:\\Agent\\VideoTrace\\outputs\\models\\qwen35_dpo_adapter",
+          "validated_for_web": true,
+          "candidate_id": "qwen35_dpo",
+          "method": "dpo",
+          "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
+          "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
+          "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
+          "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
+          "decision": "DPO selected: frozen product regression passed and the real preference run improved reference-relative margins on dev and frozen cola; SFT remains the hash-validated fallback.",
+          "registry_sha256": "c3dc42bcd327485399eb436de23e853521f0f223513e7dd202f19dc790c05d3d",
+          "fallback_used": false
         }
       }
     },
@@ -293,13 +295,16 @@
       "name": "canonical_load_admission_is_immutable",
       "passed": true,
       "evidence": {
-        "pack_evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+        "pack_evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
         "preserved_evaluation_hashes": [
+          "16add71aa1ee3dd7d21b888e5999ca877189476a18dc817573de88f6700046de",
           "3a2ea1d5fd2d193d63f10aa606e90c0264071507a70ea2807d1ef630a1835352",
+          "49adcefc093ef7c3b25f53f4795498537f7aaf52a033489bcf142db10cd0e618",
           "7873400eb2dfa4edacf80de6717ad5e528ba6789feabff9cb5ab5fb4a8fc486e",
           "7cb3ac6fc97664840812d2a833523a0393f54eef38a04d3716488787e55cbb23",
           "8b11c1a7a0ec3dff30c6da8006c75381e3596eb24c74cee306a669a66dcda784",
           "91ea00b20348fc9a14c407f2132c41ed7bc1d8ef0ad7f2eadce1e23913b3757f",
+          "97060b2e52d89996f6b33c66ac3f51186bb4b5ee13878707dbcb4ea32ecc76de",
           "9b91e531d627425ecc496bfa497138f4253ebd3548197bde39beee427084b57a",
           "a97b5e13c67b1a67734e6d1015f779136c387a682add1e18529274d8822f8283",
           "bc72129e2160de487fb2266ba9d6d1f3cfad5759f454bdc796cb7430b2bf34e8",
@@ -308,6 +313,7 @@
           "cb5fccb3a1bbb76ca2228d229ad8b798f60cadb66e0a6ae082580a7f1c2d0324",
           "cd8e522dbba6592a73b128cd318e69d057a4c4be30a6c56454365a44ebf26673",
           "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+          "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
           "fc5b394a58d8245c3dd30b0bc017e21eb9c412d47c403e72e254bc027727e34f"
         ]
       }
@@ -601,7 +607,7 @@
     },
     {
       "name": "adapter_evaluation_and_product_admission_are_bound",
-      "passed": false,
+      "passed": true,
       "evidence": {
         "comparison": {
           "baseline_verified": true,
@@ -617,9 +623,9 @@
           "decision_reason": "adapter passed frozen evidence, claim-support and non-regression gates"
         },
         "same_pack": true,
-        "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
-        "pack_file_sha256": "ea86abd823d535308c6885d8dfeefe9088888e9f9f9a630edb677b4f7423723a",
-        "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
+        "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
+        "pack_file_sha256": "483d72b8511e4d5f46cc1e7025ccbe35f6556762b25020d3d601334ac08cae25",
+        "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
         "admission": {
           "candidate_id": "qwen35_dpo",
           "method": "dpo",
@@ -658,16 +664,16 @@
           "adapter_path": "outputs/models/qwen35_dpo_adapter",
           "adapter_sha256": "11b5d8ea86227ad63450f658d06864c2086d7abcc532c78d95315432237b37c6",
           "adapter_config_sha256": "1223ac3fc92b24c3f62110b23e52e8d2b94f16ee310a93b88553115d7c2f0efd",
-          "metrics_sha256": "db79b9ac0d09762caf4eed903c9b94466e93877c26bfe109764970bf3b3d8462",
-          "model_card_sha256": "b592ab63dde50812ab097ca79e6950611ce81606c4e151c6892976977fdc142d",
-          "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_dpo_eval_d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed.json",
+          "metrics_sha256": "87295f36cf7a766600e1df20e35ccefb39ae219039468140f9e6ecfdef905a51",
+          "model_card_sha256": "3d0e6d5fc8be0ce055fd5cb9945b420ac47ac637fe52730db69956b3562f2b93",
+          "evaluation_report": "/lavender/VideoTrace/outputs/reports/adapter_admissions/qwen35_dpo_eval_d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a.json",
           "evaluation_latest_report": "/lavender/VideoTrace/outputs/reports/qwen35_dpo_eval.json",
-          "evaluation_sha256": "d28ae971b5c80fe21e265999f2f2d24c2f7b2b1ce988e0bdc885b1d2117759ed",
-          "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+          "evaluation_sha256": "d4b73a5eb91ad784dfa26f5831a3a013cb4766d4b7e1961cd3a7f34b5e95c55a",
+          "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
           "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
-          "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
           "training_source_sha256": "590521072edecaa85c8f4e9ddb591f7c6aa1e7b6bd8aeba96707daad87b4238e",
-          "admission_source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+          "admission_source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
           "dataset_sha256": "78bc4cf2813b914e4c06feb694773adfa8d13fd53e3f4498cb5d659fa06609ea",
           "gradient_payload_sha256": "cb142370b687767dd30caad45aa8f93efe5cd2f954de13e08072952b851d4ff1"
         }
@@ -675,19 +681,19 @@
     },
     {
       "name": "source_bound_runtime_artifacts_match_final_snapshot",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "current": "12e57664cc2f9571675644eebc3e10605f243725bdb390f9708a0874a64b3bae",
+        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
         "artifacts": {
-          "canonical_pack": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "adapter_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "adapter_eval_adapter": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "error_analysis": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "performance_report": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "sft_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "sft_eval_candidate": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "dpo_eval_baseline": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-          "dpo_eval_candidate": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+          "canonical_pack": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "adapter_eval_baseline": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "adapter_eval_adapter": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "error_analysis": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "performance_report": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "sft_eval_baseline": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "sft_eval_candidate": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "dpo_eval_baseline": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+          "dpo_eval_candidate": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
         }
       }
     },
@@ -707,9 +713,9 @@
       "passed": true,
       "evidence": {
         "model_residency": {
-          "cold_pipeline_construction_and_run_seconds": 27.559,
-          "warm_cache_hit_run_seconds": 14.901,
-          "speedup": 1.849,
+          "cold_pipeline_construction_and_run_seconds": 26.531,
+          "warm_cache_hit_run_seconds": 15.228,
+          "speedup": 1.742,
           "same_pipeline_instance": true,
           "gpu_requests": "serial queue / one resident pipeline per config"
         },
@@ -730,7 +736,7 @@
             "unknown": 0
           }
         },
-        "peak_cuda_memory_mib": 19487.36,
+        "peak_cuda_memory_mib": 19469.84,
         "precision": {
           "bf16": "used by the remote Qwen3.5/SigLIP product path",
           "int8_or_int4": "not enabled; remote bitsandbytes is CPU-only and failed the explicit 4bit preflight",
@@ -980,7 +986,7 @@
     },
     {
       "name": "browser_e2e_and_durable_job_observability_pass",
-      "passed": false,
+      "passed": true,
       "evidence": {
         "valid": true,
         "checks": {
@@ -1004,7 +1010,7 @@
           "mobile_no_horizontal_overflow": true,
           "console_clean": true
         },
-        "job_id": "bba9b6fa535e45d596d2d31c7b9aadb4",
+        "job_id": "0cada81cba474080ad95db585cc589be",
         "job_persistence": {
           "durable": true,
           "restored": false

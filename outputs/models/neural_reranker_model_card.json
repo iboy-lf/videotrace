@@ -86,7 +86,7 @@
     "eval_loss": 0.7622092962265015,
     "best_epoch": 31
   },
-  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
+  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
   "intended_use": "Blend query-segment relevance with sparse, scorer, and SigLIP signals before temporal evidence selection.",
   "limitations": [
     "Dev supervision is small and spans two videos, so metrics are contract evidence rather than a broad quality claim.",

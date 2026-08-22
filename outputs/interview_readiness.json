@@ -20,8 +20,8 @@
       "name": "source_fingerprint_matches",
       "passed": true,
       "evidence": {
-        "artifact": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "current": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+        "artifact": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
       }
     },
     {
@@ -233,8 +233,8 @@
       "name": "model_card_matches_source_snapshot",
       "passed": true,
       "evidence": {
-        "model_card": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a",
-        "current": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+        "model_card": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6",
+        "current": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
       }
     }
   ],

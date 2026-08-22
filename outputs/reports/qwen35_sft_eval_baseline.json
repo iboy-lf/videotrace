@@ -1,10 +1,10 @@
 {
   "schema_version": "videotrace-qwen35-adapter-eval-v1",
-  "created_at_utc": "2026-08-20T14:47:02.243942+00:00",
+  "created_at_utc": "2026-08-22T18:46:07.974442+00:00",
   "variant": "baseline",
   "candidate_id": "base_model",
   "pack_path": "/lavender/VideoTrace/outputs/iboy_qwen35/cola_review/knowledge_pack.json",
-  "pack_sha256": "460d2299530bbbfae4c20ea1db61c53db6880a9d48223719ce42e710bf44f4d8",
+  "pack_sha256": "eb97e384b17df7a917627b1c97bd5072f3f77fc3975a385a1bba8ce0f05765c6",
   "pack_hash_scope": "canonical_json_without_metadata.llm_adapter",
   "video_path": "/lavender/VideoTrace/data/raw/cola_review.mp4",
   "video_sha256": "04b0b3320cb1776069e056bee59095841f7d6d61490bcc0838835eeaf96f5781",
@@ -25,7 +25,7 @@
   "adapter_path": "",
   "device": "cuda:0",
   "dtype": "bfloat16",
-  "elapsed_seconds": 22.326,
+  "elapsed_seconds": 22.145,
   "answer": "问题：这个视频的整体流程是什么？请概括开场、分国家试喝和最后盲测三个阶段并给出时间戳。\n结论：视频开场展示多罐可口可乐并引出主题，随后分国家试喝阶段展示不同国家可乐的配料与口感，最后进入盲测阶段，男子戴眼罩品尝并猜测饮料来源。\n- 0.0-20.0：一名身穿橙色T恤的男子在室内对着镜头说话，画面展示了桌上的多罐可口可乐，随后该男子举起一瓶娃哈哈非常可乐进行展示。 (timestamp=0.0-20.0)\n- 200.0-220.0：一名身穿橙色T恤的男子在室内环境中，手持一瓶深色饮料，将其倒入杯中饮用，并对着镜头进行评价。 (timestamp=200.0-220.0)\n- 300.0-320.0：视频展示了可口可乐饮料的配料表特写，随后切换到一名身穿橙色上衣的男子，他先是低头，随后举起一瓶百事可乐展示。 (timestamp=300.0-320.0)\n- 400.0-416.2：一名戴着眼罩的男子坐在桌前，桌上摆放着多种带有吸管的饮料，他正在品尝并尝试猜测饮料的种类，画面中出现了“马来西亚”、“哈萨克斯坦”、“加拿大”等文字标签。 (timestamp=400.0-416.2)",
   "answer_sha256": "a666d7df17bdb9e85dc94727d601be5b1bc52ce81df1fc4df2d8ba98c5d8d32a",
   "verification": {
@@ -200,5 +200,5 @@
     "cuda_visible_devices": "0",
     "physical_gpu_ids": "0"
   },
-  "source_sha256": "77091a151747aa189d28cf85ff29cc5b9b2d05de74cb4b5fe0da91b9f3ad363a"
+  "source_sha256": "642cc02324a55491cf8d8097f091a22e3b4509b22a361c4b15adb2a7c67fc7d6"
 }
